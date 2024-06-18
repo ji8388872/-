@@ -731,7 +731,7 @@ export default {
       li {
         flex-basis: 20%;
 
-        // margin: 0 1%;
+        
         background: url('~@/assets/images/main_middle.png') no-repeat center;
         margin-right: 1rem;
         background-size: contain;
@@ -765,7 +765,7 @@ export default {
     .topCenter,
     .topRight {
       flex: 1;
-      padding: 0.4%;
+      padding: 0.2%;
 
       .chart_1 {
         width: 100%;
@@ -782,14 +782,14 @@ export default {
           position: relative;
 
           img {
-            width: 24rem;
-            height: 4rem;
+            width: 20rem;
+              height: 3.5rem;
           }
 
           span {
             position: absolute;
             left: 50%;
-            top: 16%;
+            top: 25%;
             transform: translate(-50%);
             color: #fff;
             font-weight: bold;
@@ -802,7 +802,7 @@ export default {
         }
 
         .map {
-          flex: 6;
+          flex: 10;
           width: 100%;
           margin-top: 2%;
           position: relative;
@@ -826,7 +826,7 @@ export default {
 
       li {
         flex: 1;
-        padding: 0.4%;
+        padding: 0.2%;
 
         .chart_2 {
           width: 100%;
@@ -852,7 +852,7 @@ export default {
             span {
               position: absolute;
               left: 50%;
-              top: 15%;
+              top: 25%;
               transform: translate(-50%);
               color: #fff;
               font-weight: bold;
@@ -862,7 +862,7 @@ export default {
           }
 
           .map {
-            flex: 6;
+            flex: 10;
             width: 100%;
             margin-top: 2%;
             position: relative;
@@ -890,6 +890,7 @@ export default {
 <style>
 .atooltip.el-tooltip__popper[x-placement^="bottom"] .popper__arrow {
   border-bottom-color: transparent;
+  
 }
 
 .atooltip.el-tooltip__popper[x-placement^="bottom"] .popper__arrow:after {
@@ -899,6 +900,7 @@ export default {
 .atooltip {
   background: transparent !important;
   border: none !important;
-  padding: 0;
+  padding: 0 2.2rem 0 0;
+  
 }
 </style>

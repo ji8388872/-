@@ -96,16 +96,16 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -133,7 +133,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -145,7 +149,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -216,6 +220,7 @@ export default {
         legend: {
           top: "0%",
           left: "10%",
+          show: true,
         },
         xAxis: [
           {
@@ -240,7 +245,7 @@ export default {
         ],
         series: [
           {
-            name: "废弃物处理量(极大值)",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -262,7 +267,7 @@ export default {
             markLine: null,
           },
           {
-            name: "废弃物处理量(极小值)",
+            name: "最小值",
             type: "bar",
 
             tooltip: {
@@ -280,7 +285,7 @@ export default {
             markLine: null,
           },
           {
-            name: "废弃物处理量(平均值)",
+            name: "平均值",
             type: "line",
             smooth: true, //圆滑
             tooltip: {
@@ -324,7 +329,9 @@ export default {
             },
           },
         },
-
+        legend: {
+          show: true,
+        },
         xAxis: [
           {
             type: "category",
@@ -334,7 +341,7 @@ export default {
         ],
         series: [
           {
-            name: "废弃物处理量(最大值)",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -352,7 +359,7 @@ export default {
             markLine: null,
           },
           {
-            name: "废弃物处理量(最小值)",
+            name: "最小值",
             type: "bar",
 
             tooltip: {
@@ -368,7 +375,7 @@ export default {
             data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
           },
           {
-            name: "废弃物处理量(平均值)",
+            name: "平均值",
             type: "line",
             smooth: true, //圆滑
             tooltip: {
@@ -428,16 +435,16 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: true,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -445,7 +452,7 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            data: ["废弃物处理量", "总计"],
+            data: ["废弃物处理量"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -465,7 +472,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -476,7 +487,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -488,7 +499,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -504,7 +515,7 @@ export default {
             data: [80, 80],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -582,16 +593,16 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -619,7 +630,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -631,7 +646,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -699,7 +714,9 @@ export default {
             },
           },
         },
-
+        legend: {
+          show: true,
+        },
         xAxis: [
           {
             type: "category",
@@ -709,7 +726,7 @@ export default {
         ],
         series: [
           {
-            name: "废弃物处理量(最大值)",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -727,7 +744,7 @@ export default {
             markLine: null,
           },
           {
-            name: "废弃物处理量(最小值)",
+            name: "最小值",
             type: "bar",
 
             tooltip: {
@@ -743,7 +760,7 @@ export default {
             data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
           },
           {
-            name: "废弃物处理量(平均值)",
+            name: "平均值",
             type: "line",
             smooth: true, //圆滑
             tooltip: {
@@ -809,9 +826,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -819,7 +836,7 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            data: ["废弃物处理量", "总计"],
+            data: ["废弃物处理量"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -839,7 +856,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -850,7 +871,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -862,7 +883,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -878,7 +899,7 @@ export default {
             data: [80, 80],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -956,16 +977,16 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -993,7 +1014,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -1005,7 +1030,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1091,16 +1116,16 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: true,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
+          right: "2",
           bottom: "3",
           containLabel: true,
         },
@@ -1108,7 +1133,7 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            data: ["废弃物处理量", "总计"],
+            data: ["废弃物处理量"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -1128,7 +1153,11 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
+
             axisTick: {
               show: false,
             },
@@ -1139,7 +1168,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1151,7 +1180,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1167,7 +1196,7 @@ export default {
             data: [80, 80],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

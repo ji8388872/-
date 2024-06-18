@@ -46,13 +46,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -78,17 +78,19 @@ export default {
           },
         ],
         yAxis: [
-          {
+            {
             type: "value",
-            name: "吨用水量",
-            // min: 0,
-            // max: 200,
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -97,10 +99,13 @@ export default {
               },
             },
           },
-          {
+         {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
             // min: 0,
             // max: 100,
@@ -109,7 +114,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kwh",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -199,17 +204,19 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "吨用水量",
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
-            // min: 0,
-            // max: 200,
+            
 
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -221,14 +228,17 @@ export default {
           {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
 
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kwh",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -242,7 +252,7 @@ export default {
           // 柱状图
 
           {
-            name: "吨用水量(极大值)",
+            name: "吨用水量(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -253,7 +263,7 @@ export default {
             data: [198, 188, 183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "吨用水量(极小值)",
+            name: "吨用水量(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -276,7 +286,7 @@ export default {
           },
 
           {
-            name: "吨用电量(极大值)",
+            name: "吨用电量(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -293,7 +303,7 @@ export default {
             data: [98, 88, 86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "吨用电量(极小值)",
+            name: "吨用电量(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -359,9 +369,12 @@ export default {
           data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
         },
         yAxis: [
-          {
+            {
             type: "value",
-            name: "吨用水量",
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
 
@@ -370,7 +383,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -379,10 +392,13 @@ export default {
               },
             },
           },
-          {
+         {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
             // min: 0,
             // max: 100,
@@ -391,7 +407,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -405,7 +421,7 @@ export default {
           // 柱状图
 
           {
-            name: "吨用水量(极大值)",
+            name: "吨用水量(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -416,7 +432,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "吨用水量(极小值)",
+            name: "吨用水量(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -439,7 +455,7 @@ export default {
           },
 
           {
-            name: "吨用电量(极大值)",
+            name: "吨用电量(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -456,7 +472,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "吨用电量(极小值)",
+            name: "吨用电量(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -527,13 +543,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
-        grid: {
-          left: "10",
+         grid: {
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -562,8 +578,7 @@ export default {
           {
             type: "value",
             name: "",
-            // min: 0,
-            // max: 200,
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -600,7 +615,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -610,7 +625,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -680,13 +695,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
-        grid: {
-          left: "10",
+         grid: {
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -712,17 +727,19 @@ export default {
           },
         ],
         yAxis: [
-          {
+            {
             type: "value",
-            name: "吨用水量",
-            // min: 0,
-            // max: 200,
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -731,10 +748,13 @@ export default {
               },
             },
           },
-          {
+         {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
             // min: 0,
             // max: 100,
@@ -743,7 +763,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kwh",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -831,9 +851,12 @@ export default {
           data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
         },
         yAxis: [
-          {
+            {
             type: "value",
-            name: "吨用水量",
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
 
@@ -842,7 +865,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -851,10 +874,13 @@ export default {
               },
             },
           },
-          {
+         {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
             // min: 0,
             // max: 100,
@@ -863,7 +889,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -877,7 +903,7 @@ export default {
           // 柱状图
 
           {
-            name: "吨用水量(极大值)",
+            name: "吨用水量(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -888,7 +914,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "吨用水量(极小值)",
+            name: "吨用水量(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -911,7 +937,7 @@ export default {
           },
 
           {
-            name: "吨用电量(极大值)",
+            name: "吨用电量(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -928,7 +954,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "吨用电量(极小值)",
+            name: "吨用电量(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -998,13 +1024,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
-        grid: {
-          left: "10",
+         grid: {
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1033,8 +1059,7 @@ export default {
           {
             type: "value",
             name: "",
-            // min: 0,
-            // max: 200,
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -1071,7 +1096,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1081,7 +1106,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1151,13 +1176,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
-        grid: {
-          left: "10",
+         grid: {
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1183,17 +1208,19 @@ export default {
           },
         ],
         yAxis: [
-          {
+            {
             type: "value",
-            name: "吨用水量",
-            // min: 0,
-            // max: 200,
+            name: "用水量(L)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} L",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1202,10 +1229,13 @@ export default {
               },
             },
           },
-          {
+         {
             type: "value",
 
-            name: "吨用电量",
+            name: "用电量(kwh)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
             // min: 0,
             // max: 100,
@@ -1214,7 +1244,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kwh",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1308,13 +1338,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 10,
+            fontSize: 15,
           },
         },
-        grid: {
-          left: "10",
+         grid: {
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1343,8 +1373,7 @@ export default {
           {
             type: "value",
             name: "",
-            // min: 0,
-            // max: 200,
+            
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -1381,7 +1410,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1391,7 +1420,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

@@ -42,7 +42,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -80,9 +80,13 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
-
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+         
             axisTick: {
               show: false,
             },
@@ -94,7 +98,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -108,7 +112,7 @@ export default {
           {
             name: "虫产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -116,23 +120,10 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(61, 108, 204)",
             },
-            // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(55, 162, 255)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(116, 21, 219)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -141,14 +132,14 @@ export default {
             showSymbol: false,
 
             data: [
-              90, 91, 93, 94, 95, 95, 94, 96, 97, 95, 96, 96, 93, 99, 94, 98,
+              70, 61, 93, 84, 85, 75, 64, 96, 97, 95, 96, 96, 93, 99, 94, 98,
               90, 95, 92, 96, 92, 97, 96, 93, 95, 96, 94, 96, 97, 99,
             ],
           },
           {
             name: "虫沙产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -156,23 +147,11 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(205, 126, 38)",
             },
             // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(255, 191, 0)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(224, 62, 76)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -204,7 +183,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "5%",
+          left: "10%",
         },
         xAxis: [
           {
@@ -231,7 +210,7 @@ export default {
 
         series: [
           {
-            name: "虫产率(极大值)",
+            name: "虫产率(最大值)",
             type: "bar",
             stack: "Ad",
             emphasis: {
@@ -245,7 +224,7 @@ export default {
             data: [80, 82, 81, 84, 85, 85, 84, 86, 87, 85, 86, 64],
           },
           {
-            name: "虫产率(极小值)",
+            name: "虫产率(最小值)",
             type: "bar",
             stack: "Ad",
 
@@ -277,7 +256,7 @@ export default {
           },
 
           {
-            name: "虫沙产率(极大值)",
+            name: "虫沙产率(最大值)",
             type: "bar",
             stack: "Bd",
 
@@ -292,7 +271,7 @@ export default {
             data: [84, 86, 87, 85, 86, 64, 80, 82, 81, 84, 85, 85],
           },
           {
-            name: "虫沙产率(极小值)",
+            name: "虫沙产率(最小值)",
             type: "bar",
             stack: "Bd",
 
@@ -340,7 +319,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "5%",
+          left: "10%",
         },
         xAxis: [
           {
@@ -367,7 +346,7 @@ export default {
 
         series: [
           {
-            name: "虫产率(极大值)",
+            name: "虫产率(最大值)",
             type: "bar",
             stack: "Ad",
             emphasis: {
@@ -381,7 +360,7 @@ export default {
             data: [81, 84, 85, 85, 84, 86, 87, 85, 86, 64],
           },
           {
-            name: "虫产率(极小值)",
+            name: "虫产率(最小值)",
             type: "bar",
             stack: "Ad",
 
@@ -413,7 +392,7 @@ export default {
           },
 
           {
-            name: "虫沙产率(极大值)",
+            name: "虫沙产率(最大值)",
             type: "bar",
             stack: "Bd",
 
@@ -428,7 +407,7 @@ export default {
             data: [87, 85, 86, 64, 80, 82, 81, 84, 85, 85],
           },
           {
-            name: "虫沙产率(极小值)",
+            name: "虫沙产率(最小值)",
             type: "bar",
             stack: "Bd",
 
@@ -483,7 +462,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -521,8 +500,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             axisTick: {
               show: false,
             },
@@ -534,7 +517,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -546,7 +529,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -558,7 +541,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -610,7 +593,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -648,8 +631,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
             axisTick: {
               show: false,
@@ -662,7 +649,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -676,7 +663,7 @@ export default {
           {
             name: "虫产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -684,23 +671,11 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(61, 108, 204)",
             },
             // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(55, 162, 255)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(116, 21, 219)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -716,7 +691,7 @@ export default {
           {
             name: "虫沙产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -724,23 +699,11 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(205, 126, 38)",
             },
             // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(255, 191, 0)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(224, 62, 76)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -772,7 +735,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "5%",
+          left: "10%",
         },
         xAxis: [
           {
@@ -799,7 +762,7 @@ export default {
 
         series: [
           {
-            name: "虫产率(极大值)",
+            name: "虫产率(最大值)",
             type: "bar",
             stack: "Ad",
             emphasis: {
@@ -813,7 +776,7 @@ export default {
             data: [81, 84, 85, 85, 84, 86, 87, 85, 86, 64],
           },
           {
-            name: "虫产率(极小值)",
+            name: "虫产率(最小值)",
             type: "bar",
             stack: "Ad",
 
@@ -845,7 +808,7 @@ export default {
           },
 
           {
-            name: "虫沙产率(极大值)",
+            name: "虫沙产率(最大值)",
             type: "bar",
             stack: "Bd",
 
@@ -860,7 +823,7 @@ export default {
             data: [87, 85, 86, 64, 80, 82, 81, 84, 85, 85],
           },
           {
-            name: "虫沙产率(极小值)",
+            name: "虫沙产率(最小值)",
             type: "bar",
             stack: "Bd",
 
@@ -914,7 +877,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -952,8 +915,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             axisTick: {
               show: false,
             },
@@ -965,7 +932,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -977,7 +944,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -989,7 +956,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1020,7 +987,6 @@ export default {
       this.chart.setOption(option);
     },
 
-
     yearCLY() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose(); //销毁
@@ -1042,7 +1008,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -1080,8 +1046,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
             axisTick: {
               show: false,
@@ -1094,7 +1064,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1108,7 +1078,7 @@ export default {
           {
             name: "虫产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -1116,23 +1086,11 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(61, 108, 204)",
             },
             // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(55, 162, 255)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(116, 21, 219)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -1148,7 +1106,7 @@ export default {
           {
             name: "虫沙产率",
             type: "line",
-            stack: "total",
+
             tooltip: {
               valueFormatter: function (value) {
                 return value + " %";
@@ -1156,23 +1114,11 @@ export default {
             },
             smooth: true, //圆滑
             lineStyle: {
-              width: 0,
+              width: 2,
               color: "rgb(205, 126, 38)",
             },
             // 填充颜色设置
-            areaStyle: {
-              opacity: 0.8,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "rgb(255, 191, 0)",
-                },
-                {
-                  offset: 1,
-                  color: "rgb(224, 62, 76)",
-                },
-              ]),
-            },
+
             emphasis: {
               focus: "series",
             },
@@ -1211,7 +1157,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
+          left: "10%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -1249,8 +1195,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+         {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             axisTick: {
               show: false,
             },
@@ -1262,7 +1212,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1274,7 +1224,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -1286,7 +1236,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

@@ -172,7 +172,7 @@ export default {
         ],
         series: [
           {
-            name: "虫入库量(极大值)",
+            name: "虫入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -188,7 +188,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫入库量(极小值)",
+            name: "虫入库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -246,7 +246,7 @@ export default {
         ],
         series: [
           {
-            name: "虫入库量(极大值)",
+            name: "虫入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -259,7 +259,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫入库量(极小值)",
+            name: "虫入库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -307,12 +307,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫入库量", "总计"],
+            data: ["虫入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -325,7 +325,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -508,7 +508,7 @@ export default {
         ],
         series: [
           {
-            name: "虫入库量(极大值)",
+            name: "虫入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -521,7 +521,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫入库量(极小值)",
+            name: "虫入库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -569,12 +569,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫入库量", "总计"],
+            data: ["虫入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -587,7 +587,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -765,12 +765,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫入库量", "总计"],
+            data: ["虫入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -783,7 +783,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -968,7 +968,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -981,7 +981,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1034,7 +1034,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1047,7 +1047,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1095,12 +1095,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库量", "总计"],
+            data: ["虫出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1113,7 +1113,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1297,7 +1297,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1310,7 +1310,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1358,12 +1358,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库量", "总计"],
+            data: ["虫出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1376,7 +1376,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1555,12 +1555,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库量", "总计"],
+            data: ["虫出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1573,7 +1573,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1757,7 +1757,7 @@ export default {
         ],
         series: [
           {
-            name: "虫库存量(极大值)",
+            name: "虫库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1770,7 +1770,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫库存量(极小值)",
+            name: "虫库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1823,7 +1823,7 @@ export default {
         ],
         series: [
           {
-            name: "虫库存量(极大值)",
+            name: "虫库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1836,7 +1836,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫库存量(极小值)",
+            name: "虫库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1884,12 +1884,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫库存量", "总计"],
+            data: ["虫库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1902,7 +1902,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2085,7 +2085,7 @@ export default {
         ],
         series: [
           {
-            name: "虫库存量(极大值)",
+            name: "虫库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2098,7 +2098,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫库存量(极小值)",
+            name: "虫库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2146,12 +2146,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫库存量", "总计"],
+            data: ["虫库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2164,7 +2164,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2342,12 +2342,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫库存量", "总计"],
+            data: ["虫库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2360,7 +2360,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2542,7 +2542,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙入库量(极大值)",
+            name: "虫沙入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2555,7 +2555,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙入库量(极小值)",
+            name: "虫沙入库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2610,7 +2610,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙入库量(极大值)",
+            name: "虫沙入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2623,7 +2623,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙库量(极小值)",
+            name: "虫沙库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2671,12 +2671,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙入库量", "总计"],
+            data: ["虫沙入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2689,7 +2689,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2870,7 +2870,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙入库量(极大值)",
+            name: "虫沙入库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2883,7 +2883,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙库量(极小值)",
+            name: "虫沙库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2931,12 +2931,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙入库量", "总计"],
+            data: ["虫沙入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -2949,7 +2949,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3125,12 +3125,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙入库量", "总计"],
+            data: ["虫沙入库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3143,7 +3143,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3325,7 +3325,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3338,7 +3338,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3391,7 +3391,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3404,7 +3404,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3452,12 +3452,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库量", "总计"],
+            data: ["虫沙出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3470,7 +3470,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3651,7 +3651,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3664,7 +3664,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3712,12 +3712,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库量", "总计"],
+            data: ["虫沙出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3730,7 +3730,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3906,12 +3906,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库量", "总计"],
+            data: ["虫沙出库量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -3924,7 +3924,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4106,7 +4106,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙库存量(极大值)",
+            name: "虫沙库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4119,7 +4119,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙库存量(极小值)",
+            name: "虫沙库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4172,7 +4172,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙库存量(极大值)",
+            name: "虫沙库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4185,7 +4185,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙库存量(极小值)",
+            name: "虫沙库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4233,12 +4233,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙库存量", "总计"],
+            data: ["虫沙库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4251,7 +4251,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4432,7 +4432,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙库存量(极大值)",
+            name: "虫沙库存量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4445,7 +4445,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙库存量(极小值)",
+            name: "虫沙库存量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4493,12 +4493,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙库存量", "总计"],
+            data: ["虫沙库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4511,7 +4511,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4687,12 +4687,12 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙库存量", "总计"],
+            data: ["虫沙库存量"],
           },
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4705,7 +4705,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4880,7 +4880,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4893,7 +4893,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4954,7 +4954,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -4967,7 +4967,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5015,7 +5015,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库去向", "总计"],
+            data: ["虫出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -5028,7 +5028,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5041,7 +5041,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5215,7 +5215,7 @@ export default {
         ],
         series: [
           {
-            name: "虫出库量(极大值)",
+            name: "虫出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5228,7 +5228,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫出库量(极小值)",
+            name: "虫出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5276,7 +5276,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库去向", "总计"],
+            data: ["虫出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -5289,7 +5289,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5302,7 +5302,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5463,7 +5463,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫出库去向", "总计"],
+            data: ["虫出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -5476,7 +5476,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5489,7 +5489,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5664,7 +5664,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5677,7 +5677,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5738,7 +5738,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5751,7 +5751,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5799,7 +5799,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库去向", "总计"],
+            data: ["虫沙出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -5812,7 +5812,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5825,7 +5825,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -5999,7 +5999,7 @@ export default {
         ],
         series: [
           {
-            name: "虫沙出库量(极大值)",
+            name: "虫沙出库量(最大值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -6012,7 +6012,7 @@ export default {
             markLine: null,
           },
           {
-            name: "虫沙出库量(极小值)",
+            name: "虫沙出库量(最小值)",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -6060,7 +6060,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库去向", "总计"],
+            data: ["虫沙出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -6073,7 +6073,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -6086,7 +6086,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -6247,7 +6247,7 @@ export default {
         },
         xAxis: [
           {
-            data: ["虫沙出库去向", "总计"],
+            data: ["虫沙出库去向"],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -6260,7 +6260,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -6273,7 +6273,7 @@ export default {
             markLine: null,
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

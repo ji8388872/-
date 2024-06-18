@@ -5,7 +5,7 @@
     </div>
     <div class="bottom">
       <div class="centerCharts">
-        <div class="left">
+        <div class="left"  v-if="!showCharts">
           <div
             class="oldChon"
             style="border-bottom: 3px solid rgba(64, 158, 255, 0.2)"
@@ -14,8 +14,8 @@
           </div>
           <div class="chonSa">虫沙</div>
         </div>
-        <div class="right">
-          <ul v-if="!showCharts">
+        <div class="right"  v-if="!showCharts">
+          <ul >
             <li
               v-for="(item, index) in reProducts"
               :key="index"
@@ -26,7 +26,9 @@
               </dv-border-box-3>
             </li>
           </ul>
-          <div class="charts" v-else>
+         
+        </div>
+        <div class="charts" v-else>
             <div class="btn">
               <div class="titleName">
                 {{ title }}
@@ -42,28 +44,28 @@
                       <el-button
                         @click="dayClick()"
                         type="success"
-                        size="small"
+                        size="medium"
                         round
                         >明细图</el-button
                       >
                       <el-button
                         type="success"
                         @click="monthClick()"
-                        size="small"
+                        size="medium"
                         round
                         >月极值图</el-button
                       >
                       <el-button
                         @click="yearClick()"
                         type="success"
-                        size="small"
+                        size="medium"
                         round
                         >年极值图</el-button
                       >
                       <el-button
                         @click="historyClick()"
                         type="success"
-                        size="small"
+                        size="medium"
                         round
                         >历年极值图</el-button
                       >
@@ -80,7 +82,7 @@
                         @click="monthClickM()"
                         type="success"
                         round
-                        size="small"
+                        size="medium"
                         >明细图</el-button
                       >
 
@@ -88,14 +90,14 @@
                         @click="yearClickM()"
                         type="success"
                         round
-                        size="small"
+                        size="medium"
                         >年极值图</el-button
                       >
                       <el-button
                         @click="historyClickM()"
                         type="success"
                         round
-                        size="small"
+                        size="medium"
                         >历年极值图</el-button
                       >
                     </template>
@@ -110,14 +112,14 @@
                       <el-button
                         @click="yearClickY()"
                         type="success"
-                        size="small"
+                        size="medium"
                         round
                         >明细图</el-button
                       >
                       <el-button
                         @click="historyClickY()"
                         type="success"
-                        size="small"
+                        size="medium"
                         round
                         >历年极值图</el-button
                       >
@@ -137,8 +139,8 @@
               <chart1 ref="chart1Ref"></chart1>
             </div>
           </div>
-        </div>
       </div>
+     
     </div>
   </div>
 </template>
@@ -574,7 +576,7 @@ export default {
 
     .centerCharts {
       width: 120rem;
-      height: 50rem;
+      height: 60rem;
       border: 1px solid rgb(64, 158, 255);
       margin: 4rem auto;
       display: flex;
@@ -629,7 +631,10 @@ export default {
           }
         }
 
-        .charts {
+     
+      }
+
+      .charts {
           width: 100%;
           height: 100%;
           display: flex;
@@ -658,8 +663,9 @@ export default {
             flex: 6;
           }
         }
-      }
     }
+
+   
   }
 }
 </style>

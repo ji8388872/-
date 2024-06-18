@@ -196,6 +196,6 @@ nav {
 
   height: 100%;
   width: 100%;
-  padding: 0 1%;
+  padding: 0 0.5%;
 }
 </style>

@@ -57,10 +57,10 @@ export default {
         },
 
         grid: {
-          left: "10",
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -86,9 +86,13 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
-            // name: '角度',
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+         
             axisTick: {
               show: false,
             },
@@ -100,7 +104,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -165,7 +169,7 @@ export default {
           left: "7%",
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         xAxis: {
@@ -173,7 +177,7 @@ export default {
         },
         series: [
           {
-            name: "产虫量(极大值)",
+            name: "产虫量(最大值)",
             type: "bar",
             stack: " Ad",
 
@@ -185,7 +189,7 @@ export default {
             data: [70, 50, 40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫量(极小值)",
+            name: "产虫量(最小值)",
             type: "bar",
             stack: " Ad",
 
@@ -221,13 +225,13 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [57, 61, 52, 48, 70, 64, 59, 54, 66, 77, 72, 68],
           },
 
           {
-            name: "产虫沙量(极大值)",
+            name: "产虫沙量(最大值)",
             type: "bar",
             stack: " Bd",
             tooltip: {
@@ -239,7 +243,7 @@ export default {
             data: [70, 50, 40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫沙量(极小值)",
+            name: "产虫沙量(最小值)",
             type: "bar",
             stack: " Bd",
 
@@ -270,7 +274,7 @@ export default {
             SymbolSize: 8,
             // 设置拐点颜色以及边框
 
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [64, 59, 54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
           },
@@ -295,7 +299,7 @@ export default {
           left: "7%",
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         xAxis: {
@@ -303,7 +307,7 @@ export default {
         },
         series: [
           {
-            name: "产虫量(极大值)",
+            name: "产虫量(最大值)",
             type: "bar",
             stack: " Ad",
 
@@ -315,7 +319,7 @@ export default {
             data: [70, 50, 40, 50, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫量(极小值)",
+            name: "产虫量(最小值)",
             type: "bar",
             stack: " Ad",
 
@@ -351,13 +355,13 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [57, 61, 52, 48, 59, 54, 66, 77, 72, 68],
           },
 
           {
-            name: "产虫沙量(极大值)",
+            name: "产虫沙量(最大值)",
             type: "bar",
             stack: " Bd",
             tooltip: {
@@ -369,7 +373,7 @@ export default {
             data: [40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫沙量(极小值)",
+            name: "产虫沙量(最小值)",
             type: "bar",
             stack: " Bd",
 
@@ -400,7 +404,7 @@ export default {
             SymbolSize: 8,
             // 设置拐点颜色以及边框
 
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
           },
@@ -437,11 +441,11 @@ export default {
           },
         },
 
-        grid: {
-          left: "10",
+       grid: {
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -467,8 +471,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // name: '角度',
             axisTick: {
               show: false,
@@ -481,7 +489,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -493,7 +501,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             lineStyle: {
               color: "#0184d5",
@@ -506,7 +514,7 @@ export default {
             data: [90, 92],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
 
             lineStyle: {
@@ -542,7 +550,7 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [77, 81],
           },
@@ -580,11 +588,11 @@ export default {
           },
         },
 
-        grid: {
-          left: "10",
+       grid: {
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -610,8 +618,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // name: '角度',
             axisTick: {
               show: false,
@@ -624,7 +636,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -689,7 +701,7 @@ export default {
           left: "7%",
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         xAxis: {
@@ -697,7 +709,7 @@ export default {
         },
         series: [
           {
-            name: "产虫量(极大值)",
+            name: "产虫量(最大值)",
             type: "bar",
             stack: " Ad",
 
@@ -709,7 +721,7 @@ export default {
             data: [70, 50, 40, 50, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫量(极小值)",
+            name: "产虫量(最小值)",
             type: "bar",
             stack: " Ad",
 
@@ -745,13 +757,13 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [57, 61, 52, 48, 59, 54, 66, 77, 72, 68],
           },
 
           {
-            name: "产虫沙量(极大值)",
+            name: "产虫沙量(最大值)",
             type: "bar",
             stack: " Bd",
             tooltip: {
@@ -763,7 +775,7 @@ export default {
             data: [40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
           },
           {
-            name: "产虫沙量(极小值)",
+            name: "产虫沙量(最小值)",
             type: "bar",
             stack: " Bd",
 
@@ -794,7 +806,7 @@ export default {
             SymbolSize: 8,
             // 设置拐点颜色以及边框
 
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
           },
@@ -830,11 +842,11 @@ export default {
           },
         },
 
-        grid: {
-          left: "10",
+       grid: {
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -860,8 +872,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // name: '角度',
             axisTick: {
               show: false,
@@ -874,7 +890,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -886,7 +902,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             lineStyle: {
               color: "#0184d5",
@@ -899,7 +915,7 @@ export default {
             data: [90, 92],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
 
             lineStyle: {
@@ -935,7 +951,7 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [77, 81],
           },
@@ -973,11 +989,11 @@ export default {
           },
         },
 
-        grid: {
-          left: "10",
+       grid: {
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -1003,8 +1019,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // name: '角度',
             axisTick: {
               show: false,
@@ -1017,7 +1037,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1094,11 +1114,11 @@ export default {
           },
         },
 
-        grid: {
-          left: "10",
+       grid: {
+          left: "2",
           top: "40",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -1124,8 +1144,12 @@ export default {
           },
         ],
         yAxis: [
-          {
+           {
             type: "value",
+           name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // name: '角度',
             axisTick: {
               show: false,
@@ -1138,7 +1162,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1150,7 +1174,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             lineStyle: {
               color: "#0184d5",
@@ -1163,7 +1187,7 @@ export default {
             data: [90, 92],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
 
             lineStyle: {
@@ -1199,7 +1223,7 @@ export default {
               borderColor: "rgba(221, 220, 107, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} kg",
+            formatter: "{value} ",
 
             data: [77, 81],
           },

@@ -994,7 +994,7 @@ export default {
     .topCenter,
     .topRight {
       flex: 1;
-      padding: 0.4%;
+      padding: 0.2%;
 
       .chart_1 {
         width: 100%;
@@ -1030,7 +1030,7 @@ export default {
         }
 
         .map {
-          flex: 6;
+          flex: 8;
           width: 100%;
           margin-top: 2%;
           position: relative;
@@ -1109,7 +1109,7 @@ export default {
 
       li {
         flex: 1;
-        padding: 0.4%;
+        padding: 0.2%;
 
         .chart_2 {
           width: 100%;
@@ -1144,7 +1144,7 @@ export default {
           }
 
           .map {
-            flex: 6;
+            flex: 8;
             width: 100%;
             margin-top: 2%;
             position: relative;
@@ -1181,6 +1181,7 @@ export default {
 .atooltip {
   background: transparent !important;
   border: none !important;
-  padding: 0;
+  padding: 0 2.2rem 0 0;
+  
 }
 </style>

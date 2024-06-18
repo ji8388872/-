@@ -50,9 +50,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -80,7 +80,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -88,7 +91,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -100,8 +103,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
-
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             min: 0,
             max: 100,
             interval: 20,
@@ -109,7 +114,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -121,7 +126,10 @@ export default {
         ],
         series: [
           {
-            name: "助剂3菌落总数",
+            name: "菌落总数",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -135,7 +143,10 @@ export default {
             ],
           },
           {
-            name: "助剂3比例",
+            name: "比例",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "line",
             // smooth: true,//圆滑
             lineStyle: {
@@ -196,7 +207,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "菌落总数",
+            name: "菌落总数(kg)",
             nameLocation: "end",
             nameGap: 10,
             // min: 0,
@@ -206,7 +217,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -218,7 +229,7 @@ export default {
           {
             type: "value",
 
-            name: "比例",
+            name: "比例(%)",
             nameGap: 10,
 
             interval: 20,
@@ -226,7 +237,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -240,7 +251,7 @@ export default {
           // 柱状图
 
           {
-            name: "菌落极大值",
+            name: "菌落最大值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -251,7 +262,7 @@ export default {
             data: [198, 188, 183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "菌落极小值",
+            name: "菌落最小值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -274,7 +285,7 @@ export default {
           },
 
           {
-            name: "比例极大值",
+            name: "比例最大值",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -291,7 +302,7 @@ export default {
             data: [98, 88, 86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "比例极小值",
+            name: "比例最小值",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -359,7 +370,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "菌落总数",
+            name: "菌落总数(kg)",
             nameLocation: "end",
             nameGap: 10,
 
@@ -368,7 +379,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -380,7 +391,7 @@ export default {
           {
             type: "value",
 
-            name: "比例",
+            name: "比例(%)",
             nameGap: 10,
             // min: 0,
             // max: 100,
@@ -389,7 +400,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -403,7 +414,7 @@ export default {
           // 柱状图
 
           {
-            name: "菌落极大值",
+            name: "菌落最大值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -414,7 +425,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "菌落极小值",
+            name: "菌落最小值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -437,7 +448,7 @@ export default {
           },
 
           {
-            name: "比例极大值",
+            name: "比例最大值",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -454,7 +465,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "比例极小值",
+            name: "比例最小值",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -529,9 +540,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -559,7 +570,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -567,7 +581,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -579,7 +593,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             min: 0,
             max: 100,
@@ -588,7 +605,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -600,7 +617,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -610,7 +627,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -684,9 +701,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -714,7 +731,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -722,7 +742,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -734,7 +754,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             min: 0,
             max: 100,
@@ -743,7 +766,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -755,7 +778,10 @@ export default {
         ],
         series: [
           {
-            name: "助剂3菌落总数",
+            name: "菌落总数",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -769,7 +795,10 @@ export default {
             ],
           },
           {
-            name: "助剂3比例",
+            name: "比例",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "line",
             // smooth: true,//圆滑
             lineStyle: {
@@ -830,7 +859,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "菌落总数",
+            name: "菌落总数(kg)",
             nameLocation: "end",
             nameGap: 10,
 
@@ -839,7 +868,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -851,7 +880,7 @@ export default {
           {
             type: "value",
 
-            name: "比例",
+            name: "比例(%)",
             nameGap: 10,
             // min: 0,
             // max: 100,
@@ -860,7 +889,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -874,7 +903,7 @@ export default {
           // 柱状图
 
           {
-            name: "菌落极大值",
+            name: "菌落最大值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -885,7 +914,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "菌落极小值",
+            name: "菌落最小值",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -908,7 +937,7 @@ export default {
           },
 
           {
-            name: "比例极大值",
+            name: "比例最大值",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -925,7 +954,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "比例极小值",
+            name: "比例最小值",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -999,9 +1028,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1029,7 +1058,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1037,7 +1069,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1049,7 +1081,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             min: 0,
             max: 100,
@@ -1058,7 +1093,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1070,7 +1105,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1080,7 +1115,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1154,9 +1189,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1184,7 +1219,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1192,7 +1230,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1204,7 +1242,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             min: 0,
             max: 100,
@@ -1213,7 +1254,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1225,7 +1266,10 @@ export default {
         ],
         series: [
           {
-            name: "助剂3菌落总数",
+            name: "菌落总数",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1239,7 +1283,10 @@ export default {
             ],
           },
           {
-            name: "助剂3比例",
+            name: "比例",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             type: "line",
             // smooth: true,//圆滑
             lineStyle: {
@@ -1308,9 +1355,9 @@ export default {
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1338,7 +1385,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "助剂3菌落总数",
+            name: "菌落总数(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1346,7 +1396,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} kg",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1358,7 +1408,10 @@ export default {
           {
             type: "value",
 
-            name: "助剂3比例",
+            name: "比例(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             min: 0,
             max: 100,
@@ -1367,7 +1420,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1379,7 +1432,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1389,7 +1442,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

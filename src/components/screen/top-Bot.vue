@@ -29,7 +29,7 @@ export default {
 
   .title {
     position: absolute;
-    top: -5%;
+    top: -2%;
     left: 50%;
     transform: translate(-50%);
     font-size: 1.8rem;
@@ -43,13 +43,17 @@ export default {
   .btn {
     flex: 1;
     border: none;
+    position: relative;
    
 
     .el-row {
       width: 100%;
       height: 100%;
-      padding-bottom: 3rem;
-      padding-left: 3rem;
+      // padding-bottom: 3rem;
+      padding-left: 4rem;
+      position: absolute;
+      top: -170%;
+      
     }
 
   }

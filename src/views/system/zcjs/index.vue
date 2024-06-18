@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="220px">
       <el-form-item label="孵化日期" prop="fhrq">
         <el-date-picker clearable
           v-model="queryParams.fhrq"

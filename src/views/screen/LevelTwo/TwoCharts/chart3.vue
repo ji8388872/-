@@ -50,13 +50,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -84,7 +84,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -92,7 +95,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -104,16 +107,18 @@ export default {
           {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
-            // min: 0,
-            // max: 100,
+           
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -200,7 +205,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
             // min: 0,
@@ -210,7 +218,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -219,17 +227,20 @@ export default {
               },
             },
           },
-          {
+            {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
 
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -243,7 +254,7 @@ export default {
           // 柱状图
 
           {
-            name: "体长(极大值)",
+            name: "体长(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -254,7 +265,7 @@ export default {
             data: [198, 188, 183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "体长(极小值)",
+            name: "体长(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -277,7 +288,7 @@ export default {
           },
 
           {
-            name: "体重(极大值)",
+            name: "体重(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -294,7 +305,7 @@ export default {
             data: [98, 88, 86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "体重(极小值)",
+            name: "体重(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -362,7 +373,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
 
@@ -371,7 +385,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -380,19 +394,21 @@ export default {
               },
             },
           },
-          {
+            {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
-            // min: 0,
-            // max: 100,
+           
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -406,7 +422,7 @@ export default {
           // 柱状图
 
           {
-            name: "体长(极大值)",
+            name: "体长(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -417,7 +433,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "体长(极小值)",
+            name: "体长(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -440,7 +456,7 @@ export default {
           },
 
           {
-            name: "体重(极大值)",
+            name: "体重(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -457,7 +473,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "体重(极小值)",
+            name: "体重(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -528,13 +544,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -562,7 +578,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -584,8 +603,7 @@ export default {
 
             name: "",
 
-            // min: 0,
-            // max: 100,
+           
             // interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -603,7 +621,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -613,7 +631,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -683,13 +701,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -717,7 +735,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -725,7 +746,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -734,19 +755,21 @@ export default {
               },
             },
           },
-          {
+            {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
-            // min: 0,
-            // max: 100,
+           
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -833,7 +856,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameLocation: "end",
             nameGap: 10,
 
@@ -842,7 +868,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -851,19 +877,21 @@ export default {
               },
             },
           },
-          {
+            {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             nameGap: 10,
-            // min: 0,
-            // max: 100,
+           
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -877,7 +905,7 @@ export default {
           // 柱状图
 
           {
-            name: "体长(极大值)",
+            name: "体长(最大值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -888,7 +916,7 @@ export default {
             data: [183, 191, 197, 192, 189, 184, 190, 195, 197, 193],
           },
           {
-            name: "体长(极小值)",
+            name: "体长(最小值)",
             type: "bar",
             stack: "Ad",
             tooltip: {
@@ -911,7 +939,7 @@ export default {
           },
 
           {
-            name: "体重(极大值)",
+            name: "体重(最大值)",
             type: "bar",
             stack: "Bd",
             lineStyle: {
@@ -928,7 +956,7 @@ export default {
             data: [86, 93, 97, 91, 89, 85, 92, 96, 99, 94],
           },
           {
-            name: "体重(极小值)",
+            name: "体重(最小值)",
             type: "bar",
             stack: "Bd",
             yAxisIndex: 1,
@@ -998,13 +1026,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1032,7 +1060,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1054,8 +1085,7 @@ export default {
 
             name: "",
 
-            // min: 0,
-            // max: 100,
+           
             // interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -1073,7 +1103,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1083,7 +1113,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1153,13 +1183,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1187,7 +1217,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "体长(mm)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1195,7 +1228,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} mm",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1204,19 +1237,21 @@ export default {
               },
             },
           },
-          {
+            {
             type: "value",
 
-            name: "老虫体重",
+            name: "体重(g)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
 
-            // min: 0,
-            // max: 100,
+           
             interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: "{value} g",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1307,13 +1342,13 @@ export default {
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 15,
           },
         },
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
+          right: "2",
           bottom: "3",
 
           containLabel: true,
@@ -1341,7 +1376,10 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "老虫体长",
+            name: "",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
             // min: 0,
             // max: 200,
             interval: 20,
@@ -1363,8 +1401,7 @@ export default {
 
             name: "",
 
-            // min: 0,
-            // max: 100,
+           
             // interval: 20,
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -1382,7 +1419,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -1392,7 +1429,7 @@ export default {
             data: [180, 90],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

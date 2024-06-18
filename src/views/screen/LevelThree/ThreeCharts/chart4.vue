@@ -36,7 +36,7 @@ export default {
             label: {
               backgroundColor: "#6a7985",
               formatter: function (params) {
-                return "第" + params.value + "天";
+                return params.value + "号";
               },
             },
           },
@@ -44,7 +44,7 @@ export default {
 
         legend: {
           top: "0",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -53,10 +53,10 @@ export default {
         },
 
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -86,6 +86,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -98,7 +102,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -159,13 +163,13 @@ export default {
         },
         series: [
           {
-            name: "含水率(极大值)",
+            name: "含水率(最大值)",
             type: "bar",
             stack: "Ad",
             data: [96, 88, 85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
           },
           {
-            name: "含水率(极小值)",
+            name: "含水率(最小值)",
             type: "bar",
             stack: "Ad",
             data: [5, 9, 3, 7, 2, 10, 4, 8, 1, 6, 10, 15],
@@ -197,7 +201,7 @@ export default {
           },
 
           {
-            name: "比例(极大值)",
+            name: "比例(最大值)",
             type: "bar",
             stack: "Bd",
             data: [96, 88, 85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
@@ -208,7 +212,7 @@ export default {
             },
           },
           {
-            name: "比例(极小值)",
+            name: "比例(最小值)",
             type: "bar",
             stack: "Bd",
             data: [15, 19, 13, 17, 22, 10, 24, 8, 21, 6, 10, 15],
@@ -264,13 +268,13 @@ export default {
         },
         series: [
           {
-            name: "含水率(极大值)",
+            name: "含水率(最大值)",
             type: "bar",
             stack: "Ad",
             data: [85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
           },
           {
-            name: "含水率(极小值)",
+            name: "含水率(最小值)",
             type: "bar",
             stack: "Ad",
             data: [3, 7, 2, 10, 4, 8, 1, 6, 10, 15],
@@ -302,7 +306,7 @@ export default {
           },
 
           {
-            name: "比例(极大值)",
+            name: "比例(最大值)",
             type: "bar",
             stack: "Bd",
             data: [85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
@@ -313,7 +317,7 @@ export default {
             },
           },
           {
-            name: "比例(极小值)",
+            name: "比例(最小值)",
             type: "bar",
             stack: "Bd",
             data: [13, 17, 22, 10, 24, 8, 21, 6, 10, 15],
@@ -379,7 +383,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -417,6 +421,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -429,7 +437,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -441,7 +449,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -453,7 +461,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -504,7 +512,7 @@ export default {
 
         legend: {
           top: "0",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -513,10 +521,10 @@ export default {
         },
 
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -546,6 +554,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -558,7 +570,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -619,13 +631,13 @@ export default {
         },
         series: [
           {
-            name: "含水率(极大值)",
+            name: "含水率(最大值)",
             type: "bar",
             stack: "Ad",
             data: [85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
           },
           {
-            name: "含水率(极小值)",
+            name: "含水率(最小值)",
             type: "bar",
             stack: "Ad",
             data: [3, 7, 2, 10, 4, 8, 1, 6, 10, 15],
@@ -657,7 +669,7 @@ export default {
           },
 
           {
-            name: "比例(极大值)",
+            name: "比例(最大值)",
             type: "bar",
             stack: "Bd",
             data: [85, 91, 98, 92, 89, 84, 90, 95, 97, 93],
@@ -668,7 +680,7 @@ export default {
             },
           },
           {
-            name: "比例(极小值)",
+            name: "比例(最小值)",
             type: "bar",
             stack: "Bd",
             data: [13, 17, 22, 10, 24, 8, 21, 6, 10, 15],
@@ -733,7 +745,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -771,6 +783,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -783,7 +799,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -795,7 +811,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -807,7 +823,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {
@@ -858,7 +874,7 @@ export default {
 
         legend: {
           top: "0",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -867,10 +883,10 @@ export default {
         },
 
         grid: {
-          left: "10",
+          left: "2",
           top: "45",
-          right: "10",
-          bottom: "5",
+          right: "2",
+          bottom: "3",
           containLabel: true,
         },
         xAxis: [
@@ -900,6 +916,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -912,7 +932,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -982,7 +1002,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "6%",
+          left: "8%",
 
           textStyle: {
             color: "rgba(255,255,255,.9)",
@@ -1020,6 +1040,10 @@ export default {
         yAxis: [
           {
             type: "value",
+            name: "(%)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
 
             axisTick: {
               show: false,
@@ -1032,7 +1056,7 @@ export default {
             axisLabel: {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              formatter: "{value} %",
+              formatter: "{value} ",
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1044,7 +1068,7 @@ export default {
         ],
         series: [
           {
-            name: "极大值",
+            name: "最大值",
             type: "bar",
 
             tooltip: {
@@ -1056,7 +1080,7 @@ export default {
             data: [90, 89],
           },
           {
-            name: "极小值",
+            name: "最小值",
             type: "bar",
             tooltip: {
               valueFormatter: function (value) {

@@ -62,9 +62,9 @@ export default {
           show: false
         },
         grid: {
-          left: '10',
+          left: '2',
           top: "40",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -94,7 +94,11 @@ export default {
         yAxis: [
           {
             type: 'value',
-            // name: '命中率',
+            name: '(万元)',
+           
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -107,7 +111,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value}万元'
+              formatter: '{value}'
             },
             // 修改分割线的颜色
             splitLine: {
@@ -174,7 +178,7 @@ export default {
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -190,7 +194,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -205,7 +209,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {
@@ -248,7 +252,7 @@ export default {
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -264,7 +268,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -279,7 +283,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {
@@ -317,12 +321,12 @@ export default {
         },
         xAxis: [
           {
-            data: ['历年', '总计'],
+            data: ['历年'],
           }
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -337,7 +341,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -352,7 +356,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {
@@ -413,9 +417,9 @@ export default {
           }
         },
         grid: {
-          left: '10',
+          left: '2',
           top: "30",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -445,7 +449,11 @@ export default {
         yAxis: [
           {
             type: 'value',
-            // name: '命中率',
+            name: '(万元)',
+           
+           nameTextStyle: {
+             color: "rgba(255,255,255,1)",
+           },
             axisTick: {
               show: false
             },
@@ -458,7 +466,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value}万元'
+              formatter: '{value}'
             },
             // 修改分割线的颜色
             splitLine: {
@@ -524,7 +532,7 @@ export default {
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -540,7 +548,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -555,7 +563,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {
@@ -593,12 +601,12 @@ export default {
         },
         xAxis: [
           {
-            data: ['历年', '总计'],
+            data: ['历年'],
           }
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -613,7 +621,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -628,7 +636,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {
@@ -686,12 +694,12 @@ export default {
             color: "rgba(255,255,255,.9)",
             fontSize: 15
           },
-          show: true
+          show: false
         },
         grid: {
-          left: '10',
+          left: '2',
           top: "40",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -721,7 +729,11 @@ export default {
         yAxis: [
           {
             type: 'value',
-            // name: '命中率',
+            name: '(万元)',
+           
+           nameTextStyle: {
+             color: "rgba(255,255,255,1)",
+           },
             axisTick: {
               show: false
             },
@@ -734,7 +746,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value}万元'
+              formatter: '{value}'
             },
             // 修改分割线的颜色
             splitLine: {
@@ -795,12 +807,12 @@ export default {
         },
         xAxis: [
           {
-            data: ['历年', '总计'],
+            data: ['历年'],
           }
         ],
         series: [
           {
-            name: '吨处理成本(极大值)',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -815,7 +827,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(极小值)',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -830,7 +842,7 @@ export default {
             markLine: null
           },
           {
-            name: '吨处理成本(平均值)',
+            name: '平均值',
             type: 'line',
             smooth: true,//圆滑
             tooltip: {

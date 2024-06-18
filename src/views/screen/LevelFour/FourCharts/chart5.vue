@@ -54,9 +54,9 @@ export default {
           }
         },
         grid: {
-          left: '10',
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -86,7 +86,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -99,7 +102,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value} km'
+              formatter: '{value} '
             },
             // 修改分割线的颜色
             splitLine: {
@@ -186,7 +189,7 @@ export default {
 
         series: [
           {
-            name: '电车里程(极大值)',
+            name: '电车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -202,7 +205,7 @@ export default {
             ]
           },
           {
-            name: '电车里程(极小值)',
+            name: '电车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -237,14 +240,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极大值)',
+            name: '油车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -253,14 +256,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极小值)',
+            name: '油车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -330,7 +333,7 @@ export default {
 
         series: [
           {
-            name: '电车里程(极大值)',
+            name: '电车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -346,7 +349,7 @@ export default {
             ]
           },
           {
-            name: '电车里程(极小值)',
+            name: '电车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -381,14 +384,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极大值)',
+            name: '油车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -397,14 +400,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极小值)',
+            name: '油车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -472,10 +475,10 @@ export default {
             fontSize: 15
           }
         },
-        grid: {
-          left: '10',
+         grid: {
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -505,7 +508,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -531,7 +537,7 @@ export default {
         ],
         series: [
           {
-            name: '极大值',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -543,7 +549,7 @@ export default {
             ]
           },
           {
-            name: '极小值',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -611,10 +617,10 @@ export default {
             fontSize: 15
           }
         },
-        grid: {
-          left: '10',
+         grid: {
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -644,7 +650,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -657,7 +666,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value} km'
+              formatter: '{value} '
             },
             // 修改分割线的颜色
             splitLine: {
@@ -743,7 +752,7 @@ export default {
 
         series: [
           {
-            name: '电车里程(极大值)',
+            name: '电车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -759,7 +768,7 @@ export default {
             ]
           },
           {
-            name: '电车里程(极小值)',
+            name: '电车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -794,14 +803,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极大值)',
+            name: '油车里程(最大值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -810,14 +819,14 @@ export default {
             ]
           },
           {
-            name: '油车里程(极小值)',
+            name: '油车里程(最小值)',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' km';
               }
             },
-            stack: '油车里程(极大值)',
+            stack: '油车里程(最大值)',
             emphasis: {
               focus: 'series'
             },
@@ -885,10 +894,10 @@ export default {
             fontSize: 15
           }
         },
-        grid: {
-          left: '10',
+         grid: {
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -918,7 +927,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -931,7 +943,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value} km',
+              formatter: '{value} ',
             },
             // 修改分割线的颜色
             splitLine: {
@@ -944,7 +956,7 @@ export default {
         ],
         series: [
           {
-            name: '极大值',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -956,7 +968,7 @@ export default {
             ]
           },
           {
-            name: '极小值',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -1023,10 +1035,10 @@ export default {
             fontSize: 15
           }
         },
-        grid: {
-          left: '10',
+         grid: {
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -1056,7 +1068,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -1069,7 +1084,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value} km'
+              formatter: '{value} '
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1154,10 +1169,10 @@ export default {
             fontSize: 15
           }
         },
-        grid: {
-          left: '10',
+         grid: {
+          left: '2',
           top: "45",
-          right: '10',
+          right: '2',
           bottom: '3',
           containLabel: true
         },
@@ -1187,7 +1202,10 @@ export default {
         yAxis: [
           {
             type: 'value',
-
+            name: "(km)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,1)",
+            },
             axisTick: {
               show: false
             },
@@ -1200,7 +1218,7 @@ export default {
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
 
-              formatter: '{value} km',
+              formatter: '{value} ',
             },
             // 修改分割线的颜色
             splitLine: {
@@ -1213,7 +1231,7 @@ export default {
         ],
         series: [
           {
-            name: '极大值',
+            name: '最大值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -1225,7 +1243,7 @@ export default {
             ]
           },
           {
-            name: '极小值',
+            name: '最小值',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
