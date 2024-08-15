@@ -21,7 +21,7 @@
                 <img class="title" src="@/assets/images/生态园title.png" alt="">
                 <el-carousel :interval="4000" class="elCarousel">
                   <el-carousel-item v-for="item in images" :key="item.id">
-                    <img class="centered-img" :src="item.url" alt="" />
+                    <img class="centered-img" :src="item.url" alt="" @dblclick="showImage(item.url)" />
                   </el-carousel-item>
                 </el-carousel>
               </div>
@@ -151,6 +151,9 @@
         <!-- <qq></qq> -->
 
       </el-dialog>
+      <el-dialog :visible.sync="dialogVisible" width="50%">
+        <img :src="currentImageUrl" alt="" style="width: 100%;height: 50rem;" />
+      </el-dialog>
     </div>
   </div>
 
@@ -181,6 +184,8 @@ export default {
       fRank: '',//前三名准确率
       sRank: '',
       tRank: '',
+      currentImageUrl: '',
+      dialogVisible: false,
 
       dialogVisible1: false,
       dialogVisible2: false,
@@ -295,6 +300,10 @@ export default {
     })
   },
   methods: {
+    showImage(url) {
+      this.currentImageUrl = url;
+      this.dialogVisible = true;
+    },
     // 获取数据
     async getData() {
       await getTableTopList().then(res => {
@@ -518,6 +527,7 @@ nav {
   .photo {
     flex: 6;
     width: 100%;
+    height: 100%;
     margin-top: 8%;
     position: relative;
     background: url('~@/assets/images/生态园足迹.png') no-repeat center;
@@ -534,10 +544,10 @@ nav {
     .elCarousel {
       width: 88%;
       min-height: 90%;
-      max-height: 90%;
+      max-height: 95%;
       border-radius: 2%;
       position: absolute;
-      top: 50%;
+      top: 52%;
       left: 50.5%;
       transform: translate(-50%, -50%);
       overflow: hidden;
@@ -904,6 +914,7 @@ nav {
   right: 10px;
   display: block !important;
 }
+
 
 
 

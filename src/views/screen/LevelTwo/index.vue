@@ -7,7 +7,7 @@
       <span class="day">{{ currentTime }}</span>
 
       <div class="btn">
-        <el-button type="primary" round size="mini"  @click="toFirst">一级</el-button>
+        <el-button type="primary" round size="mini" @click="toFirst">一级</el-button>
         <el-button type="primary" round size="mini" @click="$router.go(-1)">返回</el-button>
       </div>
       <Input></Input>
@@ -61,9 +61,9 @@ export default {
 
       this.today = daysOfWeek[dayIndex];
     },
-      // 去一级权限大屏
-      toFirst() {
-      this.$router.replace('/screen/LevelOne/index')
+    // 去一级权限大屏
+    toFirst() {
+      this.$router.push('/screen/LevelOne/index')
     },
   }
 }
@@ -75,6 +75,7 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+
 @media screen and (min-width: 1200px) {
   html {
     font-size: 85px !important;
@@ -117,10 +118,12 @@ export default {
   background-size: cover;
   z-index: 999;
   margin-bottom: 0.2rem;
+
   .btn {
     position: absolute;
     right: 1.5%;
     top: 80%;
+
     .el-button {
       background: transparent;
       font-weight: 800;

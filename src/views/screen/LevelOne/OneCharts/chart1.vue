@@ -4,15 +4,19 @@
 <script>
 import * as echarts from "echarts";
 import { mapState } from "vuex";
+import { getOneCharts } from '@/api/screen/levelOne.js'
 export default {
   data() {
     return {
       chart: null,
+      chartData: {},
     };
   },
-  created() {},
+  created() {
+  },
   mounted() {
-    this.initChart();
+    this.getCharts()
+
     this.bindResizeEvent();
   },
   updated() {
@@ -20,51 +24,36 @@ export default {
   },
   watch: {
     yearTime(newVal, oldVal) {
-      if (newVal) {
-        const data = [
-          2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 2.6, 5.9, 9.0, 26.4, 28.7, 70.7,
-          75.6, 82.2, 48.7, 18.8, 6.0, 2.3, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-          70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-        ];
-
-        const shuffledData = this.shuffleArray(data);
-
-        this.chart.setOption({
-          series: [
-            {
-              data: shuffledData,
-            },
-          ],
-        });
-      }
+      // this.getCharts()
     },
     monthTime(newVal, oldVal) {
-      if (newVal) {
-        const data = [
-          2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 2.6, 5.9, 9.0, 26.4, 28.7, 70.7,
-          75.6, 82.2, 48.7, 18.8, 6.0, 2.3, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-          70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-        ];
-
-        const shuffledData = this.shuffleArray(data);
-
-        this.chart.setOption({
-          series: [
-            {
-              data: shuffledData,
-            },
-          ],
-        });
-      }
-    },
+      this.getCharts()
+    }
   },
   computed: {
     ...mapState("time", ["yearTime", "monthTime"]),
   },
   methods: {
+    // 获取数据
+    async getCharts() {
+      const data = {
+        year: this.yearTime,
+        month: this.monthTime
+      }
+      if (data.year && data.month) {
+        await getOneCharts(data).then((res) => {
+          if (res.code === 200) {
+            this.chartData = res.data.data
+            this.initChart();
+          }
+        })
+      }
+    },
+    // 随机打乱数组
     shuffleArray(array) {
       return array.sort(() => Math.random() - 0.5);
     },
+    // 初始化图表
     initChart() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose(); //销毁
@@ -76,6 +65,14 @@ export default {
       } else {
         console.error("指定的元素不存在，请检查选择器是否正确。");
       }
+
+      const sortedKeys = Object.keys(this.chartData).sort((a, b) => a - b)
+      const sortedValues = sortedKeys.map(key => this.chartData[key]);
+      // console.log(sortedKeys, '22222222');
+      // console.log(sortedValues, '3333333');
+
+
+
       const option = {
         tooltip: {
           trigger: "axis",
@@ -113,7 +110,7 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            data: Array.from({ length: 30 }, (v, i) => (i + 1).toString()),
+            data: sortedKeys,
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -142,7 +139,7 @@ export default {
             },
             // min: 0,
             // max: 100,
-            interval: 20,
+            // interval: 20,
 
             axisLabel: {
               color: "rgba(255,255,255,.6)",
@@ -173,11 +170,7 @@ export default {
               color: "rgb(145, 204, 117)",
             },
 
-            data: [
-              2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-              2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-              70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3,
-            ],
+            data: sortedValues,
             markPoint: {
               data: [
                 { type: "max", name: "Max" },

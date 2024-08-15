@@ -10,14 +10,13 @@
             </div>
             <div class="map">
               <chart-1 ref="chart1Ref"></chart-1>
-             
             </div>
           </div>
         </dv-border-box-2>
       </div>
       <div class="topCenter">
         <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
-      <div class="chart_1">
+          <div class="chart_1">
             <div class="title">
               <img src="@/assets/images/14-小标题.png" alt="">
               <span>累积量</span>
@@ -25,25 +24,25 @@
             <div class="map">
               <div class="context">
                 <div class="topGrid">
-                  <div class="num">130</div>
+                  <div class="num">{{ data1 }}</div>
                   <div class="name">累计处理量(吨)</div>
 
                 </div>
                 <div class="btnGrid">
 
                   <div class="left">
-                    <div class="num">30</div>
+                    <div class="num">{{ data2 }}</div>
                     <div class="name">累计老虫重量(吨)</div>
 
                   </div>
                   <div class="right">
-                    <div class="num">30</div>
+                    <div class="num">{{ data3 }}</div>
                     <div class="name">累计虫沙重量(吨)</div>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
+          </div>
         </dv-border-box-2>
       </div>
 
@@ -101,7 +100,7 @@
               </div>
               <div class="map">
                 <shuVue></shuVue>
-          
+
               </div>
             </div>
           </dv-border-box-2></li>
@@ -109,13 +108,13 @@
             <div class="chart_2">
               <div class="title">
                 <img src="@/assets/images/14-小标题.png" alt="">
-                <span>照片墙</span>
+                <span>再生产品应用</span>
               </div>
               <div class="map">
-             <swiperBot></swiperBot>
+                <swiperBot></swiperBot>
 
               </div>
-            
+
             </div>
           </dv-border-box-2></li>
       </ul>
@@ -135,10 +134,13 @@ import shuVue from '@/views/screen/newVue/test/shu.vue'
 import swiper from '@/views/screen/LevelOne/OneCharts/swiper'
 import topBot from '@/components/screen/top-Bot'
 import swiperBot from '@/views/screen/LevelOne/OneCharts/element-swiper.vue'
+import { getTowData1, getTowData2, getTowData3 } from '@/api/screen/levelOne.js'
 export default {
   data() {
     return {
-
+      data1: '',
+      data2: '',
+      data3: '',
       showEveryYear: false,
       showYear: false,
       showMonth: false,
@@ -158,12 +160,35 @@ export default {
     swiperBot
 
   },
-  mounted() {
-
+  created() {
+    this.getData1()
+    this.getData2()
+    this.getData3()
   },
   methods: {
+    async getData1() {
+      await getTowData1().then((res) => {
+        if (res.code === 200) {
+          this.data1 = res.data
+        }
+      })
+    },
+    async getData2() {
+      await getTowData2().then((res) => {
+        if (res.code === 200) {
+          this.data2 = res.data
+        }
+      })
+    },
+    async getData3() {
+      await getTowData3().then((res) => {
+        if (res.code === 200) {
+          this.data3 = res.data
+        }
+      })
+    },
 
-    
+
   }
 }
 </script>

@@ -5,17 +5,18 @@ const time = {
     monthTime: "",
   },
 
-mutations: {
-  SET_YEARTIME: (state, yearTime) => {
-    state.yearTime = yearTime;
+  mutations: {
+    SET_YEARTIME: (state, yearTime) => {
+      state.yearTime = yearTime;
+    },
+    SET_MONTHTIME: (state, monthTime) => {
+      state.monthTime = monthTime;
+    },
   },
-  SET_MONTHTIME: (state, monthTime) => {
-    state.monthTime = monthTime;
+  actions: {
+
   },
-},
-actions: {
-},
-getters: {
-}
+  getters: {
+  }
 }
 export default time;
