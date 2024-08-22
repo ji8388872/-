@@ -24,19 +24,22 @@
             <div class="map">
               <div class="context">
                 <div class="topGrid">
-                  <div class="num">{{ data1 }}</div>
+                  <!-- <div class="num">{{ data1 }}</div> -->
+                  <div class="num">50.02</div>
                   <div class="name">累计处理量(吨)</div>
 
                 </div>
                 <div class="btnGrid">
 
                   <div class="left">
-                    <div class="num">{{ data2 }}</div>
+                    <!-- <div class="num">{{ data2 }}</div> -->
+                    <div class="num">100</div>
                     <div class="name">累计老虫重量(吨)</div>
 
                   </div>
                   <div class="right">
-                    <div class="num">{{ data3 }}</div>
+                    <!-- <div class="num">{{ data3 }}</div> -->
+                    <div class="num">20</div>
                     <div class="name">累计虫沙重量(吨)</div>
                   </div>
                 </div>

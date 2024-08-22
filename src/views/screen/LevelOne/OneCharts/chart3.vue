@@ -6,74 +6,33 @@
 
 <script>
 import * as echarts from 'echarts';
-import { mapState } from "vuex";
-import { getThreeCharts1, getThreeCharts2 } from '@/api/screen/levelOne.js'
 
 export default {
   data() {
     return {
       chart: null,
-      chartData1: {},
-      chartData2: {},
+
     };
   },
   created() {
 
   },
   mounted() {
-    this.getCharts()
+    this.initChart();
     this.bindResizeEvent();
   },
   updated() {
     this.chart.resize();
   },
-  computed: {
-    ...mapState("time", ["yearTime", "monthTime"]),
-  },
-  watch: {
-    yearTime(newVal, oldVal) {
-      // this.getCharts()
-    },
-    monthTime(newVal, oldVal) {
-      this.getCharts()
-    }
-  },
   methods: {
     // 获取数据
-    async getCharts() {
-      const data = {
-        year: this.yearTime,
-        month: this.monthTime
-      }
-      if (data.year && data.month) {
-        const [res1, res2] = await Promise.all([
-          getThreeCharts1(data),
-          getThreeCharts2(data)
-        ])
-        if (res1.code === 200) {
-          this.chartData1 = res1.data.lczl;
-        }
-        if (res2.code === 200) {
-          this.chartData2 = res2.data.cszl;
-        }
-        // 只在两个请求都成功时初始化图表  
-        if (res1.code === 200 && res2.code === 200) {
-          this.initChart();
-        }
-      }
-    },
+
     initChart() {
 
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose();//销毁
       }
       this.chart = echarts.init(document.getElementById('chart03'));
-
-      const sortedKeys1 = Object.keys(this.chartData1).sort((a, b) => a - b)
-      const sortedValues1 = sortedKeys1.map(key => this.chartData1[key]);
-
-      const sortedValues2 = sortedKeys1.map(key => this.chartData2[key]);
-
 
       const option = {
 
@@ -114,7 +73,8 @@ export default {
           {
             type: 'category',
             // boundaryGap: false,
-            data: sortedKeys1,
+            data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
+
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -145,7 +105,7 @@ export default {
             },
             // min: 0,
             // max: 100,
-            // interval: 20,
+            interval: 20,
 
             axisLabel: {
 
@@ -172,7 +132,9 @@ export default {
                 return value + ' kg';
               }
             },
-            data: sortedValues1,
+            data: [
+              48.7, 18.8, 6.0, 18.8, 9.0,
+            ],
             // markPoint: {
             //   data: [
             //     { type: 'max', name: 'Max' },
@@ -197,7 +159,9 @@ export default {
               color: "rgb(143, 202, 116)"
             },
             // 填充颜色设置
-            data: sortedValues2
+
+
+            data: [65, 42, 66, 72, 67]
           },
         ]
       };

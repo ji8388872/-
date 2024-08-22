@@ -1,18 +1,16 @@
 <template>
   <div id="chart02"></div>
 </template>
-
-
 <script>
 import * as echarts from "echarts";
-
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       chart: null,
     };
   },
-  created() {},
+  created() { },
   mounted() {
     this.initChart();
     this.bindResizeEvent();
@@ -20,18 +18,70 @@ export default {
   updated() {
     this.chart.resize();
   },
+  watch: {
+    yearTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+          28.7, 70.7, 5.9, 48.7, 18.8
+
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+    monthTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+
+          50.7, 85.6, 72.2, 48.7, 68.8
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+  },
+  computed: {
+    ...mapState("time", ["yearTime", "monthTime"]),
+  },
   methods: {
+    shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    },
     initChart() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose(); //销毁
       }
-      this.chart = echarts.init(document.getElementById("chart02"));
 
+      const chartElement = document.querySelector("#chart02");
+      if (chartElement) {
+        this.chart = echarts.init(chartElement);
+      } else {
+        console.error("指定的元素不存在，请检查选择器是否正确。");
+      }
       const option = {
         tooltip: {
           trigger: "axis",
           axisPointer: {
             type: "cross",
+            crossStyle: {
+              color: "#6a7985",
+            },
             label: {
               backgroundColor: "#6a7985",
               formatter: function (params) {
@@ -40,20 +90,20 @@ export default {
             },
           },
         },
+
         legend: {
           top: "0%",
-          left: "8%",
-
+          right: "20%",
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 12,
+            fontSize: 18,
           },
         },
-
         grid: {
-          left: "2",
-          top: "45",
-          right: "2",
+          left: "25",
+          top: "30",
+          right: "25",
           bottom: "3",
           containLabel: true,
         },
@@ -61,22 +111,20 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            name: "时间",
-            data: Array.from({ length: 30 }, (v, i) => (i + 1).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
-            // 文本颜色
+            data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
+              fontSize: 18,
             },
             // x轴颜色
             axisLine: {
               lineStyle: {
                 color: "rgba(255,255,255,.2)",
               },
+            },
+            axisPointer: {
+              type: "shadow",
             },
           },
         ],
@@ -85,19 +133,19 @@ export default {
             type: "value",
             name: "(%)",
             nameTextStyle: {
-              color: "rgba(255,255,255,1)",
+              color: "rgba(255,255,255,.9)",
             },
             axisTick: {
               show: false,
             },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
+            // min: 0,
+            // max: 100,
+            interval: 20,
+
             axisLabel: {
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
+              fontSize: 18,
+
               formatter: "{value} ",
             },
             // 修改分割线的颜色
@@ -110,8 +158,9 @@ export default {
         ],
         series: [
           {
-            name: "虫沙含水率",
+            name: "虫沙产率",
             type: "bar",
+            barWidth: '50%',
 
             tooltip: {
               valueFormatter: function (value) {
@@ -119,33 +168,35 @@ export default {
               },
             },
 
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
+
             },
 
             data: [
-              95, 96, 96, 96, 93, 97, 95, 94, 95, 96, 97, 94, 97, 96, 96, 94,
-              95, 99, 96, 93, 90, 94, 99, 93, 90, 98, 92, 92, 95, 91,
+
+              50.7, 85.6, 72.2, 48.7, 68.8
             ],
-          },
-          {
-            name: "原料含水率",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
+            markPoint: {
+              data: [
+                { type: "max", name: "Max" },
+                { type: "min", name: "Min" },
+              ],
             },
-
-            emphasis: {
-              focus: "series",
+            markLine: {
+              data: [
+                {
+                  type: "average",
+                  name: "均值",
+                  label: {
+                    position: "middle",
+                    formatter: "均值：{c} ",
+                    color: "#fff",
+                  },
+                },
+              ],
             },
-
-            data: [
-              93, 94, 95, 97, 96, 91, 90, 96, 97, 96, 94, 95, 93, 96, 98, 95,
-              92, 94, 95, 93, 99, 96, 92, 96, 90, 97, 96, 99, 94, 92,
-            ],
           },
         ],
       };
@@ -155,6 +206,7 @@ export default {
     updateMonth() {
       this.chart.setOption({
         tooltip: {
+          trigger: "axis",
           axisPointer: {
             label: {
               backgroundColor: "#6a7985",
@@ -164,118 +216,109 @@ export default {
             },
           },
         },
-        xAxis: {
-          data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
+        legend: {
+          top: "0%",
+          left: "10%",
         },
-
+        xAxis: [
+          {
+            type: "category",
+            // boundaryGap: false,
+            data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
+            axisLabel: {
+              //文本颜色
+              color: "rgba(255,255,255,.6)",
+              fontSize: 12,
+            },
+            // x轴颜色
+            axisLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,.2)",
+              },
+            },
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+        ],
         series: [
           {
-            name: "虫沙含水率(最大值)",
+            name: "厨余处理量(极大值)",
             type: "bar",
-            stack: "Ad",
+
             tooltip: {
               valueFormatter: function (value) {
-                return value + " %";
+                return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [95, 96, 96, 96, 93, 97, 95, 94, 95, 96, 97, 94],
-          },
-          {
-            name: "虫沙含水率(最小值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [48, 84, 7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-          {
-            name: "虫沙含水率(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
             },
 
             // 开始不显示拐点， 鼠标经过显示
-            // showSymbol: false,
-
-            data: [48, 84, 7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
+            showSymbol: false,
+            data: [
+              10, 15, 18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3,
+            ],
           },
-
           {
-            name: "原料含水率(最大值)",
+            name: "厨余处理量(极小值)",
             type: "bar",
-            stack: "Bd",
+
             tooltip: {
               valueFormatter: function (value) {
-                return value + " %";
+                return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
             },
-            data: [95, 96, 96, 96, 93, 97, 95, 94, 95, 96, 97, 94],
+
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [6, 9, 4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+            markPoint: null,
+            markLine: null,
           },
           {
-            name: "原料含水率(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [48, 84, 7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-          {
-            name: "原料含水率(平均值)",
+            name: "厨余处理量(平均值)",
             type: "line",
-
+            smooth: true, //圆滑
             tooltip: {
               valueFormatter: function (value) {
-                return value + " %";
+                return value + " kg";
               },
             },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
             },
-            data: [53, 30, 80, 11, 69, 4, 26, 51, 89, 62, 95, 73],
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
+            },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [57, 61, 52, 48, 50, 64, 59, 54, 66, 57, 52, 58],
+            markPoint: null,
+            markLine: null,
           },
         ],
       });
     },
-
-    updateYear() {
+    // 日·历年
+    updateEveryYear() {
       this.chart.setOption({
         tooltip: {
+          trigger: "axis",
           axisPointer: {
             label: {
               backgroundColor: "#6a7985",
@@ -285,892 +328,75 @@ export default {
             },
           },
         },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
 
-        series: [
-          {
-            name: "虫沙含水率(最大值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [96, 96, 93, 97, 95, 94, 95, 96, 97, 94],
-          },
-          {
-            name: "虫沙含水率(最小值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-          {
-            name: "虫沙含水率(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-
-          {
-            name: "原料含水率(最大值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-            data: [95, 96, 96, 96, 93, 97, 95, 94, 95, 96],
-          },
-          {
-            name: "原料含水率(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [48, 84, 7, 97, 39, 23, 61, 13, 58, 85],
-          },
-          {
-            name: "原料含水率(平均值)",
-            type: "line",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
-            },
-            data: [53, 30, 80, 11, 69, 4, 26, 51, 89, 62],
-          },
-        ],
-      });
-    },
-
-    updateHistoryYear() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-
-      const chartElement = document.querySelector("#chart02");
-      if (chartElement) {
-        this.chart = echarts.init(chartElement);
-      } else {
-        console.error("指定的元素不存在，请检查选择器是否正确。");
-      }
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "6%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 12,
-          },
-        },
-        grid: {
-          left: "5",
-          top: "45",
-          right: "5",
-          bottom: "3",
-          containLabel: true,
-        },
-
-        xAxis: [
-          {
-            type: "category",
-            data: ["虫沙含水率", "原料含水率"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "(%)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [90, 89, 80],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [81, 85, 86],
-          },
-        ],
-      });
-    },
-
-    monthWaterM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "月";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "6%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 12,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
         xAxis: [
           {
             type: "category",
             // boundaryGap: false,
-            name: "时间",
-            data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
-            // 文本颜色
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "(%)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "虫沙含水率",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [
-              95, 96, 96, 95, 96, 97, 94, 97, 96, 96, 94, 95, 99, 96, 93, 90,
-              94, 99, 93, 90, 98, 92, 92, 95, 91,
-            ],
-          },
-          {
-            name: "原料含水率",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [
-              93, 94, 95, 97, 96, 91, 90, 96, 97, 96, 94, 95, 93, 96, 98, 95,
-              92, 94, 95, 93, 99, 96, 99, 94, 92,
-            ],
-          },
-        ],
-      };
-
-      this.chart.setOption(option);
-    },
-    yearWaterM() {
-      this.chart.setOption({
-        tooltip: {
-          axisPointer: {
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
-
-        series: [
-          {
-            name: "虫沙含水率(最大值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [96, 96, 93, 97, 95, 94, 95, 96, 97, 94],
-          },
-          {
-            name: "虫沙含水率(最小值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-          {
-            name: "虫沙含水率(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [7, 97, 39, 23, 61, 13, 58, 85, 79, 16],
-          },
-
-          {
-            name: "原料含水率(最大值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-            data: [95, 96, 96, 96, 93, 97, 95, 94, 95, 96],
-          },
-          {
-            name: "原料含水率(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [48, 84, 7, 97, 39, 23, 61, 13, 58, 85],
-          },
-          {
-            name: "原料含水率(平均值)",
-            type: "line",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-
-            emphasis: {
-              focus: "series",
-            },
-            data: [53, 30, 80, 11, 69, 4, 26, 51, 89, 62],
-          },
-        ],
-      });
-    },
-    historyWaterM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-
-      const chartElement = document.querySelector("#chart02");
-      if (chartElement) {
-        this.chart = echarts.init(chartElement);
-      } else {
-        console.error("指定的元素不存在，请检查选择器是否正确。");
-      }
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "6%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 12,
-          },
-        },
-        grid: {
-          left: "5",
-          top: "45",
-          right: "5",
-          bottom: "3",
-          containLabel: true,
-        },
-
-        xAxis: [
-          {
-            type: "category",
-            data: ["虫沙含水率", "原料含水率"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "(%)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [90, 89, 80],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [81, 85, 86],
-          },
-        ],
-      });
-    },
-
-    yearWaterY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "6%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 12,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: "category",
-            // boundaryGap: false,
-            name: "时间",
             data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
-            // 文本颜色
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "(%)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
           },
         ],
         series: [
           {
-            name: "虫沙含水率",
+            name: "厨余处理量(最大值)",
             type: "bar",
 
             tooltip: {
               valueFormatter: function (value) {
-                return value + " %";
+                return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [
-              97, 94, 97, 96, 96, 94, 95, 99, 96, 93, 90, 94, 99, 93, 90, 98,
-              92, 92, 95, 91,
-            ],
-          },
-          {
-            name: "原料含水率",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            emphasis: {
-              focus: "series",
-            },
-
-            data: [
-              93, 94, 95, 96, 94, 95, 93, 96, 98, 95, 92, 94, 95, 93, 99, 96,
-              99, 94, 92,
-            ],
-          },
-        ],
-      };
-
-      this.chart.setOption(option);
-    },
-    historyWaterY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-
-      const chartElement = document.querySelector("#chart02");
-      if (chartElement) {
-        this.chart = echarts.init(chartElement);
-      } else {
-        console.error("指定的元素不存在，请检查选择器是否正确。");
-      }
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "6%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 12,
-          },
-        },
-        grid: {
-          left: "5",
-          top: "45",
-          right: "5",
-          bottom: "3",
-          containLabel: true,
-        },
-
-        xAxis: [
-          {
-            type: "category",
-            data: ["虫沙含水率", "原料含水率"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "(%)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [90, 89, 80],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " %";
-              },
-            },
-            smooth: true, //圆滑
             lineStyle: {
-              width: 2,
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
             },
 
-            data: [81, 85, 86],
+            data: [18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3],
+            markPoint: null,
+            markLine: null,
+          },
+          {
+            name: "厨余处理量(最小值)",
+            type: "bar",
+
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
+            },
+
+            data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+          },
+          {
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
+            },
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
+            },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [72, 68, 50, 34, 69, 54, 66, 57, 52, 58],
           },
         ],
       });

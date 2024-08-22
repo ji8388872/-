@@ -10,119 +10,16 @@
     </div>
     <div class="top">
       <div class="topLeft">
-        <dv-border-box-2
-          :color="['green', 'green']"
-          backgroundColor="rgba(55, 126, 34,.1)"
-        >
+        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
           <div class="chart_1">
             <div class="title">
               <img src="@/assets/images/14-小标题.png" alt="" />
-              <span>废弃物处理量</span>
+              <span>来料量</span>
             </div>
             <div class="map">
               <topBot>
-                <template #Title>
-                  {{ title1 }}
-                </template>
-                <template #btn>
-                  <el-row type="flex" justify="space-between">
-                    <el-col :span="8"> </el-col>
-                    <el-col :span="8">
-                      <el-tooltip
-                        placement="bottom"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="dayFQW()"
-                            type="success"
-                            size="small"
-                            round
-                            >明细图</el-button
-                          >
-                          <el-button
-                            type="success"
-                            @click="monthFQW()"
-                            size="small"
-                            round
-                            >月极值图</el-button
-                          >
-                          <el-button
-                            @click="yearFQW()"
-                            type="success"
-                            size="small"
-                            round
-                            >年极值图</el-button
-                          >
-                          <el-button
-                            @click="historyFQW()"
-                            type="success"
-                            size="small"
-                            round
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>日</el-button>
-                      </el-tooltip>
-                      <el-tooltip
-                        placement="bottom"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="monthFQWM"
-                            type="success"
-                            round
-                            size="small"
-                            >明细图</el-button
-                          >
-                          <el-button
-                            @click="yearFQWM"
-                            type="success"
-                            round
-                            size="small"
-                            >年极值图</el-button
-                          >
-                          <el-button
-                            @click="historyFQWM"
-                            type="success"
-                            round
-                            size="small"
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>月</el-button>
-                      </el-tooltip>
-                      <el-tooltip
-                        placement="bottom-end"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="yearFQWY"
-                            type="success"
-                            size="small"
-                            round
-                            >明细图</el-button
-                          >
-                          <el-button
-                            @click="historyFQWY"
-                            type="success"
-                            size="small"
-                            round
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>年</el-button>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
                 <template #charts>
-                  <chart1 ref="chart1Ref"> </chart1>
+                  <chart1> </chart1>
                 </template>
               </topBot>
             </div>
@@ -130,135 +27,31 @@
         </dv-border-box-2>
       </div>
       <div class="topCenter">
-        <dv-border-box-2
-          :color="['green', 'green']"
-          backgroundColor="rgba(55, 126, 34,.1)"
-        >
+        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
           <div class="chart_1">
             <div class="title">
               <img src="@/assets/images/14-小标题.png" alt="" />
-              <span>运行情况</span>
+              <span>处理量</span>
             </div>
             <div class="map">
-              <shanMap></shanMap>
+              <topBot>
+                <template #charts>
+                  <chart6> </chart6>
+                </template>
+              </topBot>
             </div>
           </div>
         </dv-border-box-2>
       </div>
       <div class="topRight">
-        <dv-border-box-2
-          :color="['green', 'green']"
-          backgroundColor="rgba(55, 126, 34,.1)"
-        >
+        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
           <div class="chart_1">
             <div class="title">
               <img src="@/assets/images/14-小标题.png" alt="" />
-              <span>产率</span>
+              <span>吨垃圾用卵量</span>
             </div>
             <div class="map">
               <top-bot>
-                <template #Title>
-                  {{ title2 }}
-                </template>
-                <template #btn>
-                  <el-row type="flex" justify="space-between">
-                    <el-col :span="8"> </el-col>
-                    <el-col :span="8">
-                      <el-tooltip
-                        placement="bottom"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="dayCL()"
-                            type="success"
-                            size="small"
-                            round
-                            >明细图</el-button
-                          >
-                          <el-button
-                            @click="monthCL()"
-                            type="success"
-                            size="small"
-                            round
-                            >月极值图</el-button
-                          >
-                          <el-button
-                            @click="yearCL()"
-                            type="success"
-                            size="small"
-                            round
-                            >年极值图</el-button
-                          >
-                          <el-button
-                            @click="historyCL()"
-                            type="success"
-                            size="small"
-                            round
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>日</el-button>
-                      </el-tooltip>
-                      <el-tooltip
-                        placement="bottom"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="monthCLM"
-                            type="success"
-                            size="small"
-                            round
-                            >明细图</el-button
-                          >
-
-                          <el-button
-                            @click="yearCLM"
-                            type="success"
-                            size="small"
-                            round
-                            >年极值图</el-button
-                          >
-                          <el-button
-                            @click="historyCLM"
-                            type="success"
-                            size="small"
-                            round
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>月</el-button>
-                      </el-tooltip>
-                      <el-tooltip
-                        placement="bottom-end"
-                        effect="light"
-                        popper-class="atooltip"
-                      >
-                        <template #content>
-                          <el-button
-                            @click="yearCLY"
-                            type="success"
-                            size="small"
-                            round
-                            >明细图</el-button
-                          >
-
-                          <el-button
-                            @click="historyCLY"
-                            type="success"
-                            size="small"
-                            round
-                            >历年极值图</el-button
-                          >
-                        </template>
-                        <el-button type="primary" round>年</el-button>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
                 <template #charts>
                   <chart2 ref="chart2Ref"></chart2>
                 </template>
@@ -271,118 +64,14 @@
     <div class="main">
       <ul>
         <li>
-          <dv-border-box-2
-            :color="['green', 'green']"
-            backgroundColor="rgba(55, 126, 34,.1)"
-          >
+          <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
             <div class="chart_2">
               <div class="title">
                 <img src="@/assets/images/14-小标题.png" alt="" />
-                <span>老虫体征信息</span>
+                <span>减量化率</span>
               </div>
               <div class="map">
                 <topBot>
-                  <template #Title>
-                    {{ title3 }}
-                  </template>
-                  <template #btn>
-                    <el-row type="flex" justify="space-between">
-                      <el-col :span="8"> </el-col>
-                      <el-col :span="8">
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="dayOldC()"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="monthOldC()"
-                              type="success"
-                              size="small"
-                              round
-                              >月极值图</el-button
-                            >
-                            <el-button
-                              @click="yearOldC()"
-                              type="success"
-                              size="small"
-                              round
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyOldC()"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>日</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="monthOldCM"
-                              type="success"
-                              round
-                              size="small"
-                              >明细图</el-button
-                            >
-
-                            <el-button
-                              @click="yearOldCM"
-                              type="success"
-                              round
-                              size="small"
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyOldCM"
-                              type="success"
-                              round
-                              size="small"
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>月</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom-end"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="yearOldCY"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="historyOldCY"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>年</el-button>
-                        </el-tooltip>
-                      </el-col>
-                    </el-row>
-                  </template>
                   <template #charts>
                     <chart3 ref="chart3Ref"></chart3>
                   </template>
@@ -392,118 +81,14 @@
           </dv-border-box-2>
         </li>
         <li>
-          <dv-border-box-2
-            :color="['green', 'green']"
-            backgroundColor="rgba(55, 126, 34,.1)"
-          >
+          <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
             <div class="chart_2">
               <div class="title">
                 <img src="@/assets/images/14-小标题.png" alt="" />
-                <span> 能源消耗 </span>
+                <span> 减重率 </span>
               </div>
               <div class="map">
                 <topBot>
-                  <template #Title>
-                    {{ title4 }}
-                  </template>
-                  <template #btn>
-                    <el-row type="flex" justify="space-between">
-                      <el-col :span="8"> </el-col>
-                      <el-col :span="8">
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="dayEnergy()"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="monthEnergy()"
-                              type="success"
-                              size="small"
-                              round
-                              >月极值图</el-button
-                            >
-                            <el-button
-                              @click="yearEnergy()"
-                              type="success"
-                              size="small"
-                              round
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyEnergy()"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>日</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="monthEnergyM()"
-                              type="success"
-                              round
-                              size="small"
-                              >明细图</el-button
-                            >
-
-                            <el-button
-                              @click="yearEnergyM()"
-                              type="success"
-                              round
-                              size="small"
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyEnergyM()"
-                              type="success"
-                              round
-                              size="small"
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>月</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom-end"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="yearEnergyY()"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="historyEnergyY()"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>年</el-button>
-                        </el-tooltip>
-                      </el-col>
-                    </el-row>
-                  </template>
                   <template #charts>
                     <chart5 ref="chart5Ref"></chart5>
                   </template>
@@ -513,10 +98,7 @@
           </dv-border-box-2>
         </li>
         <li>
-          <dv-border-box-2
-            :color="['green', 'green']"
-            backgroundColor="rgba(55, 126, 34,.1)"
-          >
+          <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)">
             <div class="chart_2">
               <div class="title">
                 <img src="@/assets/images/14-小标题.png" alt="" />
@@ -524,107 +106,6 @@
               </div>
               <div class="map">
                 <topBot>
-                  <template #Title>
-                    {{ title5 }}
-                  </template>
-                  <template #btn>
-                    <el-row type="flex" justify="space-between">
-                      <el-col :span="8"> </el-col>
-                      <el-col :span="8">
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="dayDanwei"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="monthDanwei"
-                              type="success"
-                              size="small"
-                              round
-                              >月极值图</el-button
-                            >
-                            <el-button
-                              @click="yearDanwei"
-                              type="success"
-                              size="small"
-                              round
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyDanwei()"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>日</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="monthDanweiM"
-                              type="success"
-                              round
-                              size="small"
-                              >明细图</el-button
-                            >
-
-                            <el-button
-                              @click="yearDanweiM"
-                              type="success"
-                              round
-                              size="small"
-                              >年极值图</el-button
-                            >
-                            <el-button
-                              @click="historyDanweiM"
-                              type="success"
-                              round
-                              size="small"
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>月</el-button>
-                        </el-tooltip>
-                        <el-tooltip
-                          placement="bottom-end"
-                          effect="light"
-                          popper-class="atooltip"
-                        >
-                          <template #content>
-                            <el-button
-                              @click="yearDanweiY"
-                              type="success"
-                              size="small"
-                              round
-                              >明细图</el-button
-                            >
-                            <el-button
-                              @click="historyDanweiY"
-                              type="success"
-                              size="small"
-                              round
-                              >历年极值图</el-button
-                            >
-                          </template>
-                          <el-button type="primary" round>年</el-button>
-                        </el-tooltip>
-                      </el-col>
-                    </el-row>
-                  </template>
                   <template #charts>
                     <chart4 ref="chart4Ref"></chart4>
                   </template>
@@ -644,18 +125,32 @@ import chart2 from "@/views/screen/LevelTwo/TwoCharts//chart2.vue";
 import chart3 from "@/views/screen/LevelTwo/TwoCharts//chart3.vue";
 import chart4 from "@/views/screen/LevelTwo/TwoCharts//chart4.vue";
 import chart5 from "@/views/screen/LevelTwo/TwoCharts//chart5.vue";
-import shanMap from "@/views/screen/LevelTwo/TwoCharts/chart6.vue";
+import chart6 from "@/views/screen/LevelTwo/TwoCharts/chart6.vue";
 import topBot from "@/components/screen/top-Bot";
 
 export default {
   data() {
     return {
       chonData: [
-        { name: "虫卵来源", value: "仓库" },
-        { name: "单克虫卵产老虫产量(kg)", value: 30 },
-        { name: "单位书柜标准工时(h)", value: 40 },
-        { name: "吨用水量(L)", value: "正常" },
-        { name: "吨用电量(kWh)", value: "正常" },
+        {
+          name: "日产日清", value: "是"
+        },
+        { name: "来料量: 100kg", value: "正常" },
+        { name: "处理量: 100kg", value: "正常" },
+
+        {
+          name: "吨垃圾用卵量", value: "正常"
+        },
+        {
+          name: "减量化率: 90%", value: "正常"
+        },
+        {
+          name: "减重率: 60%", value: "正常"
+        },
+
+        {
+          name: "工时", value: "正常"
+        },
       ],
       title1: "日废弃物处理量明细图",
       title2: "日产率明细图",
@@ -670,260 +165,12 @@ export default {
     chart3,
     chart4,
     chart5,
-    shanMap,
+    chart6,
     topBot,
   },
-  mounted() {},
+  mounted() { },
   methods: {
-    // 废弃物处理量
-    // 切换日
-    // 1.明细图
-    dayFQW() {
-      this.$refs.chart1Ref.initChart();
-      this.title1 = "日废弃物处理量明细图";
-    },
-    // 2.月极值图表
-    monthFQW() {
-      this.$refs.chart1Ref.updateMonth();
-      this.title1 = "日废弃物处理量月极值图";
-    },
-    // 3.年极值图表
-    yearFQW() {
-      this.$refs.chart1Ref.updateYear();
-      this.title1 = "日废弃物处理量年极值图";
-    },
-    // 4.历年
-    historyFQW() {
-      this.$refs.chart1Ref.updateHistory();
-      this.title1 = "日废弃物处理量历年极值图";
-    },
-    // 切换月
-    // 2-1.明细图
-    monthFQWM() {
-      this.$refs.chart1Ref.monthFQWM();
-      this.title1 = "月废弃物处理量明细图";
-    },
-    // 2-2.年极值图表
-    yearFQWM() {
-      this.$refs.chart1Ref.yearFQWM();
-      this.title1 = "月废弃物处理量年极值图";
-    },
-    // 2-3.历年
-    historyFQWM() {
-      this.$refs.chart1Ref.historyFQWM();
-      this.title1 = "月废弃物处理量历年极值图";
-    },
-    // 切换年
-    // 3-1.明细图
-    yearFQWY() {
-      this.$refs.chart1Ref.yearFQWY();
-      this.title1 = "年废弃物处理量明细图";
-    },
-    // 3-2.历年
-    historyFQWY() {
-      this.$refs.chart1Ref.historyFQWY();
-      this.title1 = "年废弃物处理量历年极值图";
-    },
-
-    // 产率
-    // 切换日
-    // 1.明细图
-    dayCL() {
-      this.$refs.chart2Ref.initChart();
-      this.title2 = "日产率明细图";
-    },
-    // 2.月极值图表
-    monthCL() {
-      this.$refs.chart2Ref.updateMonth();
-      this.title2 = "日产率月极值图";
-    },
-    // 3.年极值图表
-    yearCL() {
-      this.$refs.chart2Ref.updateYear();
-      this.title2 = "日产率年极值图";
-    },
-    // 4.历年
-    historyCL() {
-      this.$refs.chart2Ref.updateHistory();
-      this.title2 = "日产率历年极值图";
-    },
-    // 切换月
-    // 2-1.明细图
-    monthCLM() {
-      this.$refs.chart2Ref.monthCLM();
-      this.title2 = "月产率明细图";
-    },
-    // 2-2.年极值图表
-    yearCLM() {
-      this.$refs.chart2Ref.yearCLM();
-      this.title2 = "月产率年极值图";
-    },
-    // 2-3.历年
-    historyCLM() {
-      this.$refs.chart2Ref.historyCLM();
-      this.title2 = "月产率历年极值图";
-    },
-    // 切换年
-    // 3-1.明细图
-    yearCLY() {
-      this.$refs.chart2Ref.yearCLY();
-      this.title2 = "年产率明细图";
-    },
-    // 3-2.历年
-    historyCLY() {
-      this.$refs.chart2Ref.historyCLY();
-      this.title2 = "年产率历年极值图";
-    },
-
-    // 老虫体征信息
-    // 切换日
-    // 1.明细图
-    dayOldC() {
-      this.$refs.chart3Ref.initChart();
-      this.title3 = "日老虫体征信息明细图";
-    },
-    // 2.月极值图表
-    monthOldC() {
-      this.$refs.chart3Ref.updateMonth();
-      this.title3 = "日老虫体征信息月极值图";
-    },
-    // 3.年极值图表
-    yearOldC() {
-      this.$refs.chart3Ref.updateYear();
-      this.title3 = "日老虫体征信息年极值图";
-    },
-    // 4.历年
-    historyOldC() {
-      this.$refs.chart3Ref.updateHistory();
-      this.title3 = "日老虫体征信息历年极值图";
-    },
-    // 切换月
-    // 2-1.明细图
-    monthOldCM() {
-      this.$refs.chart3Ref.monthOldCM();
-      this.title3 = "月老虫体征信息明细图";
-    },
-    // 2-2.年极值图表
-    yearOldCM() {
-      this.$refs.chart3Ref.yearOldCM();
-      this.title3 = "月老虫体征信息年极值图";
-    },
-    // 2-3.历年
-    historyOldCM() {
-      this.$refs.chart3Ref.historyOldCM();
-      this.title3 = "月老虫体征信息历年极值图";
-    },
-    // 切换年
-    // 3-1.明细图
-    yearOldCY() {
-      this.$refs.chart3Ref.yearOldCY();
-      this.title3 = "年老虫体征信息明细图";
-    },
-    // 3-2.历年
-    historyOldCY() {
-      this.$refs.chart3Ref.historyOldCY();
-      this.title3 = "年老虫体征信息历年极值图";
-    },
-
-    // 能源消耗
-    // 切换日
-    // 1.明细图
-    dayEnergy() {
-      this.$refs.chart5Ref.initChart();
-      this.title4 = "日能源消耗明细图";
-    },
-    // 2.月极值图表
-    monthEnergy() {
-      this.$refs.chart5Ref.updateMonth();
-      this.title4 = "日能源消耗月极值图";
-    },
-    // 3.年极值图表
-    yearEnergy() {
-      this.$refs.chart5Ref.updateYear();
-      this.title4 = "日能源消耗年极值图";
-    },
-    // 4.历年
-    historyEnergy() {
-      this.$refs.chart5Ref.updateHistory();
-      this.title4 = "日能源消耗历年极值图";
-    },
-    // 切换月
-    // 2-1.明细图
-    monthEnergyM() {
-      this.$refs.chart5Ref.monthEnergyM();
-      this.title4 = "月能源消耗明细图";
-    },
-    // 2-2.年极值图表
-    yearEnergyM() {
-      this.$refs.chart5Ref.yearEnergyM();
-      this.title4 = "月能源消耗年极值图";
-    },
-    // 2-3.历年
-    historyEnergyM() {
-      this.$refs.chart5Ref.historyEnergyM();
-      this.title4 = "月能源消耗历年极值图";
-    },
-    // 切换年
-    // 3-1.明细图
-    yearEnergyY() {
-      this.$refs.chart5Ref.yearEnergyY();
-      this.title4 = "年能源消耗明细图";
-    },
-    // 3-2.历年
-    historyEnergyY() {
-      this.$refs.chart5Ref.historyEnergyY();
-      this.title4 = "年能源消耗历年极值图";
-    },
-
-    // 单位工时
-    // 切换日
-    // 1.明细图
-    dayDanwei() {
-      this.$refs.chart4Ref.initChart();
-      this.title5 = "日单位工时明细图";
-    },
-    // 2.月极值图表
-    monthDanwei() {
-      this.$refs.chart4Ref.updateMonth();
-      this.title5 = "日单位工时月极值图";
-    },
-    // 3.年极值图表
-    yearDanwei() {
-      this.$refs.chart4Ref.updateYear();
-      this.title5 = "日单位工时年极值图";
-    },
-    // 4.历年
-    historyDanwei() {
-      this.$refs.chart4Ref.updateHistory();
-      this.title5 = "日单位工时历年极值图";
-    },
-    // 切换月
-    // 2-1.明细图
-    monthDanweiM() {
-      this.$refs.chart4Ref.monthDanweiM();
-      this.title5 = "月单位工时明细图";
-    },
-    // 2-2（月）年极值图
-    yearDanweiM() {
-      this.$refs.chart4Ref.yearDanweiM();
-      this.title5 = "月单位工时年极值图";
-    },
-    // 2-3（月）历年
-    historyDanweiM() {
-      this.$refs.chart4Ref.historyDanweiM();
-      this.title5 = "月单位工时历年极值图";
-    },
-    // 切换年
-    // 3-1 年明细图
-    yearDanweiY() {
-      this.$refs.chart4Ref.yearDanweiY();
-      this.title5 = "年单位工时年明细图";
-    },
-    // 3-2（年）历年
-    historyDanweiY() {
-      this.$refs.chart4Ref.historyDanweiY();
-      this.title5 = "年单位工时历年极值图";
-    },
+   
   },
 };
 </script>
@@ -971,7 +218,7 @@ export default {
         }
 
         .name {
-          font-size: 1.3rem;
+          font-size: 1.5rem;
           color: rgb(14, 241, 245);
         }
 
@@ -1182,6 +429,6 @@ export default {
   background: transparent !important;
   border: none !important;
   padding: 0 2.2rem 0 0;
-  
+
 }
 </style>

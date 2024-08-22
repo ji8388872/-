@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <div class="title">黑水虻场站管理大屏</div>
+      <div class="title">黑水虻 运营日志</div>
       <span class="time">{{ today }} </span>
       <span class="weather">天气:晴</span>
       <span class="day">{{ currentTime }}</span>

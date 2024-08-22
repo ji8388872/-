@@ -1,27 +1,28 @@
 <template>
   <div id="app">
     <header>
-      <div class="title">黑水虻 运营日志</div>
+      <div class="title">黑水虻场站管理大屏</div>
       <span class="time">{{ today }} </span>
       <span class="weather">天气:晴</span>
       <span class="day">{{ currentTime }}</span>
-
       <div class="btn">
         <el-button type="primary" round size="mini" @click="toFirst">一级</el-button>
+        <el-button type="primary" round size="mini" @click="toSecond">二级</el-button>
         <el-button type="primary" round size="mini" @click="$router.go(-1)">返回</el-button>
+
       </div>
       <Input></Input>
     </header>
     <nav>
       <div class="container">
-        <TwoCharts></TwoCharts>
+        <ThreeCharts></ThreeCharts>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import TwoCharts from '@/views/screen/LevelTwo/TwoCharts/index.vue'
+import ThreeCharts from '@/views/screen/LevelThree/ThreeCharts/index.vue'
 import Input from '@/components/screen/input.vue'
 export default {
   data() {
@@ -31,7 +32,7 @@ export default {
     }
   },
   components: {
-    TwoCharts,
+    ThreeCharts,
     Input
   },
   mounted() {
@@ -40,6 +41,9 @@ export default {
     setInterval(this.updateTime, 1000); // 每秒钟更新一次时间
     this.getDayOfWeek()
     setInterval(this.getDayOfWeek, 10000);
+  },
+  updated() {
+    window.scrollTo(0, 200);
   },
   methods: {
     updateTime() {
@@ -63,8 +67,12 @@ export default {
     },
     // 去一级权限大屏
     toFirst() {
-      this.$router.push('/screen/LevelOne/index')
+      this.$router.replace('/screen/LevelOne/index')
     },
+    // 去二级权限大屏
+    toSecond() {
+      this.$router.replace('/screen/LevelTwo/index')
+    }
   }
 }
 </script>
@@ -122,7 +130,7 @@ export default {
   .btn {
     position: absolute;
     right: 1.5%;
-    top: 80%;
+    top: 82%;
 
     .el-button {
       background: transparent;

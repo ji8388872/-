@@ -156,10 +156,12 @@ export default {
         { name: "出库量", tag: "oldChon" },
         { name: "库存量", tag: "oldChon" },
         { name: "去向", tag: "oldChon" },
+        { name: "体重", tag: "oldChon" },
         { name: "入库量", tag: "chonSa" },
         { name: "出库量", tag: "chonSa" },
         { name: "库存量", tag: "chonSa" },
         { name: "去向", tag: "chonSa" },
+        { name: "体重", tag: "chonSa" },
       ],
       showCharts: false,
       // 按顺序标记八个图表
@@ -611,7 +613,7 @@ export default {
 
           li {
             position: relative;
-            flex-basis: 25%;
+            flex-basis: 20%;
             overflow: hidden;
             cursor: pointer;
             color: rgb(24, 144, 255);

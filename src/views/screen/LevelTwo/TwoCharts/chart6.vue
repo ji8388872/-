@@ -1,54 +1,16 @@
 <template>
-  <div class="chart06">
-    <div class="shanMap"></div>
-    <div class="text">
-      <ul>
-        <li v-for="(item, index) in baseData" :key="index" @click="changeModel(index)">
-          <div class="name">{{ item.name }}</div>
-          <div :class="item.type == 1 ? 'type' : 'typeRed'" @click="showDialog(item.type)">{{ item.type == 1 ? '正常' : '异常' }}</div>
-        </li>
-
-      </ul>
-    </div>
-    <el-dialog title="异常日期" :visible.sync="dialogType" width="30%" style="margin-top: 10%;">
-      <span>
-        <el-tag type="danger" v-for="(item, index) in abnormalDate" :key="index"
-          style="margin: 0.5rem;cursor: pointer;">{{ item }}号</el-tag>
-      </span>
-
-    </el-dialog>
-  </div>
+  <div id="chart06"></div>
 </template>
-
 <script>
-import * as echarts from 'echarts';
+import * as echarts from "echarts";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      baseData: [
-        {
-          name: '设备稳定',
-          type: 1//正常为1，异常为0
-        },
-        {
-          name: '厂区气味',
-          type: 0
-        },
-        {
-          name: '工艺正常',
-          type: 1
-        },
-
-      ],
       chart: null,
-      model: 0,//0:设备稳定；1:厂区气味；2:工艺正常
-      dialogType: false,//类型弹框
-      // 异常日期
-      abnormalDate: [
-        1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29
-      ]
-    }
+    };
   },
+  created() { },
   mounted() {
     this.initChart();
     this.bindResizeEvent();
@@ -56,251 +18,406 @@ export default {
   updated() {
     this.chart.resize();
   },
-  methods: {
-    initChart() {
+  watch: {
+    yearTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+          28.7, 70.7, 5.9, 48.7, 18.8
 
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+    monthTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+
+          70.7, 75.6, 82.2, 48.7, 18.8
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+  },
+  computed: {
+    ...mapState("time", ["yearTime", "monthTime"]),
+  },
+  methods: {
+    shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    },
+    initChart() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose();//销毁
+        this.chart.dispose(); //销毁
       }
 
-      const chartElement = document.querySelector('.shanMap');
+      const chartElement = document.querySelector("#chart06");
       if (chartElement) {
         this.chart = echarts.init(chartElement);
       } else {
-        console.error('指定的元素不存在，请检查选择器是否正确。');
+        console.error("指定的元素不存在，请检查选择器是否正确。");
       }
       const option = {
-        title: {
-          text: '设备稳定(月)',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 20
-          }
-        },
         tooltip: {
-          trigger: 'item',
-          label: {
-            backgroundColor: '#6a7985',
-            formatter: function (params) {
-              return params.value + '天'
-            }
-          }
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            crossStyle: {
+              color: "#6a7985",
+            },
+            label: {
+              backgroundColor: "#6a7985",
+              formatter: function (params) {
+                return params.value + "号";
+              },
+            },
+          },
         },
+
         legend: {
-          orient: 'vertical',
-          left: 'left',
+          top: "0%",
+          right: "20%",
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
-            fontSize: 15
-          }
+            fontSize: 15,
+          },
         },
+        grid: {
+          left: "2",
+          top: "30",
+          right: "2",
+          bottom: "3",
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: "category",
+            // boundaryGap: false,
+            data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
+            axisLabel: {
+              //文本颜色
+              color: "rgba(255,255,255,.6)",
+              fontSize: 15,
+            },
+            // x轴颜色
+            axisLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,.2)",
+              },
+            },
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "(kg)",
+            nameTextStyle: {
+              color: "rgba(255,255,255,.9)",
+            },
+            axisTick: {
+              show: false,
+            },
+            // min: 0,
+            // max: 100,
+            interval: 20,
+
+            axisLabel: {
+              color: "rgba(255,255,255,.6)",
+              fontSize: 15,
+
+              formatter: "{value} ",
+            },
+            // 修改分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+              },
+            },
+          },
+        ],
         series: [
           {
-            name: '设备稳定天数',
-            type: 'pie',
-            radius: '70%',
-            label: {
-              show: true,
-              position: 'outer',
-              formatter: '{b}:{c}天',
-              textStyle: {
-                color: '#fff', // 设置字体颜色
-                fontSize: 16 // 设置字体大小
-              }
-            },
-            data: [
-              { value: 14, name: '正常', itemStyle: { color: 'rgb(24, 144, 255)' } },
-              { value: 16, name: '异常', itemStyle: { color: 'rgb(199, 49, 128)' } },
+            name: "处理量",
+            type: "bar",
+            barWidth: '50%',
 
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0,0)',
-
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
               },
-              // label: {
-              //   show: true,
-              //   // position: 'inner',
-              //   textStyle: {
-              //     color: '#fff', // 设置字体颜色
-              //     fontSize: 16 // 设置字体大小
-              //   }
-              // }
-            }
-          }
-        ]
-      }
+            },
 
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
+
+            },
+
+            data: [
+
+              30.7, 85.6, 62.2, 48.7, 58.8
+            ],
+            markPoint: {
+              data: [
+                { type: "max", name: "Max" },
+                { type: "min", name: "Min" },
+              ],
+            },
+            markLine: {
+              data: [
+                {
+                  type: "average",
+                  name: "均值",
+                  label: {
+                    position: "middle",
+                    formatter: "均值：{c} ",
+                    color: "#fff",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      };
 
       this.chart.setOption(option);
     },
-    // 改变模型
-    changeModel(index) {
-   
-      this.model = index
-      if (this.model == 0) {
-        this.initChart();
-      } else if (this.model == 1) {
-        this.updatemodel1();
+    updateMonth() {
+      this.chart.setOption({
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            label: {
+              backgroundColor: "#6a7985",
+              formatter: function (params) {
+                return params.value + "月";
+              },
+            },
+          },
+        },
+        legend: {
+          top: "0%",
+          left: "10%",
+        },
+        xAxis: [
+          {
+            type: "category",
+            // boundaryGap: false,
+            data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
+            axisLabel: {
+              //文本颜色
+              color: "rgba(255,255,255,.6)",
+              fontSize: 12,
+            },
+            // x轴颜色
+            axisLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,.2)",
+              },
+            },
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+        ],
+        series: [
+          {
+            name: "厨余处理量(极大值)",
+            type: "bar",
 
-      } else {
-        this.updatemodel2();
-      }
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
+            },
+
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [
+              10, 15, 18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3,
+            ],
+          },
+          {
+            name: "厨余处理量(极小值)",
+            type: "bar",
+
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
+            },
+
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [6, 9, 4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+            markPoint: null,
+            markLine: null,
+          },
+          {
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
+            },
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
+            },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [57, 61, 52, 48, 50, 64, 59, 54, 66, 57, 52, 58],
+            markPoint: null,
+            markLine: null,
+          },
+        ],
+      });
     },
-    // 异常日期弹框
-    showDialog(type) {
-      if (type == 0) {
-        this.dialogType = true
-      }
+    // 日·历年
+    updateEveryYear() {
+      this.chart.setOption({
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            label: {
+              backgroundColor: "#6a7985",
+              formatter: function (params) {
+                return params.value + "年";
+              },
+            },
+          },
+        },
+
+        xAxis: [
+          {
+            type: "category",
+            // boundaryGap: false,
+            data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
+          },
+        ],
+        series: [
+          {
+            name: "厨余处理量(最大值)",
+            type: "bar",
+
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
+            },
+
+            data: [18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3],
+            markPoint: null,
+            markLine: null,
+          },
+          {
+            name: "厨余处理量(最小值)",
+            type: "bar",
+
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
+            },
+
+            data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+          },
+          {
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " kg";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
+            },
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
+            },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [72, 68, 50, 34, 69, 54, 66, 57, 52, 58],
+          },
+        ],
+      });
     },
     bindResizeEvent() {
-      window.addEventListener('resize', this.resize);
+      window.addEventListener("resize", this.resize);
     },
     resize() {
       this.chart.resize();
     },
-    updatemodel1() {
-      this.chart.setOption({
-        title: {
-          text: '厂区气味(月)',
-
-        },
-        series: [
-          {
-            name: '厂区气味天数',
-            type: 'pie',
-            radius: '70%',
-            label: {
-              show: true,
-              position: 'outer',
-              formatter: '{b}:{c}天',
-              textStyle: {
-                color: '#fff', // 设置字体颜色
-                fontSize: 16 // 设置字体大小
-              }
-            },
-            data: [
-              { value: 15, name: '正常', itemStyle: { color: 'rgb(24, 144, 255)' } },
-              { value: 15, name: '异常', itemStyle: { color: 'rgb(199, 49, 128)' } },
-
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0,0)',
-
-              },
-
-            }
-          }
-        ]
-      })
-    },
-    updatemodel2() {
-      this.chart.setOption({
-        title: {
-          text: '工艺正常(月)',
-        },
-        series: [
-          {
-            name: '工艺正常天数',
-            type: 'pie',
-            radius: '70%',
-            label: {
-              show: true,
-              position: 'outer',
-              formatter: '{b}:{c}天',
-              textStyle: {
-                color: '#fff', // 设置字体颜色
-                fontSize: 16 // 设置字体大小
-              }
-            },
-            data: [
-              { value: 20, name: '正常', itemStyle: { color: 'rgb(24, 144, 255)' } },
-              { value: 10, name: '异常', itemStyle: { color: 'rgb(199, 49, 128)' } },
-
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0,0)',
-
-              },
-
-            }
-          }
-        ]
-      })
-    }
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
-  }
-}
+    window.removeEventListener("resize", this.resize);
+  },
+};
 </script>
 
-<style lang="less" scoped>
-.chart06 {
+<style scoped>
+#chart06 {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .shanMap {
-    flex: 4;
-
-  }
-
-  .text {
-    flex: 1;
-
-    ul {
-      width: 100%;
-      height: 100%;
-      display: flex;
-
-      li {
-        flex: 1;
-        border-right: 1px solid rgb(15, 160, 168);
-        cursor: pointer;
-        text-align: center;
-
-        &:hover {
-          .name {
-            color: rgb(24, 144, 255);
-          }
-        }
-
-        &:last-child {
-          border-right: none;
-        }
-
-        .name {
-          font-size: 1.5rem;
-          color: #fff;
-        }
-
-        .type {
-          font-size: 1.8rem;
-          color: green;
-        }
-
-        .typeRed {
-          color: red;
-          font-size: 1.8rem;
-        }
-      }
-    }
-  }
-}
-
-::v-deep .el-dialog:not(.is-fullscreen) {
-  // margin-top: 12vh !important;
-
+  padding: 0.0167rem;
 }
 </style>

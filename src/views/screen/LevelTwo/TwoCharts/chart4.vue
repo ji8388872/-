@@ -1,42 +1,87 @@
 <template>
-  <div id="chart04">
-    <!-- 雨水日志 -->
-  </div>
+  <div id="chart04"></div>
 </template>
-
 <script>
 import * as echarts from "echarts";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       chart: null,
     };
   },
+  created() { },
   mounted() {
     this.initChart();
-
     this.bindResizeEvent();
   },
   updated() {
     this.chart.resize();
   },
-  methods: {
-    bindResizeEvent() {
-      window.addEventListener("resize", this.resize);
+  watch: {
+    yearTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+          28.7, 70.7, 5.9, 48.7, 18.8
+
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
     },
-    resize() {
-      this.chart.resize();
+    monthTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+
+          70.7, 75.6, 82.2, 48.7, 18.8
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+  },
+  computed: {
+    ...mapState("time", ["yearTime", "monthTime"]),
+  },
+  methods: {
+    shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
     },
     initChart() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose(); //销毁
       }
-      this.chart = echarts.init(document.getElementById("chart04"));
+
+      const chartElement = document.querySelector("#chart04");
+      if (chartElement) {
+        this.chart = echarts.init(chartElement);
+      } else {
+        console.error("指定的元素不存在，请检查选择器是否正确。");
+      }
       const option = {
         tooltip: {
           trigger: "axis",
           axisPointer: {
             type: "cross",
+            crossStyle: {
+              color: "#6a7985",
+            },
             label: {
               backgroundColor: "#6a7985",
               formatter: function (params) {
@@ -49,16 +94,15 @@ export default {
         legend: {
           top: "0%",
           right: "20%",
-
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
-
         grid: {
           left: "2",
-          top: "40",
+          top: "30",
           right: "2",
           bottom: "3",
           containLabel: true,
@@ -67,15 +111,11 @@ export default {
           {
             type: "category",
             // boundaryGap: false,
-            data: Array.from({ length: 30 }, (v, i) => (i + 1).toString()),
+            data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
+              fontSize: 15,
             },
             // x轴颜色
             axisLine: {
@@ -83,27 +123,29 @@ export default {
                 color: "rgba(255,255,255,.2)",
               },
             },
+            axisPointer: {
+              type: "shadow",
+            },
           },
         ],
         yAxis: [
-           {
+          {
             type: "value",
-           name: "(kg)",
+            name: "(h)",
             nameTextStyle: {
               color: "rgba(255,255,255,.9)",
             },
-         
             axisTick: {
               show: false,
             },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
+            // min: 0,
+            // max: 100,
+            interval: 20,
+
             axisLabel: {
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
+              fontSize: 15,
+
               formatter: "{value} ",
             },
             // 修改分割线的颜色
@@ -116,45 +158,54 @@ export default {
         ],
         series: [
           {
-            name: "单位工时产虫量",
+            name: "工时",
             type: "bar",
-            lineStyle: {
-              color: "#0184d5",
-            },
+            barWidth: '50%',
             tooltip: {
               valueFormatter: function (value) {
-                return value + " kg";
+                return value + " h";
               },
             },
-            data: [
-              20, 30, 40, 20, 40, 50, 30, 60, 20, 40, 70, 50, 40, 50, 30, 40,
-              30, 60, 40, 50, 30, 60, 20, 40, 20, 40, 70, 50, 50, 40,
-            ],
-          },
-          {
-            name: "单位工时产虫沙量",
-            type: "bar",
 
             lineStyle: {
-              color: "rgb(181, 45, 117)",
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
+
             },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
+
             data: [
-              93, 94, 95, 97, 96, 91, 70, 96, 97, 96, 94, 65, 93, 96, 98, 95,
-              92, 94, 95, 93, 99, 96, 92, 96, 90, 97, 96, 99, 94, 92,
+
+              40.7, 95.6, 62.2, 48.7, 78.8
             ],
+            markPoint: {
+              data: [
+                { type: "max", name: "Max" },
+                { type: "min", name: "Min" },
+              ],
+            },
+            markLine: {
+              data: [
+                {
+                  type: "average",
+                  name: "均值",
+                  label: {
+                    position: "middle",
+                    formatter: "均值：{c} ",
+                    color: "#fff",
+                  },
+                },
+              ],
+            },
           },
         ],
       };
+
       this.chart.setOption(option);
     },
     updateMonth() {
       this.chart.setOption({
         tooltip: {
+          trigger: "axis",
           axisPointer: {
             label: {
               backgroundColor: "#6a7985",
@@ -166,434 +217,7 @@ export default {
         },
         legend: {
           top: "0%",
-          left: "7%",
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-        xAxis: {
-          data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
-        },
-        series: [
-          {
-            name: "产虫量(最大值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [70, 50, 40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫量(最小值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [15, 18, 13, 17, 12, 20, 14, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(145, 204, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-            itemStyle: {
-              color: "#0184d5",
-              borderColor: "rgba(221, 220, 107, .1)",
-              borderWidth: 12,
-            },
-            formatter: "{value} ",
-
-            data: [57, 61, 52, 48, 70, 64, 59, 54, 66, 77, 72, 68],
-          },
-
-          {
-            name: "产虫沙量(最大值)",
-            type: "bar",
-            stack: " Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [70, 50, 40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫沙量(最小值)",
-            type: "bar",
-            stack: " Bd",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [25, 28, 23, 27, 22, 20, 14, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫沙量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(199, 49, 128)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-
-            formatter: "{value} ",
-
-            data: [64, 59, 54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
-          },
-        ],
-      });
-    },
-
-    updateYear() {
-      this.chart.setOption({
-        tooltip: {
-          axisPointer: {
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "7%",
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
-        series: [
-          {
-            name: "产虫量(最大值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [70, 50, 40, 50, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫量(最小值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [15, 18, 13, 17, 12, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(145, 204, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-            itemStyle: {
-              color: "#0184d5",
-              borderColor: "rgba(221, 220, 107, .1)",
-              borderWidth: 12,
-            },
-            formatter: "{value} ",
-
-            data: [57, 61, 52, 48, 59, 54, 66, 77, 72, 68],
-          },
-
-          {
-            name: "产虫沙量(最大值)",
-            type: "bar",
-            stack: " Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫沙量(最小值)",
-            type: "bar",
-            stack: " Bd",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [23, 27, 22, 20, 14, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫沙量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(199, 49, 128)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-
-            formatter: "{value} ",
-
-            data: [54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
-          },
-        ],
-      });
-    },
-
-    updateHistory() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart04"));
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-
-        legend: {
-          top: "0%",
-          right: "20%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-       grid: {
-          left: "2",
-          top: "40",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: "category",
-            // boundaryGap: false,
-            data: ["产虫量", "产虫沙量"],
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-           {
-            type: "value",
-           name: "(kg)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,.9)",
-            },
-            // name: '角度',
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-            lineStyle: {
-              color: "#0184d5",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [90, 92],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-
-            lineStyle: {
-              color: "rgb(181, 45, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [50, 60],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(145, 204, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-            itemStyle: {
-              borderColor: "rgba(221, 220, 107, .1)",
-              borderWidth: 12,
-            },
-            formatter: "{value} ",
-
-            data: [77, 81],
-          },
-        ],
-      };
-      this.chart.setOption(option);
-    },
-
-    monthDanweiM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart04"));
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "月";
-              },
-            },
-          },
-        },
-
-        legend: {
-          top: "0%",
-          right: "20%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-       grid: {
-          left: "2",
-          top: "40",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
+          left: "10%",
         },
         xAxis: [
           {
@@ -604,10 +228,6 @@ export default {
               //文本颜色
               color: "rgba(255,255,255,.6)",
               fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
             },
             // x轴颜色
             axisLine: {
@@ -615,361 +235,90 @@ export default {
                 color: "rgba(255,255,255,.2)",
               },
             },
-          },
-        ],
-        yAxis: [
-           {
-            type: "value",
-           name: "(kg)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,.9)",
-            },
-            // name: '角度',
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
+            axisPointer: {
+              type: "shadow",
             },
           },
         ],
         series: [
           {
-            name: "单位工时产虫量",
+            name: "厨余处理量(极大值)",
             type: "bar",
+
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " h";
+              },
+            },
             lineStyle: {
-              color: "#0184d5",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [
-              20, 30, 40, 20, 40, 50, 30, 60, 20, 40, 70, 50, 40, 50, 30, 40,
-              30, 60, 40, 50, 30, 60, 20, 40, 20, 40, 70, 50, 50, 40,
-            ],
-          },
-          {
-            name: "单位工时产虫沙量",
-            type: "bar",
-
-            lineStyle: {
-              color: "rgb(181, 45, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [
-              93, 94, 95, 97, 96, 91, 70, 96, 97, 96, 94, 65, 93, 96, 98, 95,
-              92, 94, 95, 93, 99, 96, 92, 96, 90, 97, 96, 99, 94, 92,
-            ],
-          },
-        ],
-      };
-      this.chart.setOption(option);
-    },
-    yearDanweiM() {
-      this.chart.setOption({
-        tooltip: {
-          axisPointer: {
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "7%",
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
-        series: [
-          {
-            name: "产虫量(最大值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [70, 50, 40, 50, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫量(最小值)",
-            type: "bar",
-            stack: " Ad",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [15, 18, 13, 17, 12, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
+              // 修改柱状图的颜色
               color: "rgb(145, 204, 117)",
             },
+
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [
+              10, 15, 18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3,
+            ],
+          },
+          {
+            name: "厨余处理量(极小值)",
+            type: "bar",
+
             tooltip: {
               valueFormatter: function (value) {
-                return value + " kg";
+                return value + " h";
               },
             },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
+            },
 
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [6, 9, 4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+            markPoint: null,
+            markLine: null,
+          },
+          {
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " h";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
+            },
             // 设置拐点，小圆点
             Symbol: "circle",
             // 拐点大小
             SymbolSize: 8,
             // 设置拐点颜色以及边框
             itemStyle: {
-              color: "#0184d5",
-              borderColor: "rgba(221, 220, 107, .1)",
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} ",
-
-            data: [57, 61, 52, 48, 59, 54, 66, 77, 72, 68],
-          },
-
-          {
-            name: "产虫沙量(最大值)",
-            type: "bar",
-            stack: " Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [40, 50, 30, 40, 30, 60, 40, 50, 30, 60],
-          },
-          {
-            name: "产虫沙量(最小值)",
-            type: "bar",
-            stack: " Bd",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [23, 27, 22, 20, 14, 19, 11, 16, 10, 21],
-          },
-          {
-            name: "产虫沙量(平均值)",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(199, 49, 128)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-
-            formatter: "{value} ",
-
-            data: [54, 66, 77, 72, 68, 57, 61, 52, 48, 70],
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [57, 61, 52, 48, 50, 64, 59, 54, 66, 57, 52, 58],
+            markPoint: null,
+            markLine: null,
           },
         ],
       });
     },
-    historyDanweiM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart04"));
-      const option = {
+    // 日·历年
+    updateEveryYear() {
+      this.chart.setOption({
         tooltip: {
           trigger: "axis",
           axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-
-        legend: {
-          top: "0%",
-          right: "20%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-       grid: {
-          left: "2",
-          top: "40",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: "category",
-            // boundaryGap: false,
-            data: ["产虫量", "产虫沙量"],
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-           {
-            type: "value",
-           name: "(kg)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,.9)",
-            },
-            // name: '角度',
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-            lineStyle: {
-              color: "#0184d5",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [90, 92],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-
-            lineStyle: {
-              color: "rgb(181, 45, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [50, 60],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "rgb(145, 204, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // 设置拐点，小圆点
-            Symbol: "circle",
-            // 拐点大小
-            SymbolSize: 8,
-            // 设置拐点颜色以及边框
-            itemStyle: {
-              borderColor: "rgba(221, 220, 107, .1)",
-              borderWidth: 12,
-            },
-            formatter: "{value} ",
-
-            data: [77, 81],
-          },
-        ],
-      };
-      this.chart.setOption(option);
-    },
-
-    yearDanweiY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart04"));
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
             label: {
               backgroundColor: "#6a7985",
               formatter: function (params) {
@@ -979,270 +328,95 @@ export default {
           },
         },
 
-        legend: {
-          top: "0%",
-          right: "20%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-       grid: {
-          left: "2",
-          top: "40",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
         xAxis: [
           {
             type: "category",
             // boundaryGap: false,
             data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-           {
-            type: "value",
-           name: "(kg)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,.9)",
-            },
-            // name: '角度',
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
           },
         ],
         series: [
           {
-            name: "单位工时产虫量",
-            type: "bar",
-            lineStyle: {
-              color: "#0184d5",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [
-              20, 30, 40, 20, 40, 50, 30, 60, 20, 40, 70, 50, 40, 50, 30, 40,
-              30, 60, 40, 50, 30, 60, 20, 40, 20, 40, 70, 50, 50, 40,
-            ],
-          },
-          {
-            name: "单位工时产虫沙量",
+            name: "厨余处理量(最大值)",
             type: "bar",
 
-            lineStyle: {
-              color: "rgb(181, 45, 117)",
-            },
             tooltip: {
               valueFormatter: function (value) {
-                return value + " kg";
+                return value + " h";
               },
             },
-            data: [
-              93, 94, 95, 97, 96, 91, 70, 96, 97, 96, 94, 65, 93, 96, 98, 95,
-              92, 94, 95, 93, 99, 96, 92, 96, 90, 97, 96, 99, 94, 92,
-            ],
-          },
-        ],
-      };
-      this.chart.setOption(option);
-    },
-    historyDanweiY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart04"));
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-
-        legend: {
-          top: "0%",
-          right: "20%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-       grid: {
-          left: "2",
-          top: "40",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: "category",
-            // boundaryGap: false,
-            data: ["产虫量", "产虫沙量"],
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              // interval: 100, // 每隔 100 个数据显示一次标签
-            },
-            axisPointer: {
-              type: "shadow",
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-           {
-            type: "value",
-           name: "(kg)",
-            nameTextStyle: {
-              color: "rgba(255,255,255,.9)",
-            },
-            // name: '角度',
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
             lineStyle: {
-              color: "#0184d5",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [90, 92],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-
-            lineStyle: {
-              color: "rgb(181, 45, 117)",
-            },
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            data: [50, 60],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
+              // 修改柱状图的颜色
               color: "rgb(145, 204, 117)",
             },
+
+            data: [18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3],
+            markPoint: null,
+            markLine: null,
+          },
+          {
+            name: "厨余处理量(最小值)",
+            type: "bar",
+
             tooltip: {
               valueFormatter: function (value) {
-                return value + " kg";
+                return value + " h";
               },
             },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
+            },
 
+            data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+          },
+          {
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + " h";
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
+            },
             // 设置拐点，小圆点
             Symbol: "circle",
             // 拐点大小
             SymbolSize: 8,
             // 设置拐点颜色以及边框
             itemStyle: {
-              borderColor: "rgba(221, 220, 107, .1)",
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
               borderWidth: 12,
             },
-            formatter: "{value} ",
-
-            data: [77, 81],
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            data: [72, 68, 50, 34, 69, 54, 66, 57, 52, 58],
           },
         ],
-      };
-      this.chart.setOption(option);
+      });
     },
-
+    bindResizeEvent() {
+      window.addEventListener("resize", this.resize);
+    },
+    resize() {
+      this.chart.resize();
+    },
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.resize);
   },
 };
 </script>
-</script>
 
-<style lang="less" scoped>
+<style scoped>
 #chart04 {
   width: 100%;
   height: 100%;
+  padding: 0.0167rem;
 }
 </style>
