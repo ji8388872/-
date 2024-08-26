@@ -5,12 +5,6 @@
       <span class="time">{{ today }} </span>
       <span class="weather">天气:晴</span>
       <span class="day">{{ currentTime }}</span>
-
-      <div class="btn">
-        <el-button type="primary" round size="mini" @click="toFirst">一级</el-button>
-        <el-button type="primary" round size="mini" @click="$router.go(-1)">返回</el-button>
-      </div>
-      <Input></Input>
     </header>
     <nav>
       <div class="container">
@@ -22,7 +16,6 @@
 
 <script>
 import TwoCharts from '@/views/screen/LevelTwo/TwoCharts/index.vue'
-import Input from '@/components/screen/input.vue'
 export default {
   data() {
     return {
@@ -32,7 +25,6 @@ export default {
   },
   components: {
     TwoCharts,
-    Input
   },
   mounted() {
     window.scrollTo(0, 200);
@@ -150,7 +142,7 @@ export default {
 .weather {
   position: absolute;
   right: 4%;
-  top: 19%;
+  top: 20%;
   color: #ffffff;
   font-size: 1.8rem;
   font-weight: bold;
@@ -167,7 +159,7 @@ export default {
 #app header .day {
   position: absolute;
   left: 5%;
-  top: 19%;
+  top: 20%;
   color: #ffffff;
   font-size: 1.8rem;
   font-weight: bold;

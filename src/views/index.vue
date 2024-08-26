@@ -1,118 +1,111 @@
 <template>
-  <div class="app-container home">
-    <el-card>
+  <div style="margin: 20px">
+    <div>
       <el-row :gutter="20">
-        <!-- 左侧图片 -->
-        <el-col :span="16">
-          <img src="@/assets/images/首页.jpg" alt="" style="width: 100%; height: 250px;">
+        <el-col :span="18">
+          <img style="width: 100%; height: 30vh;" src="@/assets/images/首页.jpg" alt="">
         </el-col>
-
-        <!-- 右侧通知公告 -->
-        <el-col :span="8">
-          <el-scrollbar style="height: 250px; padding: 10px;">
-            <span>通知公告：</span>
-            <el-divider></el-divider>
-            <div v-for="(item, index) in notices" :key="index" class="notice-item">
-              <el-alert
-                :title="item"
-                type="info"
-                show-icon
-                :closable="false"
-              />
+        <el-col :span="6">
+          <el-card class="box-card" style="height: 30vh;">
+            <div slot="header" class="clearfix">
+              <span style="font-size:1.05rem;font-weight: 600; ">通知公告</span>
             </div>
-          </el-scrollbar>
+            <div style="font-size: 1.13rem;font-weight: 600; color: #696a6e">
+              关于2024年度生态教室主题大屏管理系统升级的通知，黑水虻已日产日清，请各位老师及学生关注详细信息，例如：来料量、处理量，产率等。
+            </div>
+          </el-card>
         </el-col>
       </el-row>
-    </el-card>
+    </div>
 
-    <el-card class="cordShow">
-      <el-row :gutter="20">
-        <el-col :span="10">
-          <el-row :gutter="20">
-
-            <el-row :gutter="20">
-              <el-col :span="12">
-<!--                <div class="grid-content bg-purple">设备情况:</div>-->
-
-                <div class="grid-content" :class="deviceStatus === 'normal' ? 'bg-normal' : 'bg-warning'">
-                  设备情况:
-                  <div v-if="deviceStatus === 'normal'">正常</div>
-                  <div v-else>
-                    <p>状态: 异常</p>
-                    <p>是否解决: {{ deviceErrorInfo.isResolve }}</p>
-                    <p>设备故障名称: {{ deviceErrorInfo.equipmentName }}</p>
-                    <p>故障维修人员: {{ deviceErrorInfo.maintenancePersonnel }}</p>
-                    <p>维修时间: {{ deviceErrorInfo.maintenanceTime }}</p>
+    <div style="margin: 10px 0">
+      <el-row :gutter="15">
+        <el-col :span="12">
+          <el-row :gutter="10">
+            <el-col :span="12">
+              <el-card class="box-card" style="height: 29vh;">
+                <div slot="header" class="clearfix">
+                  <span style="font-size:1.05rem;font-weight: 600; ">设备情况</span>
+                </div>
+                <div class="spanContent">
+                  <div class="spanConDiv1">
+                    <span class="spanTitle">目前是否解决：</span> 是
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">故障设备名称：</span> 摄像机
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">故障修理人员：</span> 李宁泽
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">维修时间：</span> 1h
                   </div>
                 </div>
-
-              </el-col>
-              <el-col :span="12">
-<!--                <div class="grid-content bg-purple">环境情况:</div>-->
-                <div class="grid-content" :class="environmentStatus === 'normal' ? 'bg-normal' : 'bg-warning'">
-                  环境情况:
-                  <div v-if="environmentStatus === 'normal'">正常</div>
-                  <div v-else>
-                    <p>状态: 异常</p>
-                    <p>是否解决: {{ environmentErrorInfo.isResolve }}</p>
-                    <p>环境问题: {{ environmentErrorInfo.environmentalIssues }}</p>
-                    <p>解决人员: {{ environmentErrorInfo.maintenancePersonnel }}</p>
-                    <p>解决时间: {{ environmentErrorInfo.maintenanceTime }}</p>
+              </el-card></el-col>
+            <el-col :span="12">
+              <el-card class="box-card" style="height: 29vh;">
+                <div slot="header" class="clearfix">
+                  <span style="font-size:1.05rem;font-weight: 600; ">环境情况</span>
+                </div>
+                <div class="spanContent">
+                  <div class="spanConDiv1">
+                    <span class="spanTitle">目前是否解决：</span> 是
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">环境问题：</span> 水污染
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">解决人员</span> 李宁泽
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">解决时间：</span> 1h
                   </div>
                 </div>
-              </el-col>
-            </el-row>
-
-            <el-row :gutter="20">
-              <el-col :span="12">
-<!--                <div class="grid-content bg-purple">安全情况:</div>-->
-<!--                <div class="grid-content bg-purple" :class="safetyStatus === 'normal' ? 'bg-normal' : 'bg-warning'">-->
-<!--                  安全情况:-->
-<!--&lt;!&ndash;                  <div v-if="safetyStatus === 'normal'">正常</div>&ndash;&gt;-->
-<!--                  <div v-if="safetyStatus === 'normal'">正常</div>-->
-<!--                  <div v-else>-->
-<!--                    <p>状态: 异常</p>-->
-<!--                    <p>是否解决: {{ safetyErrorInfo.isResolve }}</p>-->
-<!--                    <p>隐患问题: {{ safetyErrorInfo.reason }}</p>-->
-<!--                    <p>解决办法: {{ safetyErrorInfo.solution }}</p>-->
-<!--                    <p>解决时间: {{ safetyErrorInfo.maintenanceTime }}</p>-->
-<!--                  </div>-->
-<!--                </div>-->
-
-                <div
-                  class="grid-content bg-purple"
-                  :class="safetyStatus === 'normal' ? 'bg-normal' : 'bg-warning'"
-                  @mouseenter="showDetails = true"
-                  @mouseleave="showDetails = false"
-                >
-                  <div v-if="safetyStatus === 'normal'">安全情况: 正常</div>
-                  <div v-else>
-                    <div  v-if="!showDetails">安全情况: 异常</div>
-                    <div v-show="showDetails">
-                      <p>状态: 异常</p>
-                      <p>是否解决: {{ safetyErrorInfo.isResolve }}</p>
-                      <p>隐患问题: {{ safetyErrorInfo.reason }}</p>
-                      <p>解决办法: {{ safetyErrorInfo.solution }}</p>
-                      <p>解决时间: {{ safetyErrorInfo.maintenanceTime }}</p>
-                    </div>
+              </el-card></el-col>
+          </el-row>
+          <el-row :gutter="10">
+            <el-col :span="12"><el-card class="box-card" style="height: 29vh;">
+                <div slot="header" class="clearfix">
+                  <span style="font-size:1.05rem;font-weight: 600; ">安全情况</span>
+                </div>
+                <div class="spanContent">
+                  <div class="spanConDiv1">
+                    <span class="spanTitle">目前是否解决：</span> 是
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">隐患问题：</span> 水污染
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">解决办法：</span> 换水
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">解决时间：</span> 1h
                   </div>
                 </div>
-              </el-col>
-
-              <el-col :span="12"><div class="grid-content bg-purple">外部检查参观情况:</div></el-col>
-            </el-row>
-
+              </el-card></el-col>
+            <el-col :span="12"><el-card class="box-card" style="height: 29vh;">
+                <div slot="header" class="clearfix">
+                  <span style="font-size:1.05rem;font-weight: 600; ">外部检查参观情况</span>
+                </div>
+                <div class="spanContent">
+                  <div class="spanConDiv1">
+                    <span class="spanTitle">单位：</span> 中科智禾有限公司
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">人数：</span> 2
+                  </div>
+                  <div class="spanConDiv2">
+                    <span class="spanTitle">问题情况：</span> 没问题
+                  </div>
+                </div>
+              </el-card></el-col>
           </el-row>
         </el-col>
-
-        <el-col :span="14">
-          <div id="main" style="width:750px;height:350px;"></div>
+        <el-col :span="12">
+          <div id="main" style="height:58vh; box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2); padding: 0.8rem;"></div>
         </el-col>
-
       </el-row>
-
-    </el-card>
-
+    </div>
   </div>
 </template>
 
@@ -123,190 +116,148 @@ export default {
   name: "Index",
   data() {
     return {
-      showDetails:false,
-      // 状态信息
-      deviceStatus: 'normal', // 或 'abnormal'
-      environmentStatus: 'abnormal', // 或 'normal'
-      safetyStatus: 'abnormal', // 或 'abnormal'
-      inspectionStatus: 'abnormal', // 或 'normal'
-      // 异常详细信息
-      // 设备情况
-      deviceErrorInfo: {
-        isResolve:'是否解决',
-        equipmentName: '设备故障名称xxx',
-        maintenancePersonnel: '故障维修人员xxx',
-        maintenanceTime:'2024-08-22'
 
-      },
-      // 环境情况
-      environmentErrorInfo: {
-        isResolve:'是否解决',
-        environmentalIssues: '空气质量指数超标',
-        maintenancePersonnel: '解决人员xxx',
-        maintenanceTime:'2024-08-22'
-      },
-      // 安全情况
-      safetyErrorInfo: {
-        isResolve:'是否解决',
-        reason: '隐患问题',
-        solution: '解决办法',
-        maintenanceTime:'2024-08-22'
-      },
-      //  外部检查参观情况
-      inspectionErrorInfo: {
-        Unit:'单位',
-        peopleCounts:3,
-        reason: '问题情况'
-      },
 
-      // 版本号
-      version: "3.8.6",
-      notices: [
-        '公告1：欢迎访问我们的平台！',
-        '公告2：系统将在今晚12点维护。',
-        '公告3：新功能上线，敬请期待！'
-      ],
-      option : {
-        color: '#83bff6',
+    };
+  },
+
+  mounted() {
+    this.initChart()
+  },
+  methods: {
+    initChart() {
+      var myChart = echarts.init(document.getElementById('main'))
+      const option = {
         title: {
-          text: '人员成本统计'
+          text: '人员成本统计(工时)',
+          left: 'center',
+          top: 15,
         },
+        color: '#83bff6',
+
+        // 提示框配置
+        tooltip: {
+          trigger: "axis", // 提示框触发的条件，"axis" 表示触发时会显示整个坐标轴的提示框
+          axisPointer: {
+            type: "cross", // 坐标轴指示器的类型，"cross" 表示十字交叉线
+            crossStyle: {
+              color: "#6a7985", // 指示器的颜色
+            },
+            label: {
+              backgroundColor: "#6a7985", // 提示框背景色
+              formatter: function (params) {
+                // 提示框内容的格式化函数
+                return params.value + "号"; // 显示的数据后面加上"号"
+              },
+            },
+          },
+        },
+        // 图例配置
+        legend: {
+          top: "20%", // 图例的位置，距离顶部0%
+          right: "20%", // 图例的位置，距离右侧20%
+          show: false, // 是否显示图例，false表示不显示
+          textStyle: {
+            color: "rgba(255,255,255,.9)", // 图例文字的颜色
+            fontSize: 15, // 图例文字的字体大小
+          },
+        },
+        // 网格配置
+        grid: {
+          left: "20", // 网格距离左侧的距离
+          top: "80", // 网格距离顶部的距离
+          right: "20", // 网格距离右侧的距离
+          bottom: "20", // 网格距离底部的距离
+          containLabel: true, // 是否包含坐标轴刻度标签
+        },
+
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+          data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
+          axisLabel: {
+            fontSize: 15, // X轴刻度标签的字体大小
+          },
+          axisPointer: {
+            type: "shadow", // 坐标轴指示器的类型，"shadow" 表示阴影
+          },
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          name: "(h)", // Y轴名称
+          interval: 20, // Y轴刻度间隔
+          axisLabel: {
+            fontSize: 15, // Y轴刻度标签的字体大小
+          },
         },
         series: [
           {
-            data: [120, 200, 150, 80, 70],
-            type: 'bar'
+            data: [70.7, 75.6, 82.2, 48.7, 18.8],
+            type: 'bar',
+            name: "工时", // 数据系列的名称
+            barWidth: '50%', // 柱状图的宽度
+            tooltip: {
+              valueFormatter: function (value) {
+                // 提示框内容的格式化函数
+                return value + " h"; // 显示的数据后面加上"kg"
+              },
+            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)", // 柱状图的颜色
+            },
+            markPoint: {
+              data: [
+                { type: "max", name: "Max" }, // 标记最大值
+                { type: "min", name: "Min" }, // 标记最小值
+              ],
+            },
+            markLine: {
+              data: [
+                {
+                  type: "average", // 标记平均值
+                  name: "均值", // 标记名称
+                  label: {
+                    position: "middle", // 标签位置
+                    formatter: "均值：{c} ", // 标签格式
+                    color: "#1907ef", // 标签颜色
+                  },
+                },
+              ],
+            },
           }
         ]
-      },
-    };
-  },
-  methods: {
-    goTarget(href) {
-      window.open(href, "_blank");
-    },
-
-  },
-  mounted() {
-    // 3 。 在页面挂载完成后，调用echarts的init方法，将图表初始化
-    var myChart = echarts.init(document.getElementById('main'))
-
-      // 4 准备数据和配置项
-      // var result = res.data
-    const option = this.option
+      }
 
       // 5 展示数据
-    myChart.setOption(option)
-  }
+      myChart.setOption(option)
+
+    }
+  },
 };
 </script>
 
-<style scoped lang="scss">
-.home {
-  blockquote {
-    padding: 10px 20px;
-    margin: 0 0 20px;
-    font-size: 17.5px;
-    border-left: 5px solid #eee;
-  }
-  hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #eee;
-  }
-  .col-item {
-    margin-bottom: 20px;
-  }
-
-  ul {
-    padding: 0;
-    margin: 0;
-  }
-
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  color: #676a6c;
-  overflow-x: hidden;
-
-  ul {
-    list-style-type: none;
-  }
-
-  h4 {
-    margin-top: 0px;
-  }
-
-  h2 {
-    margin-top: 10px;
-    font-size: 26px;
-    font-weight: 100;
-  }
-
-  p {
-    margin-top: 10px;
-
-    b {
-      font-weight: 700;
-    }
-  }
-
-  .update-log {
-    ol {
-      display: block;
-      list-style-type: decimal;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      padding-inline-start: 40px;
-    }
-  }
+<style lang="less" scoped>
+.spanTitle {
+  font-size: 1.1rem;
+  color: rgb(65, 64, 76);
+  font-weight: 500;
 }
 
-.notice-item {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.spanContent {
+  font-size: 1.2rem;
+  color: #38322e;
+  font-weight: 500;
+  line-height: 2.5rem;
+
 }
 
-.cordShow{
-  margin-top: 20px;
-  .el-col{
-    padding: 10px;
-    margin-bottom: 50px;
-  }
-  .bg-purple{
-    background-color: #83bff6;
-    height: 100px;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 18px;
-  }
+.spanConDiv1 {
+  color: #f0455ff5;
+  font-weight: 550;
 }
 
-.bg-normal {
-  background-color: #67c23a; /* 正常状态绿色背景 */
+.spanConDiv2 {
+  color: #1a9ca0;
+  font-weight: 550;
 }
-
-.bg-warning {
-  background-color: #f56c6c; /* 异常状态红色背景 */
-}
-
-//.detailed-info {
-//  margin-top: 10px;
-//}
-//
-//.default-text {
-//  line-height: 50px; /* 垂直居中 */
-//}
-
-
 </style>
