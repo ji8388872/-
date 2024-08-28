@@ -7,7 +7,7 @@
       </el-col>
       <el-col :span="8">
         <el-cascader @change="changeMonth(monthValue)" :options="monthOpt" v-model="monthValue" clearable
-          placeholder="选择月">
+          placeholder="选择月" style="margin-left: 0.45rem;">
         </el-cascader>
       </el-col>
       <el-col :span="8">
@@ -16,9 +16,6 @@
       </el-col>
 
     </el-row>
-    <div>
-      {{ monthValue }}---{{ dayValue }}---
-    </div>
   </div>
 </template>
 
@@ -27,8 +24,8 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   data() {
     return {
-      yearValue: '',
-      monthValue: '',
+      yearValue: String(new Date().getFullYear()),
+      monthValue: [parseInt(String(new Date().getMonth() + 1))],
       monthOpt: [
         { value: 1, label: '一月' },
         { value: 2, label: '二月' },
@@ -44,36 +41,39 @@ export default {
         { value: 12, label: '十二月' }
       ],
       dayOpt: [],
-      dayValue: '',
+      dayValue: [parseInt(String(new Date().getDate()))],
     }
   },
   created() {
-    this.yearValue = this.yearTime;
-    this.monthValue = this.monthTime;
-    this.updateDays(this.yearValue, this.monthValue);
-    this.dayValue = this.day;
-    console.log(this.monthValue, this.dayValue);
-
+    this.updateDays(this.yearValue, this.monthValue[0]);
   },
   watch: {
     yearValue(newVal) {
       if (newVal) {
         this.monthValue = ''; // 清空月份
         this.dayValue = ''; // 清空日期
-        this.updateDays(newVal, null);
         this.SET_YEARTIME(newVal);
+        this.SET_MONTHTIME([]);
+        this.SET_DAY([]);
+        this.dayOpt = []
+        console.log('111');
+
       }
     },
     monthValue(newVal) {
       if (newVal.length > 0) {
         this.dayValue = ''; // 清空日期
-        this.updateDays(this.yearValue, newVal[0]);
         this.SET_MONTHTIME(newVal[0]);
+        this.SET_DAY([]);
+        console.log('222');
+
       }
     },
     dayValue(newVal) {
       if (newVal.length > 0) {
         this.SET_DAY(newVal[0]);
+        console.log('333');
+
       }
     },
   },
@@ -83,11 +83,10 @@ export default {
   methods: {
     ...mapMutations('time', ['SET_YEARTIME', 'SET_MONTHTIME', 'SET_DAY']),
     changeMonth(value) {
-      this.SET_MONTHTIME(value[0]);
       this.updateDays(this.yearValue, value[0]);
     },
     changeDay(value) {
-      this.SET_DAY(value[0]);
+      // this.SET_DAY(value[0]);
     },
     updateDays(year, month) {
       if (year && month) {
@@ -108,7 +107,7 @@ export default {
 .block {
   position: absolute;
   top: 65%;
-  left: 2%;
+  left: 1%;
 
   ::v-deep .el-input__inner {
     background-color: rgb(17, 38, 55);
