@@ -267,7 +267,7 @@ export default {
     display: flex;
     border: 2px solid #00FFFF;
     border-radius: 10px 10px;
-    padding: 10px 0px;
+    padding: 10px 0;
 
     .navTitle {
       flex: 1;
