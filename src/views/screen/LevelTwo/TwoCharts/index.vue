@@ -3,10 +3,40 @@
     <div class="nav">
       <div class="navTitle">质量</div>
       <ul>
-        <li v-for="(item, index) in chonData" :key="index" class="bac">
-          <div class="name">{{ item.name }}</div>
-          <div class="value">{{ item.value }}</div>
+        <li class="bac">
+          <div class="name">日产日清</div>
+          <div class="value">是</div>
         </li>
+
+<!--       没有修改的代码-->
+
+<!--        <li v-for="(item, index) in chonData" :key="index" class="bac">-->
+<!--          <div class="name">{{ item.name }}</div>-->
+<!--          <div class="value">{{ item.value }}</div>-->
+<!--        </li>-->
+
+
+<!--        修改后的代码-->
+        <li
+          v-for="(item, index) in chonData"
+          :key="index"
+          class="bac"
+          @mouseover="handleMouseOver(index)"
+          @mouseleave="handleMouseLeave(index)"
+        >
+          <div class="content-wrapper">
+            <transition name="fade">
+              <div v-if="!item.isHovered" key="default" class="contentIsHovered">
+                <div class="name">{{ item.name }}</div>
+                <div class="value">{{ item.value }}</div>
+              </div>
+              <div v-else key="hovered" class="content hover-text">
+                正常的范围是 xxx-xxx
+              </div>
+            </transition>
+          </div>
+        </li>
+
       </ul>
     </div>
     <div class="center">
@@ -40,7 +70,7 @@
           <!-- 正面 -->
           <div class="front">
             <div class="title">环境情况</div>
-            <div class="value">异常</div>
+            <div class="value" style="color: red">异常</div>
           </div>
           <!-- 背面 -->
           <div class="back backText back-bac">
@@ -55,13 +85,13 @@
       <div
         class="box bac"
         :class="{ flipped: flippedStatus[2] }"
-        @click="toggleFlip(2,'正常')"
+        @click="toggleFlip(2,'异常')"
       >
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
             <div class="title">安全情况</div>
-            <div class="value">正常</div>
+            <div class="value" style="color: red">异常</div>
           </div>
           <!-- 背面 -->
           <div class="back backText back-bac">
@@ -73,44 +103,37 @@
         </div>
       </div>
 
-      <div
-        class="box bac"
-        :class="{ flipped: flippedStatus[3] }"
-        @click="toggleFlip(3,'正常')"
-      >
-        <div class="flipper">
+      <div class="box bac">
+
           <!-- 正面 -->
-          <div class="front">
-            <div class="title">成本情况</div>
-            <div class="value">正常</div>
+          <div class="peopleRes">
+            <p>成本情况</p>
+            <p>人数:10人</p>
+            <p >工时:8h/天</p>
           </div>
           <!-- 背面 -->
-          <div class="back backText back-bac">
-            <div class="value">人数:<span class="spanTitle">100</span></div>
-            <div class="value">工时:<span class="spanText">8h/d</span></div>
-          </div>
-        </div>
+<!--          <div class="back backText back-bac">-->
+<!--            <div class="title">成本情况</div>-->
+<!--            <div class="value">人数:<span class="spanTitle">100</span></div>-->
+<!--            <div class="value"></div>-->
+<!--          </div>-->
       </div>
 
-      <div
-        class="box bac"
-        :class="{ flipped: flippedStatus[4] }"
-        @click="toggleFlip(4,'异常')"
-      >
-        <div class="flipper">
+      <div class="box bac">
+
           <!-- 正面 -->
-          <div class="front">
-            <div class="title">外部检查参观情况</div>
-            <div class="value">异常</div>
+          <div>
+            <p >外部检查参观情况</p>
+            <p >单位:中科智禾有限公司</p>
+            <p >人数:2人</p>
+            <p >问题情况:没问题</p>
           </div>
           <!-- 背面 -->
-          <div class="back backText back-bac">
-            <div class="value">单位:<span class="spanTitle">中科智禾有限公司</span></div>
-            <div class="value">人数:<span class="spanText">2</span></div>
-            <div class="value">问题情况:<span class="spanText">没问题</span></div>
-
-          </div>
-        </div>
+<!--          <div class="back backText back-bac">-->
+<!--            <div class="value">单位:<span class="spanTitle">中科智禾有限公司</span></div>-->
+<!--            <div class="value">人数:<span class="spanText">2</span></div>-->
+<!--            <div class="value">问题情况:<span class="spanText">没问题</span></div>-->
+<!--          </div>-->
       </div>
 
     </div>
@@ -152,36 +175,34 @@ export default {
         0: false,
         1: false,
         2: false,
-        3: false,
-        4: false,
       },
       chonData: [
+        // {
+        //   name: "日产日清", value: "是"
+        // },
         {
-          name: "日产日清", value: "是"
+          name: "处理量: 100kg", value: "正常",isHovered: false
         },
         {
-          name: "处理量: 100kg", value: "正常"
+          name: "减量化率: 90%", value: "正常",isHovered: false
         },
         {
-          name: "减量化率: 90%", value: "正常"
+          name: "减重率: 60%", value: "正常",isHovered: false
         },
         {
-          name: "减重率: 60%", value: "正常"
+          name: "吨垃圾用卵量", value: "正常",isHovered: false
         },
         {
-          name: "吨垃圾用卵量", value: "正常"
+          name: "老虫产率: 100%", value: "正常",isHovered: false
         },
         {
-          name: "老虫产率: 100%", value: "正常"
+          name: "虫沙产率: 100%", value: "正常",isHovered: false
         },
         {
-          name: "虫沙产率: 100%", value: "正常"
+          name: "老虫体长: 100%", value: "正常",isHovered: false
         },
         {
-          name: "老虫体长: 100%", value: "正常"
-        },
-        {
-          name: "老虫体重: 100%", value: "正常"
+          name: "老虫体重: 100%", value: "正常",isHovered: false
 
         },
       ],
@@ -203,6 +224,14 @@ export default {
   },
   mounted() { },
   methods: {
+    handleMouseOver(index) {
+      this.chonData[index].isHovered = true;
+    },
+    handleMouseLeave(index) {
+      this.chonData[index].isHovered = false;
+    },
+
+    // 控制盒子的翻转
     toggleFlip(index,value) {
 
       // 判断是否为异常状态，如果是则不执行反转
@@ -238,7 +267,7 @@ export default {
     display: flex;
     border: 2px solid #00FFFF;
     border-radius: 10px 10px;
-    padding: 10px 0px;
+    padding: 10px 0;
 
     .navTitle {
       flex: 1;
@@ -269,6 +298,55 @@ export default {
         padding: 0.8% 0.5%;
         cursor: pointer;
         // margin: 15px 0;
+        // 固定高度
+        height: 110px;
+
+        .bac {
+          border: 2px solid #6997e7;
+          background-color: rgba(57, 93, 141, 0.3);
+          border-radius: 5px;
+          box-shadow: 0 0 5px #00FFFF;
+          transition: all 0.3s ease-in-out;
+          /* 固定大小，防止内容切换时撑开 */
+          width: 150px;  /* 根据需要设置宽度 */
+          height: 100px; /* 根据需要设置高度 */
+          position: relative;
+        }
+        .content-wrapper {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        .contentIsHovered{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          //text-align: center;
+          width: 100%;
+
+        }
+
+        .hover-text {
+          font-size: 1.8rem;
+          color: deepskyblue;
+          text-shadow: 0 0 1px #ff0;
+          text-align: center;
+          display: flex; /* 使用 Flexbox 布局 */
+          justify-content: center; /* 水平居中 */
+          align-items: center; /* 垂直居中 */
+          height: 100%; /* 使元素高度充满父容器 */
+          width: 100%; /* 使元素宽度充满父容器 */
+        }
+
+
+        .fade-enter-active, .fade-leave-active {
+          transition: opacity 0.5s ease;
+        }
+
+        .fade-enter, .fade-leave-to {
+          opacity: 0;
+        }
 
         &:last-child {
           margin-right: 0;
@@ -306,6 +384,18 @@ export default {
       gap: 50px;
       //background-color: #1f2d3d; /* 背景颜色 */
       border-radius: 10px;
+
+      //.peopleRes{
+      //
+      //}
+      p{
+        padding:25px 0;
+        text-shadow: 0 0 5px #00FFFF;
+        //background-color: #1f2d3d;
+        font-size: 1.7rem;
+      }
+
+
     }
 
     .flipper {
