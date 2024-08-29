@@ -426,6 +426,7 @@ export default {
       .title,
       .value {
         text-shadow: 0 0 5px #00FFFF;
+        color: white;
         /* Text glow effect */
         writing-mode: vertical-rl;
         /* 文字竖排 */
