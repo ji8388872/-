@@ -9,11 +9,7 @@
               <span>来料量</span>
             </div>
             <div class="map">
-              <topBot> 
-                <template #charts>
-                  <chart1> </chart1>
-                </template>
-              </topBot>
+              <chart1> </chart1>
             </div>
           </div>
         </dv-border-box-2>
@@ -39,11 +35,9 @@
               <span>吨垃圾用卵量</span>
             </div>
             <div class="map">
-              <top-bot>
-                <template #charts>
+              
                   <chart2></chart2>
-                </template>
-              </top-bot>
+               
             </div>
           </div>
         </dv-border-box-2>
@@ -59,11 +53,9 @@
                 <span>减量化率</span>
               </div>
               <div class="map">
-                <topBot>
-                  <template #charts>
+                
                     <chart3></chart3>
-                  </template>
-                </topBot>
+                 
               </div>
             </div>
           </dv-border-box-2>
@@ -76,11 +68,9 @@
                 <span> 减重率 </span>
               </div>
               <div class="map">
-                <topBot>
-                  <template #charts>
+               
                     <chart5></chart5>
-                  </template>
-                </topBot>
+                 
               </div>
             </div>
           </dv-border-box-2>
@@ -93,12 +83,9 @@
                 <span>工时</span>
               </div>
               <div class="map">
-                <topBot>
-
-                  <template #charts>
-                    <chart4 ></chart4>
-                  </template>
-                </topBot>
+               
+                    <chart4></chart4>
+                 
               </div>
             </div>
           </dv-border-box-2>
@@ -146,7 +133,6 @@ export default {
 
 
 .content {
-  // width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

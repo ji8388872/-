@@ -9,12 +9,10 @@
               <span>老虫产率</span>
             </div>
             <div class="map">
-              <topBot>
-                <template #charts>
-                  <chart1 ref="chart1Ref"></chart1>
 
-                </template>
-              </topBot>
+              <chart1 ref="chart1Ref"></chart1>
+
+
             </div>
           </div>
         </dv-border-box-2>
@@ -27,12 +25,10 @@
               <span>虫沙产率</span>
             </div>
             <div class="map">
-              <top-bot>
-                <template #charts>
 
-                  <chart2></chart2>
-                </template>
-              </top-bot>
+
+              <chart2></chart2>
+
             </div>
           </div>
         </dv-border-box-2>
@@ -47,11 +43,9 @@
                 <span>老虫体长</span>
               </div>
               <div class="map">
-                <topBot>
-                  <template #charts>
-                    <chart3 ref="chart3Ref"></chart3>
-                  </template>
-                </topBot>
+
+                <chart3 ref="chart3Ref"></chart3>
+
               </div>
             </div>
           </dv-border-box-2></li>
@@ -64,11 +58,9 @@
                 </span>
               </div>
               <div class="map">
-                <topBot>
-                  <template #charts>
-                    <chart4 ref="chart4Ref"></chart4>
-                  </template>
-                </topBot>
+
+                <chart4 ref="chart4Ref"></chart4>
+
               </div>
             </div>
           </dv-border-box-2></li>
@@ -89,7 +81,7 @@ export default {
   data() {
     return {
 
-      
+
 
       borderBoxWidth: 0,
     }

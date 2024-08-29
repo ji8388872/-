@@ -56,8 +56,9 @@ export default {
         this.SET_MONTHTIME([]);
         this.SET_DAY([]);
         this.dayOpt = []
-        console.log('111');
-
+        this.SET_Y(true)
+        this.SET_M(false)
+        this.SET_D(false)
       }
     },
     monthValue(newVal) {
@@ -65,23 +66,25 @@ export default {
         this.dayValue = ''; // 清空日期
         this.SET_MONTHTIME(newVal[0]);
         this.SET_DAY([]);
-        console.log('222');
-
+        this.SET_Y(false)
+        this.SET_M(true)
+        this.SET_D(false)
       }
     },
     dayValue(newVal) {
       if (newVal.length > 0) {
         this.SET_DAY(newVal[0]);
-        console.log('333');
-
+        this.SET_D(true)
+        this.SET_Y(false)
+        this.SET_M(false)
       }
     },
   },
   computed: {
-    ...mapState("time", ["yearTime", "monthTime", "day"]),
+    ...mapState("time", ["yearTime", "monthTime", "day", "y", "m", "d"]),
   },
   methods: {
-    ...mapMutations('time', ['SET_YEARTIME', 'SET_MONTHTIME', 'SET_DAY']),
+    ...mapMutations('time', ['SET_YEARTIME', 'SET_MONTHTIME', 'SET_DAY', 'SET_Y', 'SET_M', 'SET_D']),
     changeMonth(value) {
       this.updateDays(this.yearValue, value[0]);
     },
