@@ -1,11 +1,11 @@
 {
   "name": "ruoyi",
   "version": "3.8.6",
-  "description": "若依管理系统",
+  "description": "生态大屏管理系统",
   "author": "若依",
   "license": "MIT",
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve --open",
+    "dev": "vue-cli-service serve --open",
     "build:prod": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
