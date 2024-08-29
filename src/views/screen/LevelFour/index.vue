@@ -5,11 +5,6 @@
       <span class="time">{{ today }} </span>
       <span class="weather">天气:晴</span>
       <span class="day">{{ currentTime }}</span>
-      <div class="btn">
-        <el-button type="primary" round @click="toFirst" size="mini">一级</el-button>
-        <el-button type="primary" round @click="toSecond" size="mini">二级</el-button>
-        <el-button type="primary" round @click="toThirth" size="mini">三级</el-button>
-      </div>
       <Input></Input>
     </header>
     <nav>
@@ -64,18 +59,6 @@ export default {
 
       this.today = daysOfWeek[dayIndex];
     },
-    // 去一级权限大屏
-    toFirst() {
-      this.$router.replace('/screen/LevelOne/index')
-    },
-    // 去二级权限大屏
-    toSecond() {
-      this.$router.replace('/screen/LevelTwo/index')
-    },
-    // 去三级权限大屏
-    toThirth() {
-      this.$router.replace('/screen/LevelThree/index')
-    }
   }
 }
 </script>

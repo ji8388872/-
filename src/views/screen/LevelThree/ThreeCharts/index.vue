@@ -19,59 +19,6 @@
           </div>
         </dv-border-box-2>
       </div>
-      <div class="topCenter" ref="conBox">
-        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-          <div class="chart_1">
-            <div class="title">
-              <img src="@/assets/images/14-小标题.png" alt="">
-              <span>老虫产率</span>
-            </div>
-            <div class="map">
-              <topBot>
-                <template #charts>
-                  <chart1></chart1>
-                </template>
-              </topBot>
-            </div>
-          </div>
-        </dv-border-box-2>
-      </div>
-      <div class="topCenter">
-        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-          <div class="chart_1">
-            <div class="title">
-              <img src="@/assets/images/14-小标题.png" alt="">
-              <span>虫沙产率</span>
-            </div>
-            <div class="map">
-              <top-bot>
-                <template #charts>
-
-                  <chart2></chart2>
-                </template>
-              </top-bot>
-            </div>
-          </div>
-        </dv-border-box-2>
-      </div>
-      <div class="topCenter">
-        <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-          <div class="chart_1">
-            <div class="title">
-              <img src="@/assets/images/14-小标题.png" alt="">
-              <span>虫沙产率</span>
-            </div>
-            <div class="map">
-              <top-bot>
-                <template #charts>
-
-                  <chart2></chart2>
-                </template>
-              </top-bot>
-            </div>
-          </div>
-        </dv-border-box-2>
-      </div>
       <div class="topRight">
         <dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
           <div class="chart_1">
@@ -109,55 +56,6 @@
             </div>
           </dv-border-box-2></li>
         <li><dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-            <div class="chart_2">
-              <div class="title">
-                <img src="@/assets/images/14-小标题.png" alt="">
-                <span>
-                  老虫体重
-                </span>
-              </div>
-              <div class="map">
-                <topBot>
-                  <template #charts>
-                    <chart4 ref="chart4Ref"></chart4>
-                  </template>
-                </topBot>
-              </div>
-            </div>
-          </dv-border-box-2></li>
-        <li><dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-            <div class="chart_2">
-              <div class="title">
-                <img src="@/assets/images/14-小标题.png" alt="">
-                <span>老虫体长</span>
-              </div>
-              <div class="map">
-                <topBot>
-                  <template #charts>
-                    <chart3 ref="chart3Ref"></chart3>
-                  </template>
-                </topBot>
-              </div>
-            </div>
-          </dv-border-box-2></li>
-        <li><dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
-            <div class="chart_2">
-              <div class="title">
-                <img src="@/assets/images/14-小标题.png" alt="">
-                <span>
-                  老虫体重
-                </span>
-              </div>
-              <div class="map">
-                <topBot>
-                  <template #charts>
-                    <chart4 ref="chart4Ref"></chart4>
-                  </template>
-                </topBot>
-              </div>
-            </div>
-          </dv-border-box-2></li>
-          <li><dv-border-box-2 :color="['green', 'green']" backgroundColor="rgba(55, 126, 34,.1)" ref="box">
             <div class="chart_2">
               <div class="title">
                 <img src="@/assets/images/14-小标题.png" alt="">

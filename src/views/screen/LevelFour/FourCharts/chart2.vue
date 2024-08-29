@@ -1,18 +1,16 @@
 <template>
   <div id="chart02"></div>
 </template>
-
-
 <script>
 import * as echarts from "echarts";
-
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       chart: null,
     };
   },
-  created() {},
+  created() { },
   mounted() {
     this.initChart();
     this.bindResizeEvent();
@@ -20,18 +18,70 @@ export default {
   updated() {
     this.chart.resize();
   },
+  watch: {
+    yearTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+          28.7, 70.7, 5.9, 48.7, 18.8
+
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+    monthTime(newVal, oldVal) {
+      if (newVal) {
+        const data = [
+
+          70.7, 75.6, 82.2, 48.7, 18.8
+        ];
+
+        const shuffledData = this.shuffleArray(data);
+
+        this.chart.setOption({
+          series: [
+            {
+              data: shuffledData,
+            },
+          ],
+        });
+      }
+    },
+  },
+  computed: {
+    ...mapState("time", ["yearTime", "monthTime"]),
+  },
   methods: {
+    shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    },
     initChart() {
       if (this.chart != null && this.chart != "" && this.chart != undefined) {
         this.chart.dispose(); //销毁
       }
-      this.chart = echarts.init(document.getElementById("chart02"));
 
+      const chartElement = document.querySelector("#chart02");
+      if (chartElement) {
+        this.chart = echarts.init(chartElement);
+      } else {
+        console.error("指定的元素不存在，请检查选择器是否正确。");
+      }
       const option = {
         tooltip: {
           trigger: "axis",
           axisPointer: {
             type: "cross",
+            crossStyle: {
+              color: "#6a7985",
+            },
             label: {
               backgroundColor: "#6a7985",
               formatter: function (params) {
@@ -40,19 +90,19 @@ export default {
             },
           },
         },
+
         legend: {
           top: "0%",
-          left: "8%",
-
+          right: "20%",
+          show: false,
           textStyle: {
             color: "rgba(255,255,255,.9)",
             fontSize: 15,
           },
         },
-
         grid: {
           left: "2",
-          top: "45",
+          top: "30",
           right: "2",
           bottom: "3",
           containLabel: true,
@@ -60,16 +110,12 @@ export default {
         xAxis: [
           {
             type: "category",
-
-            name: "时间",
-            data: Array.from({ length: 30 }, (v, i) => (i + 1).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
+            // boundaryGap: false,
+            data: ['2024-7-19', '2024-7-18', '2023-7-19', '2024-6', '2023-7'],
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
+              fontSize: 15,
             },
             // x轴颜色
             axisLine: {
@@ -77,28 +123,29 @@ export default {
                 color: "rgba(255,255,255,.2)",
               },
             },
+            axisPointer: {
+              type: "shadow",
+            },
           },
         ],
         yAxis: [
           {
             type: "value",
             name: "(kg)",
-
             nameTextStyle: {
-              color: "rgba(255,255,255,1)",
+              color: "rgba(255,255,255,.9)",
             },
-         
             axisTick: {
               show: false,
             },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
+            // min: 0,
+            // max: 100,
+            interval: 20,
+
             axisLabel: {
               color: "rgba(255,255,255,.6)",
-              fontSize: 12,
+              fontSize: 15,
+
               formatter: "{value} ",
             },
             // 修改分割线的颜色
@@ -111,8 +158,9 @@ export default {
         ],
         series: [
           {
-            name: "助剂1",
+            name: "吨垃圾用卵量",
             type: "bar",
+            barWidth: '50%',
 
             tooltip: {
               valueFormatter: function (value) {
@@ -120,78 +168,41 @@ export default {
               },
             },
 
-            emphasis: {
-              focus: "series",
-            },
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
 
-            itemStyle: {
-              color: "rgb(245, 108, 108)",
             },
-            // 开始不显示拐点， 鼠标经过显示
-            showSymbol: false,
 
             data: [
-              76, 74, 74, 77, 78, 72, 79, 73, 78, 75, 77, 76, 72, 75, 75, 78,
-              71, 80, 78, 77, 76, 79, 74, 75, 74, 76, 75, 71, 74, 71,
+
+              60.7, 85.6, 22.2, 58.7, 48.8
             ],
-          },
-          {
-            name: "助剂2",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
+            markPoint: {
+              data: [
+                { type: "max", name: "Max" },
+                { type: "min", name: "Min" },
+              ],
             },
-
-            // emphasis: {
-            //   focus: 'series'
-            // },
-
-            itemStyle: {
-              color: "rgb(92, 184, 92)",
+            markLine: {
+              data: [
+                {
+                  type: "average",
+                  name: "均值",
+                  label: {
+                    position: "middle",
+                    formatter: "均值：{c} ",
+                    color: "#fff",
+                  },
+                },
+              ],
             },
-            // 开始不显示拐点， 鼠标经过显示
-            showSymbol: false,
-
-            data: [
-              85, 87, 89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88, 82, 86, 84,
-              85, 80, 86, 89, 81, 88, 84, 82, 81, 83, 85, 84, 87, 82,
-            ],
-          },
-          {
-            name: "助剂3",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            // emphasis: {
-            //   focus: 'series'
-            // },
-
-            // 设置拐点颜色以及边框
-            itemStyle: {
-              color: "rgb(241, 196, 15)",
-            },
-            // 开始不显示拐点， 鼠标经过显示
-            showSymbol: false,
-
-            data: [
-              94, 97, 94, 98, 96, 96, 92, 91, 94, 93, 92, 91, 95, 98, 94, 98,
-              94, 91, 98, 96, 92, 97, 96, 99, 95, 97, 93, 91, 94, 94,
-            ],
           },
         ],
       };
 
       this.chart.setOption(option);
     },
-    // 助剂（月）
     updateMonth() {
       this.chart.setOption({
         tooltip: {
@@ -205,451 +216,15 @@ export default {
             },
           },
         },
-        xAxis: {
-          data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
-        },
-        series: [
-          {
-            name: "助剂1(最大值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [85, 87, 89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88],
-          },
-          {
-            name: "助剂1(最小值)",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            stack: "Ad",
-            data: [76, 74, 74, 77, 78, 72, 79, 73, 78, 75, 77, 76],
-          },
-          {
-            name: "助剂1(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [98, 94, 98, 94, 91, 98, 96, 92, 97, 96, 99, 95],
-          },
-
-          {
-            name: "助剂2(最大值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [52, 56, 58, 53, 50, 55, 59, 51, 57, 54, 60, 50],
-          },
-          {
-            name: "助剂2(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [43, 45, 41, 49, 50, 46, 42, 47, 40, 44, 50, 48],
-          },
-          {
-            name: "助剂2(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [41, 43, 49, 45, 40, 48, 42, 44, 50, 47, 46, 50],
-          },
-
-          {
-            name: "助剂3(最大值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [62, 65, 63, 69, 70, 66, 64, 67, 60, 68, 70, 66],
-          },
-          {
-            name: "助剂3(最小值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [67, 69, 63, 65, 60, 68, 62, 64, 70, 66, 61, 70],
-          },
-          {
-            name: "助剂3(平均值)",
-            type: "line",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "red",
-            },
-
-            data: [65, 67, 70, 61, 68, 64, 63, 66, 69, 62, 60, 70],
-          },
-        ],
-      });
-    },
-    // 助剂（年）
-    updateYear() {
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
-        series: [
-          {
-            name: "助剂1(最大值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88],
-          },
-          {
-            name: "助剂1(最小值)",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            stack: "Ad",
-            data: [74, 77, 78, 72, 79, 73, 78, 75, 77, 76],
-          },
-          {
-            name: "助剂1(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [98, 94, 91, 98, 96, 92, 97, 96, 99, 95],
-          },
-
-          {
-            name: "助剂2(最大值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [58, 53, 50, 55, 59, 51, 57, 54, 60, 50],
-          },
-          {
-            name: "助剂2(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [41, 49, 50, 46, 42, 47, 40, 44, 50, 48],
-          },
-          {
-            name: "助剂2(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [49, 45, 40, 48, 42, 44, 50, 47, 46, 50],
-          },
-
-          {
-            name: "助剂3(最大值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [63, 69, 70, 66, 64, 67, 60, 68, 70, 66],
-          },
-          {
-            name: "助剂3(最小值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [63, 65, 60, 68, 62, 64, 70, 66, 61, 70],
-          },
-          {
-            name: "助剂3(平均值)",
-            type: "line",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "red",
-            },
-
-            data: [70, 61, 68, 64, 63, 66, 69, 62, 60, 70],
-          },
-        ],
-      });
-    },
-    // 助剂（历年）
-    updateHistoryYear() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
         legend: {
           top: "0%",
-          left: "8%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-
-        xAxis: [
-          {
-            type: "category",
-            data: ["助剂1", "助剂2", "助剂3"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-             name: "(kg)",
-
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [89, 90, 91],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [91, 95, 96],
-          },
-        ],
-      });
-    },
-
-    monthZJM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "月";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "8%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
+          left: "10%",
         },
         xAxis: [
           {
             type: "category",
-
-            name: "时间",
+            // boundaryGap: false,
             data: Array.from({ length: 12 }, (v, i) => (i + 1).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
             axisLabel: {
               //文本颜色
               color: "rgba(255,255,255,.6)",
@@ -661,43 +236,14 @@ export default {
                 color: "rgba(255,255,255,.2)",
               },
             },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-             name: "(kg)",
-
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
+            axisPointer: {
+              type: "shadow",
             },
           },
         ],
         series: [
           {
-            name: "助剂1",
+            name: "厨余处理量(极大值)",
             type: "bar",
 
             tooltip: {
@@ -705,24 +251,19 @@ export default {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
             },
 
-            itemStyle: {
-              color: "rgb(245, 108, 108)",
-            },
             // 开始不显示拐点， 鼠标经过显示
             showSymbol: false,
-
             data: [
-              78, 75, 77, 76, 72, 75, 75, 78, 71, 80, 78, 77, 76, 79, 74, 75,
-              74, 76, 75, 71, 74, 71,
+              10, 15, 18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3,
             ],
           },
           {
-            name: "助剂2",
+            name: "厨余处理量(极小值)",
             type: "bar",
 
             tooltip: {
@@ -730,54 +271,51 @@ export default {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
             },
 
-            itemStyle: {
-              color: "rgb(92, 184, 92)",
-            },
             // 开始不显示拐点， 鼠标经过显示
             showSymbol: false,
-
-            data: [
-              85, 87, 89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88, 82, 86, 84,
-              85, 80, 86, 89, 81, 88, 84, 82, 81, 83, 85, 84, 87, 82,
-            ],
+            data: [6, 9, 4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
+            markPoint: null,
+            markLine: null,
           },
           {
-            name: "助剂3",
-            type: "bar",
-
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
             tooltip: {
               valueFormatter: function (value) {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
             },
-
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
             // 设置拐点颜色以及边框
             itemStyle: {
-              color: "rgb(241, 196, 15)",
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
             },
             // 开始不显示拐点， 鼠标经过显示
             showSymbol: false,
-
-            data: [
-              93, 92, 91, 95, 98, 94, 98, 94, 91, 98, 96, 92, 97, 96, 99, 95,
-              97, 93, 91, 94, 94,
-            ],
+            data: [57, 61, 52, 48, 50, 64, 59, 54, 66, 57, 52, 58],
+            markPoint: null,
+            markLine: null,
           },
         ],
-      };
-
-      this.chart.setOption(option);
+      });
     },
-    yearZJM() {
+    // 日·历年
+    updateEveryYear() {
       this.chart.setOption({
         tooltip: {
           trigger: "axis",
@@ -790,357 +328,17 @@ export default {
             },
           },
         },
-        xAxis: {
-          data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-        },
-        series: [
-          {
-            name: "助剂1(最大值)",
-            type: "bar",
-            stack: "Ad",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88],
-          },
-          {
-            name: "助剂1(最小值)",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            stack: "Ad",
-            data: [74, 77, 78, 72, 79, 73, 78, 75, 77, 76],
-          },
-          {
-            name: "助剂1(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [98, 94, 91, 98, 96, 92, 97, 96, 99, 95],
-          },
-
-          {
-            name: "助剂2(最大值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [58, 53, 50, 55, 59, 51, 57, 54, 60, 50],
-          },
-          {
-            name: "助剂2(最小值)",
-            type: "bar",
-            stack: "Bd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [41, 49, 50, 46, 42, 47, 40, 44, 50, 48],
-          },
-          {
-            name: "助剂2(平均值)",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [49, 45, 40, 48, 42, 44, 50, 47, 46, 50],
-          },
-
-          {
-            name: "助剂3(最大值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [63, 69, 70, 66, 64, 67, 60, 68, 70, 66],
-          },
-          {
-            name: "助剂3(最小值)",
-            type: "bar",
-            stack: "Cd",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [63, 65, 60, 68, 62, 64, 70, 66, 61, 70],
-          },
-          {
-            name: "助剂3(平均值)",
-            type: "line",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-              color: "red",
-            },
-
-            data: [70, 61, 68, 64, 63, 66, 69, 62, 60, 70],
-          },
-        ],
-      });
-    },
-    historyZJM() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "8%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
 
         xAxis: [
           {
             type: "category",
-            data: ["助剂1", "助剂2", "助剂3"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-             name: "(kg)",
-
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [89, 90, 91],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [91, 95, 96],
-          },
-        ],
-      });
-    },
-
-    yearZJY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-
-      const option = {
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "8%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: "category",
-
-            name: "时间",
+            // boundaryGap: false,
             data: Array.from({ length: 10 }, (v, i) => (i + 2019).toString()),
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-             name: "(kg)",
-
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
           },
         ],
         series: [
           {
-            name: "助剂1",
+            name: "厨余处理量(最大值)",
             type: "bar",
 
             tooltip: {
@@ -1148,24 +346,17 @@ export default {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(145, 204, 117)",
             },
 
-            itemStyle: {
-              color: "rgb(245, 108, 108)",
-            },
-            // 开始不显示拐点， 鼠标经过显示
-            showSymbol: false,
-
-            data: [
-              78, 75, 77, 76, 72, 75, 75, 78, 71, 80, 78, 77, 76, 79, 74, 75,
-              74, 76, 75,
-            ],
+            data: [18, 20, 25.6, 76.7, 15.6, 62.2, 32.6, 20.0, 66.4, 33.3],
+            markPoint: null,
+            markLine: null,
           },
           {
-            name: "助剂2",
+            name: "厨余处理量(最小值)",
             type: "bar",
 
             tooltip: {
@@ -1173,179 +364,39 @@ export default {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(24, 144, 255)",
             },
 
-            itemStyle: {
-              color: "rgb(92, 184, 92)",
-            },
-            // 开始不显示拐点， 鼠标经过显示
-            showSymbol: false,
-
-            data: [
-              85, 87, 89, 83, 80, 84, 89, 88, 81, 86, 80, 83, 88, 82, 86, 84,
-              85, 80, 86, 89, 81, 88, 84, 82, 81, 83, 85, 84, 87, 82,
-            ],
+            data: [4, 7, 2, 10, 3, 8, 1, 5, 10, 11],
           },
           {
-            name: "助剂3",
-            type: "bar",
-
+            name: "厨余处理量(平均值)",
+            type: "line",
+            smooth: true, //圆滑
             tooltip: {
               valueFormatter: function (value) {
                 return value + " kg";
               },
             },
-
-            emphasis: {
-              focus: "series",
+            lineStyle: {
+              // 修改柱状图的颜色
+              color: "rgb(195, 109, 38)",
             },
-
+            // 设置拐点，小圆点
+            Symbol: "circle",
+            // 拐点大小
+            SymbolSize: 8,
             // 设置拐点颜色以及边框
             itemStyle: {
-              color: "rgb(241, 196, 15)",
+              color: "rgb(195, 109, 38)",
+              borderColor: "rgba(195, 109, 38, .1)",
+              borderWidth: 12,
             },
             // 开始不显示拐点， 鼠标经过显示
             showSymbol: false,
-
-            data: [
-              93, 92, 91, 95, 98, 94, 98, 94, 91, 98, 96, 92, 97, 96, 99, 95,
-              97, 93, 91, 94, 94,
-            ],
-          },
-        ],
-      };
-
-      this.chart.setOption(option);
-    },
-    historyZJY() {
-      if (this.chart != null && this.chart != "" && this.chart != undefined) {
-        this.chart.dispose(); //销毁
-      }
-      this.chart = echarts.init(document.getElementById("chart02"));
-      this.chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985",
-              formatter: function (params) {
-                return params.value + "历年";
-              },
-            },
-          },
-        },
-        legend: {
-          top: "0%",
-          left: "8%",
-
-          textStyle: {
-            color: "rgba(255,255,255,.9)",
-            fontSize: 15,
-          },
-        },
-
-        grid: {
-          left: "2",
-          top: "45",
-          right: "2",
-          bottom: "3",
-          containLabel: true,
-        },
-
-        xAxis: [
-          {
-            type: "category",
-            data: ["助剂1", "助剂2", "助剂3"],
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLabel: {
-              //文本颜色
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-            },
-            // x轴颜色
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.2)",
-              },
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-             name: "(kg)",
-
-            nameTextStyle: {
-              color: "rgba(255,255,255,1)",
-            },
-
-            // max: 300,
-            // min: 0,
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: 12,
-              formatter: "{value} ",
-            },
-            // 修改分割线的颜色
-            splitLine: {
-              lineStyle: {
-                color: "rgba(255,255,255,.1)",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "最大值",
-            type: "bar",
-
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [89, 90, 91],
-          },
-          {
-            name: "最小值",
-            type: "bar",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-
-            data: [74, 77, 78],
-          },
-          {
-            name: "平均值",
-            type: "line",
-            tooltip: {
-              valueFormatter: function (value) {
-                return value + " kg";
-              },
-            },
-            smooth: true, //圆滑
-            lineStyle: {
-              width: 2,
-            },
-
-            data: [91, 95, 96],
+            data: [72, 68, 50, 34, 69, 54, 66, 57, 52, 58],
           },
         ],
       });
