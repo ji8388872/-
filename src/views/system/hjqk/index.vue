@@ -76,7 +76,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:aqqkjl:add']"
+          v-hasPermi="['system:hjqk:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -87,7 +87,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:aqqkjl:edit']"
+          v-hasPermi="['system:hjqk:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -98,7 +98,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:aqqkjl:remove']"
+          v-hasPermi="['system:hjqk:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -108,13 +108,13 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:aqqkjl:export']"
+          v-hasPermi="['system:hjqk:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="aqqkjlList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="hjqkList" @selection-change="handleSelectionChange">
 <!--      <el-table-column type="selection" width="55" align="center" />-->
       <el-table-column label="" align="center" type="index" />
       <el-table-column label="日期" align="center" prop="rq" width="180">
@@ -135,14 +135,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:aqqkjl:edit']"
+            v-hasPermi="['system:hjqk:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:aqqkjl:remove']"
+            v-hasPermi="['system:hjqk:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -271,7 +271,7 @@ export default {
       // 总条数
       total: 0,
       // 安全情况表格数据
-      aqqkjlList: [],
+      hjqkList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -307,7 +307,7 @@ export default {
       // 查询安全情况记录 写死
       setTimeout(() => {
         // 模拟获取的数据
-        this.aqqkjlList = [{ rq: '2024-08-29', hjqk: '正常', ycwt: '无', sfjj: '已解决', jjry: '张三', jjsj: '2024-08-30', bz: '11' }];
+        this.hjqkList = [{ rq: '2024-08-29', hjqk: '正常', ycwt: '无', sfjj: '已解决', jjry: '张三', jjsj: '2024-08-30', bz: '11' }];
         this.loading = false;
       }, 1000);
 
@@ -395,7 +395,7 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-    //   this.download('system/aqqkjl/export', {
+    //   this.download('system/hjqk/export', {
     //     ...this.queryParams
     //   }, `aqqkjl_${new Date().getTime()}.xlsx`)
     }
