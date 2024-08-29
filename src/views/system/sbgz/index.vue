@@ -9,6 +9,18 @@
           placeholder="请选择发生时间">
         </el-date-picker>
       </el-form-item>
+
+      <el-form-item label="是否解决" prop="sfjj">
+        <el-select v-model="queryParams.sfjj" clearable placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="设备名称" prop="sbmc">
         <el-input
           v-model="queryParams.sbmc"
@@ -173,6 +185,13 @@
           <span>{{ parseTime(scope.row.fssj, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
+<!--      添加是否解决-->
+      <el-table-column label="是否解决" align="center" prop="sfjj">
+        <template v-slot="scope">
+          <el-tag v-if="scope.row.sfjj === 0" type="danger">{{scope.row.sfjj}}</el-tag>
+          <el-tag v-else type="success">已解决</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="设备名称" align="center" prop="sbmc" />
       <el-table-column label="故障情况描述" align="center" prop="gzqkms" />
       <el-table-column label="故障原因分析" align="center" prop="gzyyfx" />
@@ -205,7 +224,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -224,6 +243,17 @@
             value-format="yyyy-MM-dd"
             placeholder="请选择发生时间">
           </el-date-picker>
+        </el-form-item>
+<!--        添加是否解决-->
+        <el-form-item label="是否解决" prop="sfjj">
+          <el-select v-model="form.sfjj" clearable placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="设备名称" prop="sbmc">
           <el-input v-model="form.sbmc" placeholder="请输入设备名称" />
@@ -303,6 +333,8 @@ export default {
         pageNum: 1,
         pageSize: 10,
         fssj: null,
+        // 增加是否解决 0：未解决，1：已解决
+        sfjj:null,
         sbmc: null,
         gzqkms: null,
         gzyyfx: null,
@@ -321,7 +353,18 @@ export default {
       form: {},
       // 表单校验
       rules: {
-      }
+      },
+      // 是否解决下拉菜单
+      options:[
+        {
+          label: '未解决',
+          value: 0
+        },
+        {
+          label: '已解决',
+          value: 1
+        }
+      ],
     };
   },
   created() {
@@ -333,6 +376,7 @@ export default {
       this.loading = true;
       listSbgz(this.queryParams).then(response => {
         this.sbgzList = response.rows;
+        console.log(response)
         this.total = response.total;
         this.loading = false;
       });
