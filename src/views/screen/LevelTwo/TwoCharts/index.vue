@@ -8,22 +8,17 @@
           <div class="value">是</div>
         </li>
 
-<!--       没有修改的代码-->
+        <!--       没有修改的代码-->
 
-<!--        <li v-for="(item, index) in chonData" :key="index" class="bac">-->
-<!--          <div class="name">{{ item.name }}</div>-->
-<!--          <div class="value">{{ item.value }}</div>-->
-<!--        </li>-->
+        <!--        <li v-for="(item, index) in chonData" :key="index" class="bac">-->
+        <!--          <div class="name">{{ item.name }}</div>-->
+        <!--          <div class="value">{{ item.value }}</div>-->
+        <!--        </li>-->
 
 
-<!--        修改后的代码-->
-        <li
-          v-for="(item, index) in chonData"
-          :key="index"
-          class="bac"
-          @mouseover="handleMouseOver(index)"
-          @mouseleave="handleMouseLeave(index)"
-        >
+        <!--        修改后的代码-->
+        <li v-for="(item, index) in chonData" :key="index" class="bac" @mouseover="handleMouseOver(index)"
+          @mouseleave="handleMouseLeave(index)">
           <div class="content-wrapper">
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
@@ -40,11 +35,7 @@
       </ul>
     </div>
     <div class="center">
-      <div
-        class="box bac"
-        :class="{ flipped: flippedStatus[0] }"
-        @click="toggleFlip(0,'正常')"
-      >
+      <div class="box bac" :class="{ flipped: flippedStatus[0] }" @click="toggleFlip(0, '正常')">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
@@ -61,11 +52,7 @@
         </div>
       </div>
 
-      <div
-        class="box bac"
-        :class="{ flipped: flippedStatus[1] }"
-        @click="toggleFlip(1,'异常')"
-      >
+      <div class="box bac" :class="{ flipped: flippedStatus[1] }" @click="toggleFlip(1, '异常')">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
@@ -82,11 +69,7 @@
         </div>
       </div>
 
-      <div
-        class="box bac"
-        :class="{ flipped: flippedStatus[2] }"
-        @click="toggleFlip(2,'异常')"
-      >
+      <div class="box bac" :class="{ flipped: flippedStatus[2] }" @click="toggleFlip(2, '异常')">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
@@ -105,51 +88,51 @@
 
       <div class="box bac">
 
-          <!-- 正面 -->
-          <div class="peopleRes">
-            <p>成本情况</p>
-            <p>人数:10人</p>
-            <p >工时:8h/天</p>
-          </div>
-          <!-- 背面 -->
-<!--          <div class="back backText back-bac">-->
-<!--            <div class="title">成本情况</div>-->
-<!--            <div class="value">人数:<span class="spanTitle">100</span></div>-->
-<!--            <div class="value"></div>-->
-<!--          </div>-->
+        <!-- 正面 -->
+        <div class="peopleRes">
+          <p style="font-size: 2.3rem;">成本情况</p>
+          <p>人数:10人</p>
+          <p>工时:8h/天</p>
+        </div>
+        <!-- 背面 -->
+        <!--          <div class="back backText back-bac">-->
+        <!--            <div class="title">成本情况</div>-->
+        <!--            <div class="value">人数:<span class="spanTitle">100</span></div>-->
+        <!--            <div class="value"></div>-->
+        <!--          </div>-->
       </div>
 
       <div class="box bac">
 
-          <!-- 正面 -->
-          <div>
-            <p >外部检查参观情况</p>
-            <p >单位:中科智禾有限公司</p>
-            <p >人数:2人</p>
-            <p >问题情况:没问题</p>
-          </div>
-          <!-- 背面 -->
-<!--          <div class="back backText back-bac">-->
-<!--            <div class="value">单位:<span class="spanTitle">中科智禾有限公司</span></div>-->
-<!--            <div class="value">人数:<span class="spanText">2</span></div>-->
-<!--            <div class="value">问题情况:<span class="spanText">没问题</span></div>-->
-<!--          </div>-->
+        <!-- 正面 -->
+        <div>
+          <p style="font-size: 2.3rem;">外部检查参观情况</p>
+          <p>单位:中科智禾有限公司</p>
+          <p>人数:2人</p>
+          <p>问题情况:没问题</p>
+        </div>
+        <!-- 背面 -->
+        <!--          <div class="back backText back-bac">-->
+        <!--            <div class="value">单位:<span class="spanTitle">中科智禾有限公司</span></div>-->
+        <!--            <div class="value">人数:<span class="spanText">2</span></div>-->
+        <!--            <div class="value">问题情况:<span class="spanText">没问题</span></div>-->
+        <!--          </div>-->
       </div>
 
     </div>
 
 
-<!--    <el-button @click="show2 = !show2" style="width: 100px;">Click Me</el-button>-->
-<!--    <div class="flip-container" :class="{ flipped: !show2 }">-->
-<!--      <div class="flipper">-->
-<!--        <div class="front transition-box">-->
-<!--          .el-zoom-in-center-->
-<!--        </div>-->
-<!--        <div class="back transition-box">-->
-<!--          111111111111-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <el-button @click="show2 = !show2" style="width: 100px;">Click Me</el-button>-->
+    <!--    <div class="flip-container" :class="{ flipped: !show2 }">-->
+    <!--      <div class="flipper">-->
+    <!--        <div class="front transition-box">-->
+    <!--          .el-zoom-in-center-->
+    <!--        </div>-->
+    <!--        <div class="back transition-box">-->
+    <!--          111111111111-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
   </div>
 
@@ -181,28 +164,28 @@ export default {
         //   name: "日产日清", value: "是"
         // },
         {
-          name: "处理量: 100kg", value: "正常",isHovered: false
+          name: "处理量: 100kg", value: "正常", isHovered: false
         },
         {
-          name: "减量化率: 90%", value: "正常",isHovered: false
+          name: "减量化率: 90%", value: "正常", isHovered: false
         },
         {
-          name: "减重率: 60%", value: "正常",isHovered: false
+          name: "减重率: 60%", value: "正常", isHovered: false
         },
         {
-          name: "吨垃圾用卵量", value: "正常",isHovered: false
+          name: "吨垃圾用卵量", value: "正常", isHovered: false
         },
         {
-          name: "老虫产率: 100%", value: "正常",isHovered: false
+          name: "老虫产率: 100%", value: "正常", isHovered: false
         },
         {
-          name: "虫沙产率: 100%", value: "正常",isHovered: false
+          name: "虫沙产率: 100%", value: "正常", isHovered: false
         },
         {
-          name: "老虫体长: 100%", value: "正常",isHovered: false
+          name: "老虫体长: 100%", value: "正常", isHovered: false
         },
         {
-          name: "老虫体重: 100%", value: "正常",isHovered: false
+          name: "老虫体重: 100%", value: "正常", isHovered: false
 
         },
       ],
@@ -232,13 +215,13 @@ export default {
     },
 
     // 控制盒子的翻转
-    toggleFlip(index,value) {
+    toggleFlip(index, value) {
 
       // 判断是否为异常状态，如果是则不执行反转
       if (value === '正常') {
         return
       }
-        // 切换盒子的 flipped 状态
+      // 切换盒子的 flipped 状态
       this.flippedStatus[index] = !this.flippedStatus[index]
     },
   },
@@ -308,16 +291,20 @@ export default {
           box-shadow: 0 0 5px #00FFFF;
           transition: all 0.3s ease-in-out;
           /* 固定大小，防止内容切换时撑开 */
-          width: 150px;  /* 根据需要设置宽度 */
-          height: 100px; /* 根据需要设置高度 */
+          width: 150px;
+          /* 根据需要设置宽度 */
+          height: 100px;
+          /* 根据需要设置高度 */
           position: relative;
         }
+
         .content-wrapper {
           position: relative;
           width: 100%;
           height: 100%;
         }
-        .contentIsHovered{
+
+        .contentIsHovered {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -332,19 +319,26 @@ export default {
           color: deepskyblue;
           text-shadow: 0 0 1px #ff0;
           text-align: center;
-          display: flex; /* 使用 Flexbox 布局 */
-          justify-content: center; /* 水平居中 */
-          align-items: center; /* 垂直居中 */
-          height: 100%; /* 使元素高度充满父容器 */
-          width: 100%; /* 使元素宽度充满父容器 */
+          display: flex;
+          /* 使用 Flexbox 布局 */
+          justify-content: center;
+          /* 水平居中 */
+          align-items: center;
+          /* 垂直居中 */
+          height: 100%;
+          /* 使元素高度充满父容器 */
+          width: 100%;
+          /* 使元素宽度充满父容器 */
         }
 
 
-        .fade-enter-active, .fade-leave-active {
+        .fade-enter-active,
+        .fade-leave-active {
           transition: opacity 0.5s ease;
         }
 
-        .fade-enter, .fade-leave-to {
+        .fade-enter,
+        .fade-leave-to {
           opacity: 0;
         }
 
@@ -366,6 +360,7 @@ export default {
       }
     }
   }
+
   .center {
     flex: 4;
     display: flex;
@@ -376,7 +371,8 @@ export default {
 
     .box {
       width: 18%;
-      height: 90%; /* 固定高度 */
+      height: 90%;
+      /* 固定高度 */
       perspective: 1000px;
       display: flex;
       justify-content: center;
@@ -388,8 +384,8 @@ export default {
       //.peopleRes{
       //
       //}
-      p{
-        padding:25px 0;
+      p {
+        padding: 25px 0;
         text-shadow: 0 0 5px #00FFFF;
         //background-color: #1f2d3d;
         font-size: 1.7rem;
@@ -416,9 +412,12 @@ export default {
       height: 100%;
       backface-visibility: hidden;
       display: flex;
-      flex-direction: row; /* 水平排列，确保文字左右分布 */
-      justify-content: space-around; /* 平均分布内容 */
-      align-items: center; /* 垂直居中 */
+      flex-direction: row;
+      /* 水平排列，确保文字左右分布 */
+      justify-content: space-around;
+      /* 平均分布内容 */
+      align-items: center;
+      /* 垂直居中 */
       padding: 10px;
       border-radius: 10px;
       text-align: center;
@@ -432,25 +431,27 @@ export default {
         /* 文字竖排 */
         font-size: 2.5rem;
         /* 字体大小 */
-         //text-align: center;
+        //text-align: center;
         /* 垂直方向上居中对齐 */
         letter-spacing: 10px;
       }
     }
 
-    .backText{
+    .backText {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
       display: flex;
-      flex-direction: column; /* 垂直排列子元素 */
+      flex-direction: column;
+      /* 垂直排列子元素 */
       //align-items: center;
       //justify-content: center;
       padding: 10px;
       border-radius: 10px;
       //text-align: center; /* 水平居中对齐 */
-      font-size: 1.6rem; /* 根据需求调整字体大小 */
+      font-size: 1.6rem;
+      /* 根据需求调整字体大小 */
       //line-height: 2rem; /* 调整行高，确保文字正常排列 */
       //color: #00ffff; /* 保持字体颜色 */
 
@@ -463,16 +464,18 @@ export default {
         //writing-mode: vertical-rl;
         /* 文字竖排 */
         font-size: 1.5rem;
+
         /* 字体大小 */
-         //text-align: center;
+        //text-align: center;
         /* 垂直方向上居中对齐 */
         //letter-spacing: 10px;
-        .spanTitle{
+        .spanTitle {
           padding-left: 10px;
           color: red;
           font-weight: 500;
         }
-        .spanText{
+
+        .spanText {
           padding-left: 10px;
           color: #1a9ca0;
           font-weight: 500;
@@ -485,11 +488,11 @@ export default {
       /* Base background color */
       background-image:
         linear-gradient(to right, #10455d, rgba(0, 0, 50, 0) 10%),
-          /* Left border */
+        /* Left border */
         linear-gradient(to left, #10455d, rgba(0, 0, 50, 0) 10%),
-          /* Right border */
+        /* Right border */
         linear-gradient(to top, #10455d, rgba(0, 0, 50, 0) 20%),
-          /* Bottom border */
+        /* Bottom border */
         linear-gradient(to bottom, #10455d, rgba(0, 0, 50, 0) 20%);
       /* Top border */
       border-radius: 5px;
@@ -499,7 +502,8 @@ export default {
 
     .back {
       transform: rotateY(180deg);
-      background-color: #1f2d3d; /* 保持背景一致 */
+      background-color: #1f2d3d;
+      /* 保持背景一致 */
     }
 
     //.transition-box {
@@ -633,5 +637,4 @@ export default {
 //.back {
 //  transform: rotateY(180deg);
 //  background-color: #67C23A; /* 可选的不同背景色 */
-//}
-</style>
+//}</style>
