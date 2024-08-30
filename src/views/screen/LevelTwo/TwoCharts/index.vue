@@ -89,8 +89,8 @@
       <div class="box bac">
 
         <!-- 正面 -->
-        <div class="peopleRes">
-          <p style="font-size: 2.3rem;">成本情况</p>
+        <div>
+          <p style="font-size: 2.0rem;">成本情况</p>
           <p>人数:10人</p>
           <p>工时:8h/天</p>
         </div>
@@ -106,7 +106,7 @@
 
         <!-- 正面 -->
         <div>
-          <p style="font-size: 2.3rem;">外部检查参观情况</p>
+          <p style="font-size: 2.0rem;">外部检查参观情况</p>
           <p>单位:中科智禾有限公司</p>
           <p>人数:2人</p>
           <p>问题情况:没问题</p>
@@ -376,7 +376,7 @@ export default {
       perspective: 1000px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      //align-items: center;
       gap: 50px;
       //background-color: #1f2d3d; /* 背景颜色 */
       border-radius: 10px;
