@@ -178,7 +178,7 @@ export default {
         yAxis: [
           {
             type: "value", // y轴类型为数值型
-            name: "(g/t)", // y轴名称
+            name: "(g)", // y轴名称
             nameTextStyle: {
               color: "rgba(255,255,255,.9)", // y轴名称文本颜色
             },
@@ -210,7 +210,7 @@ export default {
             // 配置数据系列的提示框
             tooltip: {
               valueFormatter: function (value) {
-                return value + " g/t"; // 格式化提示框中显示的值，单位为kg
+                return value + " g"; // 格式化提示框中显示的值，单位为kg
               },
             },
 
@@ -240,7 +240,7 @@ export default {
                     position: "insideEndTop", // 标记线标签的位置为中间
                     align: 'right', // 标签文字对齐到右边
                     verticalAlign: 'bottom', // 标签垂直对齐到线的上方
-                    formatter: "标准值上限：{c} g/t", // 格式化标记线标签文本
+                    formatter: "标准值上限：{c} g", // 格式化标记线标签文本
                     color: "#fff", // 标记线标签文本颜色
                   },
                   lineStyle: {
@@ -255,7 +255,7 @@ export default {
                     position: "insideEndTop", // 标签放置在标记线末端的上方
                     align: 'right', // 标签文字对齐到右边
                     verticalAlign: 'bottom', // 标签垂直对齐到线的上方
-                    formatter: "标准值下限：{c} g/t", // 格式化标记线标签文本
+                    formatter: "标准值下限：{c} g", // 格式化标记线标签文本
                     color: "#fff", // 标记线标签文本颜色
                   },
                   lineStyle: {

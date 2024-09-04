@@ -173,7 +173,7 @@ export default {
           name: "减重率: 60%", value: "正常", isHovered: false
         },
         {
-          name: "吨垃圾用卵量", value: "正常", isHovered: false
+          name: "吨垃圾用卵量: 80g", value: "正常", isHovered: false
         },
         {
           name: "老虫产率: 100%", value: "正常", isHovered: false
@@ -182,10 +182,10 @@ export default {
           name: "虫沙产率: 100%", value: "正常", isHovered: false
         },
         {
-          name: "老虫体长: 100%", value: "正常", isHovered: false
+          name: "老虫体长: 100mm/条", value: "正常", isHovered: false
         },
         {
-          name: "老虫体重: 100%", value: "正常", isHovered: false
+          name: "老虫体重: 100mg/条", value: "正常", isHovered: false
 
         },
       ],
