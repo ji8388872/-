@@ -25,7 +25,7 @@ export default {
       if (newVal && this.y) {
         const xData = ['2024', '2023', '2022', '2021', '近三年'];
         const data = [
-          58.7, 58.7, 68.8,  70.7, 80.9
+          58.7, 58.7, 68.8, 70.7, 80.9
         ];
         this.chart.setOption({
           xAxis: {
@@ -203,7 +203,7 @@ export default {
         // 配置数据系列
         series: [
           {
-            name: "工时", // 数据系列名称
+            name: "老虫体重", // 数据系列名称
             type: "bar", // 数据系列类型为柱状图
             barWidth: '50%', // 柱状图宽度为50%
 
