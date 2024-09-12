@@ -1,24 +1,11 @@
 <template>
   <div class="content">
     <div class="nav">
-      <div class="navTitle">质量</div>
+      <div class="navTitle-jin">进料</div>
       <ul>
-        <li class="bac">
-          <div class="name">日产日清</div>
-          <div class="value">是</div>
-        </li>
-
-        <!--       没有修改的代码-->
-
-        <!--        <li v-for="(item, index) in chonData" :key="index" class="bac">-->
-        <!--          <div class="name">{{ item.name }}</div>-->
-        <!--          <div class="value">{{ item.value }}</div>-->
-        <!--        </li>-->
-
-
         <!--        修改后的代码-->
-        <li v-for="(item, index) in chonData" :key="index" class="bac" @mouseover="handleMouseOver(index)"
-          @mouseleave="handleMouseLeave(index)">
+        <li v-for="(item, index) in chonData1" :key="index" class="bac" @mouseover="handleMouseOver1(index)"
+          @mouseleave="handleMouseLeave1(index)">
           <div class="content-wrapper">
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
@@ -31,7 +18,43 @@
             </transition>
           </div>
         </li>
+      </ul>
 
+      <div class="navTitle">出料</div>
+      <ul>
+        <!--        修改后的代码-->
+        <li v-for="(item, index) in chonData2" :key="index" class="bac" @mouseover="handleMouseOver2(index)"
+            @mouseleave="handleMouseLeave2(index)">
+          <div class="content-wrapper">
+            <transition name="fade">
+              <div v-if="!item.isHovered" key="default" class="contentIsHovered">
+                <div class="name">{{ item.name }}</div>
+                <div class="value">{{ item.value }}</div>
+              </div>
+              <div v-else key="hovered" class="content hover-text">
+                正常的范围是 xxx-xxx
+              </div>
+            </transition>
+          </div>
+        </li>
+      </ul>
+
+      <ul>
+        <!--        修改后的代码-->
+        <li v-for="(item, index) in chonData3" :key="index" class="bac" @mouseover="handleMouseOver3(index)"
+            @mouseleave="handleMouseLeave3(index)">
+          <div class="content-wrapper">
+            <transition name="fade">
+              <div v-if="!item.isHovered" key="default" class="contentIsHovered">
+                <div class="name">{{ item.name }}</div>
+                <div class="value">{{ item.value }}</div>
+              </div>
+              <div v-else key="hovered" class="content hover-text">
+                正常的范围是 xxx-xxx
+              </div>
+            </transition>
+          </div>
+        </li>
       </ul>
     </div>
     <div class="center">
@@ -122,18 +145,6 @@
     </div>
 
 
-    <!--    <el-button @click="show2 = !show2" style="width: 100px;">Click Me</el-button>-->
-    <!--    <div class="flip-container" :class="{ flipped: !show2 }">-->
-    <!--      <div class="flipper">-->
-    <!--        <div class="front transition-box">-->
-    <!--          .el-zoom-in-center-->
-    <!--        </div>-->
-    <!--        <div class="back transition-box">-->
-    <!--          111111111111-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
   </div>
 
 
@@ -159,30 +170,29 @@ export default {
         1: false,
         2: false,
       },
-      chonData: [
-        // {
-        //   name: "日产日清", value: "是"
-        // },
-        {
-          name: "处理量: 100kg", value: "正常", isHovered: false
-        },
+      chonData1: [
+        { name: "日产日清", value: "是" },
+        { name: "处理量: 100kg", value: "正常", isHovered: false },
+        { name: "吨垃圾用卵量: 80g", value: "正常", isHovered: false },
+      ],
+
+      chonData2: [
         {
           name: "减量化率: 90%", value: "正常", isHovered: false
-        },
-        {
-          name: "减重率: 60%", value: "正常", isHovered: false
-        },
-        {
-          name: "吨垃圾用卵量: 80g", value: "正常", isHovered: false
         },
         {
           name: "老虫产率: 100%", value: "正常", isHovered: false
         },
         {
-          name: "虫沙产率: 100%", value: "正常", isHovered: false
+          name: "老虫体长: 100mm/条", value: "正常", isHovered: false
+        },
+      ],
+      chonData3:[
+        {
+          name: "减重率: 60%", value: "正常", isHovered: false
         },
         {
-          name: "老虫体长: 100mm/条", value: "正常", isHovered: false
+          name: "虫沙产率: 100%", value: "正常", isHovered: false
         },
         {
           name: "老虫体重: 100mg/条", value: "正常", isHovered: false
@@ -207,11 +217,23 @@ export default {
   },
   mounted() { },
   methods: {
-    handleMouseOver(index) {
-      this.chonData[index].isHovered = true;
+    handleMouseOver3(index) {
+      this.chonData3[index].isHovered = true;
     },
-    handleMouseLeave(index) {
-      this.chonData[index].isHovered = false;
+    handleMouseLeave3(index) {
+      this.chonData3[index].isHovered = false;
+    },
+    handleMouseOver2(index) {
+      this.chonData2[index].isHovered = true;
+    },
+    handleMouseLeave2(index) {
+      this.chonData2[index].isHovered = false;
+    },
+    handleMouseOver1(index) {
+      this.chonData1[index].isHovered = true;
+    },
+    handleMouseLeave1(index) {
+      this.chonData1[index].isHovered = false;
     },
 
     // 控制盒子的翻转
@@ -252,7 +274,24 @@ export default {
     border-radius: 10px 10px;
     padding: 10px 0;
 
+    .navTitle-jin{
+      margin-right: 50px;
+      margin-left: 20px;
+      //flex: 1;
+      text-shadow: 0 0 5px #00FFFF;
+      /* Text glow effect */
+      writing-mode: vertical-rl;
+      /* 文字竖排 */
+      font-size: 3rem;
+      /* 字体大小 */
+      text-align: center;
+      /* 垂直方向上居中对齐 */
+      letter-spacing: 1rem;
+    }
+
     .navTitle {
+      margin-right: 50px;
+      margin-left: 20px;
       flex: 1;
       text-shadow: 0 0 5px #00FFFF;
       /* Text glow effect */
@@ -270,14 +309,18 @@ export default {
       width: 100%;
       height: 100%;
       padding: 0 .6rem;
-
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
-      justify-content: space-around;
-      align-content: space-around;
+      justify-content: space-between;
+      //align-content: space-between;
+      margin-right: 30px;
 
       li {
-        flex-basis: 26%;
+        flex-basis: 28%;
+        //width: calc(33.33% - 10px);
+
+        //width: 250px;
         padding: 0.8% 0.5%;
         cursor: pointer;
         // margin: 15px 0;
