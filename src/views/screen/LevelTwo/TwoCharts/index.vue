@@ -177,7 +177,9 @@ export default {
       },
       chonData1: [],
 
+      // 有数据的时候需要删除
       chonData2: [],
+      // 有数据的时候需要删除
       chonData3: [],
       title1: '日废弃物处理量明细图',
       title2: '日产率明细图',
@@ -202,7 +204,6 @@ export default {
   methods: {
     async getDataUp() {
       const res = await getOperationLogListUp()
-      console.log(res)
       if (res.code === 200) {
         this.chonData1.push(
           { name: '日产日清：', value: res.data.rcrq },
@@ -210,19 +211,32 @@ export default {
           { name: '吨垃圾用卵量：' + Number(res.data.dljyll).toFixed(2) + 'g', value: '正常', isHovered: false }
         )
         this.chonData2.push(
-          { name: '减量化率：' + res.data.jlhl[0].res, value: '正常', isHovered: false },
-          { name: '老虫产率：' + res.data.lccl[0].total, value: '正常', isHovered: false },
-          { name: '老虫体长：' + Number(res.data.lctc).toFixed(2) + 'mm', value: '正常', isHovered: false }
-        )
+          {
+            name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? '11%'),
+            value: '正常',
+            isHovered: false
+          },
+          {
+            name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? '11%'),
+            value: '正常',
+            isHovered: false
+          },
+          {
+            name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm',
+            value: '正常',
+            isHovered: false
+          })
         this.chonData3.push(
           {
-            name: '减重率：' + res.data.jzl[0].res, value: '正常', isHovered: false
+            name: '减重率：' + (res.data?.jzl?.[0]?.res ?? '11%'),
+            value: '正常',
+            isHovered: false
           },
           {
-            name: '虫沙产率：' + res.data.cscl[0].total, value: '正常', isHovered: false
+            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? '11%'), value: '正常', isHovered: false
           },
           {
-            name: '老虫体重：' + Number(res.data.lctz).toFixed(2) + 'mg/条', value: '正常', isHovered: false
+            name: '老虫体重：' + (Number(res.data?.lctz ?? 11).toFixed(2)) + 'mg/条', value: '正常', isHovered: false
 
           }
         )
@@ -230,7 +244,6 @@ export default {
     },
     async getDataDown() {
       const res = await getOperationLogListDown()
-      // console.log(res)
       if (res.code === 200) {
         this.downData = res.data
       }

@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <img class="caiqi" src="@/assets/images/彩旗.png" alt="">
-      <div class="title">大梅沙&nbsp;&nbsp;&nbsp;&nbsp;碳中和社区&nbsp;&nbsp;&nbsp;&nbsp;生态园区大屏</div>
+      <div class="title"><img class="title" src="@/assets/screem/titel.png" alt=""></div>
       <div class="time-day">
         <div class="time">
           <span>{{ today1 }}</span>
@@ -29,9 +29,9 @@
                   <elementSwiper></elementSwiper>
                 </div> -->
               <div class="shengtai">
-                <img src="@/assets/images/生态1.png" @click="ToggleEvent(1)" />
-                <img src="@/assets/images/生态2.png" @click="ToggleEvent(2)" />
-                <img src="@/assets/images/生态3.png" @click="ToggleEvent(3)" />
+                <img src="@/assets/screem/newInfo.png" @click="ToggleEvent(1)" />
+                <img src="@/assets/screem/Momentofactivity.png" @click="ToggleEvent(2)" />
+                <img src="@/assets/screem/smallnotes.png" @click="ToggleEvent(3)" />
               </div>
             </div>
             <div class="leftBottom">
@@ -67,7 +67,7 @@
                 <img src="@/assets/images/转化1.png" style="cursor: pointer;" alt="">
               </div>
               <div class="img4" @click="dialogVisible4 = true">
-                <img src="@/assets/images/开启学校按钮.png" style="cursor: pointer;" alt="">
+                <img src="@/assets/screem/schoolBtn.png" style="cursor: pointer;" alt="">
               </div>
             </div>
           </div>
@@ -669,7 +669,7 @@ nav {
   height: 100%;
   margin-top: -20px;
   position: relative;
-  background: url('~@/assets/images/生态校园.png') no-repeat center;
+  background: url('~@/assets/screem/生态园区.png') no-repeat center;
   background-size: 85% 99%;
 
   .img1 {
