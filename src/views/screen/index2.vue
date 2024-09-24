@@ -16,12 +16,20 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-sm-4 left">
-             <div class="leftTop">
+            <div class="leftTop" >
               <div class="photo">
                 <img class="title" src="@/assets/images/生态园title.png" alt="">
-                <el-carousel :interval="4000" class="elCarousel">
+                <el-carousel :interval="4000" class="elCarousel" @change="handleCarouselChange">
                   <el-carousel-item v-for="item in images" :key="item.id">
-                    <img class="centered-img" :src="item.url" alt="" @dblclick="showImage(item.url)" />
+                    <div class="image-container">
+                      <!-- 显示图片 -->
+                      <img class="centered-img" :src="item.url" :title="item.title" @dblclick="showImage(item.url)"/>
+                      <!-- 直接显示图片的标题和描述 -->
+                      <div class="image-info">
+                        <h3>{{ item.title }}</h3>
+                      </div>
+                    </div>
+
                   </el-carousel-item>
                 </el-carousel>
               </div>
@@ -29,29 +37,35 @@
                   <elementSwiper></elementSwiper>
                 </div> -->
               <div class="shengtai">
-                <img src="@/assets/screem/newInfo.png" @click="ToggleEvent(1)" />
-                <img src="@/assets/screem/Momentofactivity.png" @click="ToggleEvent(2)" />
-                <img src="@/assets/screem/smallnotes.png" @click="ToggleEvent(3)" />
+                <div class="shengtai-info">
+                  <p style="color: white;margin-left: 10px">{{ currentDescription }}</p>
+                </div>
+<!--                <img src="@/assets/screem/newInfo.png" @click="ToggleEvent(1)" />-->
+<!--                <img src="@/assets/screem/Momentofactivity.png" @click="ToggleEvent(2)" />-->
+<!--                <img src="@/assets/screem/smallnotes.png" @click="ToggleEvent(3)" />-->
               </div>
             </div>
             <div class="leftBottom">
-              <div @click="BjdialogVisible = true" style="cursor: pointer;">
-                <div class="banji1">{{ allBj[0] }}</div>
-                <div class="banji2">{{ allBj[1] }}</div>
-                <div class="banji3">{{ allBj[2] }}</div>
-              </div>
+<!--              <div @click="BjdialogVisible = true" style="cursor: pointer;">-->
+<!--                <div class="banji1">{{ allBj[0] }}</div>-->
+<!--                <div class="banji2">{{ allBj[1] }}</div>-->
+<!--                <div class="banji3">{{ allBj[2] }}</div>-->
+<!--              </div>-->
               <div class="answer">
-                <div style="font-weight: 600;letter-spacing: -1px;">{{ (Choice.zqd / (Choice.zqd + Choice.cud) *
-            100).toFixed(2)
-                  }} %</div>
+                <div style="font-weight: 600;letter-spacing: -1px;">{{
+                    (Choice.zqd / (Choice.zqd + Choice.cud) *
+                      100).toFixed(2)
+                  }} %
+                </div>
                 <div style="font-weight: 500;">总正确率</div>
               </div>
               <div class="zhengque">
-                <div style="padding-right: 2rem;">{{ Choice.zqd > 0 ? `${Choice.zqd}` : '0' }} 题</div>
-                <div>{{ Choice.cud > 0 ? `${Choice.cud}` : '0' }} 题</div>
+                <div style="padding-right: 2rem;">对 {{ Choice.zqd > 0 ? `${Choice.zqd}` : '0' }} 题</div>
+                <div>错 {{ Choice.cud > 0 ? `${Choice.cud}` : '0' }} 题</div>
               </div>
               <div class="icon1">
-                <img src="@/assets/images/duicuo.png" alt="">
+<!--                <img src="@/assets/images/duicuo.png" alt="">-->
+                <div style="font-size: 2rem; margin-top: 10px ;letter-spacing: 2px">做题总数</div>
               </div>
             </div>
           </div>
@@ -93,11 +107,13 @@
               </div>
               <div class="rightBot">
                 <div class="chengguo">
-                  累计排放量<span>{{ (tableData.cyll *
-            0.39).toFixed(2)
-                    }}</span>(KgCO2e)<br>
+                  累计排放量<span>{{
+                    (tableData.cyll *
+                      0.39).toFixed(2)
+                  }}</span>(KgCO2e)<br>
                   累计种植<span>{{
-            Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39) }}</span>棵树
+                    Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
+                  }}</span>棵树
                 </div>
               </div>
             </div>
@@ -122,7 +138,8 @@
         </el-table>
       </el-dialog>
       <el-dialog title="价值再生" :visible.sync="dialogVisible1" width="70%"
-        style="margin-top: -6%; vertical-align:middle;">
+                 style="margin-top: -6%; vertical-align:middle;"
+      >
         <span style="height: 30rem;padding: 0.2rem;">
           <price></price>
         </span>
@@ -137,7 +154,8 @@
         </div>
       </el-dialog>
       <el-dialog title="纯化—垃圾分类全覆盖体系" :visible.sync="dialogVisible3" width="70%"
-        style="margin-top: -3%;overflow: hidden;">
+                 style="margin-top: -3%;overflow: hidden;"
+      >
         <el-carousel height="60rem" direction="vertical" :autoplay="true">
           <el-carousel-item v-for="(item, i) in chunhuaImgs" :key="i">
             <img :src="item.url" alt="" style="width: 100%;padding: 0.5rem;height: 100%;">
@@ -146,13 +164,14 @@
       </el-dialog>
 
       <el-dialog title="答题小游戏" :visible.sync="dialogVisible4" width="50%" @close="dialogVisible4 = false"
-        style="margin-top: 10%;">
+                 style="margin-top: 10%;"
+      >
         <ChoiceGames v-if="dialogVisible4"></ChoiceGames>
         <!-- <qq></qq> -->
 
       </el-dialog>
       <el-dialog :visible.sync="dialogVisible" width="50%">
-        <img :src="currentImageUrl" alt="" style="width: 100%;height: 50rem;" />
+        <img :src="currentImageUrl" alt="" style="width: 100%;height: 50rem;"/>
       </el-dialog>
     </div>
   </div>
@@ -165,13 +184,14 @@ import price from './newVue/test/price2.vue'
 import bus from '@/utils/evenBus.js'
 import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
-import { getTableTopList } from '@/api/screen/tableTop.js';
-
+import { getTableTopList } from '@/api/screen/tableTop.js'
 
 export default {
   name: '',
   data() {
     return {
+      currentIndex: 0, // 记录当前轮播图的索引
+      currentDescription: '', // 当前显示的 description
       tableData: [],
       currentTime: '',
       today: '',
@@ -195,61 +215,110 @@ export default {
       chunhuaImgs: [
 
         {
-          url: require("@/assets/images/chunhua1.png")
+          url: require('@/assets/images/chunhua1.png')
         },
         {
-          url: require("@/assets/images/chunhua2.png")
+          url: require('@/assets/images/chunhua2.png')
         },
         {
-          url: require("@/assets/images/chunhua3.png")
+          url: require('@/assets/images/chunhua3.png')
         },
         {
-          url: require("@/assets/images/chunhua4.png")
+          url: require('@/assets/images/chunhua4.png')
         },
         {
-          url: require("@/assets/images/chunhua5.png")
+          url: require('@/assets/images/chunhua5.png')
         },
         {
-          url: require("@/assets/images/chunhua6.png")
+          url: require('@/assets/images/chunhua6.png')
         },
         {
-          url: require("@/assets/images/chunhua7.png")
+          url: require('@/assets/images/chunhua7.png')
         }
       ],
       zhuanhuaImgs: [
         {
-          url: require("@/assets/images/zhuanhua1.png")
+          url: require('@/assets/images/zhuanhua1.png')
         },
         {
-          url: require("@/assets/images/zhuanhua.png")
+          url: require('@/assets/images/zhuanhua.png')
         },
         {
-          url: require("@/assets/images/zhuanhua2.png")
+          url: require('@/assets/images/zhuanhua2.png')
         },
         {
-          url: require("@/assets/images/zhuanhua3.png")
+          url: require('@/assets/images/zhuanhua3.png')
         },
         {
-          url: require("@/assets/images/zhuanhua4.png")
+          url: require('@/assets/images/zhuanhua4.png')
         },
         {
-          url: require("@/assets/images/zhuanhua5.png")
-        },
+          url: require('@/assets/images/zhuanhua5.png')
+        }
       ],
-      images: [],
+      images: [{ id: 1, url: require('@/assets/screem/1.jpg'), title: '万思接待～新航教育机构20人左右参观黑水虻站' },
+        { id: 2, url: require('@/assets/screem/2.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        { id: 3, url: require('@/assets/screem/3.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        { id: 4, url: require('@/assets/screem/4.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        {
+          id: 5,
+          url: require('@/assets/screem/5.jpg'),
+          title: '基金会接待～香港中联办新界工作部带领香港北区社区代表考察（60人）参访黑水虻站\n' +
+            '主接待：区焕仪\n' +
+            '讲解：钟嘉玲'
+        },
+        {
+          id: 6,
+          url: require('@/assets/screem/6.jpg'),
+          title: '基金会接待～香港中联办新界工作部带领香港北区社区代表考察（60人）参访黑水虻站\n' +
+            '主接待：区焕仪\n' +
+            '讲解：钟嘉玲'
+        },
+        {
+          id: 7, url: require('@/assets/screem/7.jpg'), title: '深石接待\n' +
+            '来访单位：保藤国际\n' +
+            '来访人数：2人\n' +
+            '主接待：高凌文\n'
+        },
+        { id: 8, url: require('@/assets/screem/8.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
+        { id: 9, url: require('@/assets/screem/9.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
+        { id: 10, url: require('@/assets/screem/10.jpg'), title: '基金会接待-梅沙街道办一行6人参观黑水虻站' },
+        { id: 11, url: require('@/assets/screem/11.jpg'), title: '' },
+        { id: 12, url: require('@/assets/screem/12.jpg'), title: '' }],
+      // 最新信息图片
       images1: [
-        { id: 1, url: require('@/assets/images/st1.png') },
-        { id: 2, url: require('@/assets/images/st2.png') },
-        { id: 3, url: require('@/assets/images/st3.png') },
-        { id: 4, url: require('@/assets/images/st4.png') },
-        { id: 5, url: require('@/assets/images/st5.png') },
-        { id: 6, url: require('@/assets/images/st6.png') },
-        { id: 7, url: require('@/assets/images/st7.png') },
-        { id: 8, url: require('@/assets/images/st8.png') },
-        { id: 9, url: require('@/assets/images/st9.png') },
-
+        { id: 1, url: require('@/assets/screem/1.jpg'), title: '万思接待～新航教育机构20人左右参观黑水虻站' },
+        { id: 2, url: require('@/assets/screem/2.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        { id: 3, url: require('@/assets/screem/3.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        { id: 4, url: require('@/assets/screem/4.jpg'), title: '基金会接待～梅沙街道办一行25人参观黑水虻站' },
+        {
+          id: 5,
+          url: require('@/assets/screem/5.jpg'),
+          title: '基金会接待～香港中联办新界工作部带领香港北区社区代表考察（60人）参访黑水虻站\n' +
+            '主接待：区焕仪\n' +
+            '讲解：钟嘉玲'
+        },
+        {
+          id: 6,
+          url: require('@/assets/screem/6.jpg'),
+          title: '基金会接待～香港中联办新界工作部带领香港北区社区代表考察（60人）参访黑水虻站\n' +
+            '主接待：区焕仪\n' +
+            '讲解：钟嘉玲'
+        },
+        {
+          id: 7, url: require('@/assets/screem/7.jpg'), title: '深石接待\n' +
+            '来访单位：保藤国际\n' +
+            '来访人数：2人\n' +
+            '主接待：高凌文\n'
+        },
+        { id: 8, url: require('@/assets/screem/8.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
+        { id: 9, url: require('@/assets/screem/9.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
+        { id: 10, url: require('@/assets/screem/10.jpg'), title: '基金会接待-梅沙街道办一行6人参观黑水虻站' },
+        { id: 11, url: require('@/assets/screem/11.jpg'), title: '' },
+        { id: 12, url: require('@/assets/screem/12.jpg'), title: '' }
 
       ],
+      // 活动瞬间图片
       images2: [
         { id: 1, url: require('@/assets/images/hd1.png') },
         { id: 2, url: require('@/assets/images/hd2.png') },
@@ -257,9 +326,10 @@ export default {
         { id: 4, url: require('@/assets/images/hd4.png') },
         { id: 5, url: require('@/assets/images/hd5.png') },
         { id: 6, url: require('@/assets/images/hd6.png') },
-        { id: 7, url: require('@/assets/images/hd7.png') },
+        { id: 7, url: require('@/assets/images/hd7.png') }
 
       ],
+      // 随手小记图片
       images3: [
         { id: 1, url: require('@/assets/images/ss1.png') },
         { id: 2, url: require('@/assets/images/ss2.png') },
@@ -271,9 +341,9 @@ export default {
         { id: 8, url: require('@/assets/images/ss8.png') },
         { id: 9, url: require('@/assets/images/ss9.png') },
         { id: 10, url: require('@/assets/images/ss10.png') },
-        { id: 11, url: require('@/assets/images/ss11.png') },
+        { id: 11, url: require('@/assets/images/ss11.png') }
 
-      ],
+      ]
     }
   },
   components: {
@@ -283,26 +353,32 @@ export default {
 
   },
   created() {
-    this.getRank()
+    // this.getRank()
     this.getChoice()
+    // 初始化当前显示的 description
+    this.currentDescription = this.images[this.currentIndex].title;
   },
   mounted() {
     this.getData()
     this.updateTime()
-    setInterval(this.updateTime, 1000); // 每秒钟更新一次时间
+    setInterval(this.updateTime, 1000) // 每秒钟更新一次时间
     this.getDayOfWeek()
-    setInterval(this.getDayOfWeek, 10000);
+    setInterval(this.getDayOfWeek, 10000)
     this.images = this.images1
-
 
     bus.$on('updateGame', (val) => {
       this.Choice = val
     })
   },
   methods: {
+    //监听轮播图切换事件，更新当前 description
+    handleCarouselChange(index) {
+      this.currentIndex = index;
+      this.currentDescription = this.images[index].title;
+    },
     showImage(url) {
-      this.currentImageUrl = url;
-      this.dialogVisible = true;
+      this.currentImageUrl = url
+      this.dialogVisible = true
     },
     // 获取数据
     async getData() {
@@ -314,23 +390,23 @@ export default {
     },
 
     updateTime() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const now = new Date()
+      const year = now.getFullYear()
+      const month = String(now.getMonth() + 1).padStart(2, '0')
+      const day = String(now.getDate()).padStart(2, '0')
+      const hours = String(now.getHours()).padStart(2, '0')
+      const minutes = String(now.getMinutes()).padStart(2, '0')
+      const seconds = String(now.getSeconds()).padStart(2, '0')
 
-      this.currentTime = `${year}/${month}/${day}   ${hours}:${minutes}`;
+      this.currentTime = `${year}/${month}/${day}   ${hours}:${minutes}`
     },
     getDayOfWeek() {
-      const daysOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+      const daysOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 
-      const currentDate = new Date();
-      const dayIndex = currentDate.getDay();
+      const currentDate = new Date()
+      const dayIndex = currentDate.getDay()
 
-      this.today = daysOfWeek[dayIndex];
+      this.today = daysOfWeek[dayIndex]
       this.today1 = dayIndex == 0 ? 7 : dayIndex
 
     },
@@ -345,7 +421,7 @@ export default {
     // 获取排名班级
     async getRank() {
       await getRankList().then(res => {
-
+        console.log(res)
         if (res.code === 200) {
           this.allBj = res.rows.map(item => {
             return item.bj
@@ -361,9 +437,9 @@ export default {
     },
     handleDialogClose() {
       // 在对话框关闭时触发，用于停止视频播放
-      const videoPlayer = this.$refs.videoPlayer;
+      const videoPlayer = this.$refs.videoPlayer
       if (videoPlayer) {
-        videoPlayer.pause();
+        videoPlayer.pause()
       }
     },
     // 图片切换
@@ -378,23 +454,22 @@ export default {
     },
 
     back() {
-      this.$router.back();
+      this.$router.back()
       if (document.exitFullscreen) {
-        document.exitFullscreen(); // 退出全屏
+        document.exitFullscreen() // 退出全屏
       } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen(); // Firefox
+        document.mozCancelFullScreen() // Firefox
       } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen(); // Chrome 和 Safari
+        document.webkitExitFullscreen() // Chrome 和 Safari
       } else if (document.msExitFullscreen) {
-        document.msExitFullscreen(); // IE
+        document.msExitFullscreen() // IE
       }
     }
   }
 
-
 }
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
 * {
   padding: 0;
   margin: 0;
@@ -430,7 +505,7 @@ export default {
   width: 100%;
   height: 100vh;
 
-  background-color: rgb(78,88,107);
+  background-color: rgb(78, 88, 107);
   background-size: cover;
   overflow: hidden;
 }
@@ -458,7 +533,7 @@ export default {
 #app header .title {
   text-align: center;
   line-height: 15rem;
-  font-family: 华文琥珀,serif;
+  font-family: 华文琥珀, serif;
   font-size: 4.18rem;
   font-weight: normal;
   letter-spacing: 0.4rem;
@@ -493,9 +568,8 @@ export default {
   }
 }
 
-#app header .day {}
-
-
+#app header .day {
+}
 
 
 nav {
@@ -554,7 +628,7 @@ nav {
 
       .centered-img {
         width: 100%;
-        height: 100%;
+        height: 85%;
         object-fit: cover;
         display: block;
         border-radius: inherit;
@@ -581,13 +655,12 @@ nav {
 }
 
 
-
 .container .row .left .leftBottom {
   flex: 3;
   width: 100%;
   height: 100%;
   position: relative;
-  background: url('~@/assets/images/生态知识.png') no-repeat center;
+  background: url('~@/assets/screem/生态知识图.png') no-repeat center;
   background-size: 100% 90%;
   letter-spacing: -2px;
   color: #119441;
@@ -633,8 +706,8 @@ nav {
 
   .answer {
     position: absolute;
-    top: 40%;
-    left: 65%;
+    top: 45%;
+    left: 10%;
     text-align: center;
     line-height: 50px;
     font-size: 2.1rem;
@@ -644,19 +717,19 @@ nav {
   .zhengque {
     display: flex;
     position: absolute;
-    top: 64%;
-    left: 58%;
+    top: 45%;
+    left: 48%;
     line-height: 50px;
     font-size: 2rem;
     font-weight: 550;
-    letter-spacing: -1px;
+    //letter-spacing: -1px;
   }
 
   .icon1 {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 77%;
+    top: 60%;
     left: 60%;
   }
 }
@@ -719,7 +792,6 @@ nav {
 
     }
   }
-
 
 
 }
@@ -884,7 +956,6 @@ nav {
 }
 
 
-
 ::v-deep .el-carousel__button {
   background-color: #fff;
   width: 0.5rem;
@@ -914,8 +985,6 @@ nav {
   right: 10px;
   display: block !important;
 }
-
-
 
 
 /* 定义抖动效果的 keyframes */

@@ -11,10 +11,12 @@
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
+
+
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -31,10 +33,10 @@
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -50,10 +52,10 @@
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -204,40 +206,59 @@ export default {
   methods: {
     async getDataUp() {
       const res = await getOperationLogListUp()
+      console.log(res)
       if (res.code === 200) {
         this.chonData1.push(
           { name: '日产日清：', value: res.data.rcrq },
-          { name: '处理量：' + Number(res.data.cll).toFixed(2) + 'Kg', value: '正常', isHovered: false },
-          { name: '吨垃圾用卵量：' + Number(res.data.dljyll).toFixed(2) + 'g', value: '正常', isHovered: false }
+          { name: '处理量：' + Number(res.data.cll).toFixed(2) + 'Kg',
+            value: (Number(res.data.cll).toFixed(2) >= 485 && Number(res.data.cll).toFixed(2) <= 515) ? '正常' : '异常',
+            isHovered: false,
+            normalValue:'485-515kg/d'
+          },
+          { name: '吨垃圾用卵量：' + Number(res.data.dljyll).toFixed(2) + 'g',
+            value: Number(res.data.dljyll).toFixed(2)>=0 && Number(res.data.dljyll).toFixed(2)<=103?'正常':'异常',
+            isHovered: false,
+            normalValue:'0-103g/t'
+          }
         )
         this.chonData2.push(
           {
             name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? '11%'),
-            value: '正常',
-            isHovered: false
+            value: parseFloat(res.data?.jlhl?.[0]?.res)>=76?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=76%'
           },
           {
             name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? '11%'),
-            value: '正常',
-            isHovered: false
+            value: parseFloat(res.data?.lccl?.[0]?.total)>=14?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=14%'
           },
           {
             name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm',
-            value: '正常',
-            isHovered: false
+            value: Number(res.data?.lctc ?? 0).toFixed(2)>=17?'正常':'异常',
+            isHovered: false,
+            normalValue:'>=17mm/条'
+
           })
         this.chonData3.push(
           {
             name: '减重率：' + (res.data?.jzl?.[0]?.res ?? '11%'),
-            value: '正常',
-            isHovered: false
+            value: parseFloat(res.data?.jzl?.[0]?.res)>=48?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=48%'
           },
           {
-            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? '11%'), value: '正常', isHovered: false
+            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? '11%'),
+            value: parseFloat(res.data?.cscl?.[0]?.total)>=29?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=29%'
           },
           {
-            name: '老虫体重：' + (Number(res.data?.lctz ?? 11).toFixed(2)) + 'mg/条', value: '正常', isHovered: false
-
+            name: '老虫体重：' + (Number(res.data?.lctz ?? 11).toFixed(2)) + 'mg/条',
+            value: Number(res.data?.lctz ?? 11).toFixed(2)>=143 ? '正常':'异常',
+            isHovered: false,
+            normalValue: '>=143mg/条'
           }
         )
       }
@@ -286,6 +307,9 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.error-text{
+  color: red;
 }
 
 .content {

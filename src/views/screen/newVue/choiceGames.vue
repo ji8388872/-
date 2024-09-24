@@ -1,9 +1,9 @@
 <template>
   <div id="container" v-if="bjValue">
-    <el-select v-model="bjValue" placeholder="请选择班级" class="el-select" :class="{ 'shake': shaking }">
-      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">
-      </el-option>
-    </el-select>
+<!--    <el-select v-model="bjValue" placeholder="请选择班级" class="el-select" :class="{ 'shake': shaking }">-->
+<!--      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">-->
+<!--      </el-option>-->
+<!--    </el-select>-->
     <div v-for="(item, index) in question" :key="index" v-show="index == idx" class="question">
       <div class="title">
         <span v-if="item.ismultiple" class="select">多选</span>
@@ -39,15 +39,15 @@
         style="background-color: rgb(238, 190, 79);color: rgb(255, 255, 255);">查看答案</button>
     </div>
   </div>
-  <div id="container" v-else style="height: 30rem;">
-    <img src="@/assets/images/黑水虻小标 - 副本.png" alt="" style="width: 100%;height: 100%;">
-    <el-select v-model="bjValue" placeholder="请选择班级" class="el-selectCopy selectCopy" :class="{ 'shake': shaking }"
-      style="position: absolute;top: 40%;left: 38%;transform: translate(-50%,-50%);width: 20rem;transform: scale(2);">
-      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">
-      </el-option>
-    </el-select>
+<!--  <div id="container"  style="height: 30rem;">-->
+<!--    <img src="@/assets/images/黑水虻小标 - 副本.png" alt="" style="width: 100%;height: 100%;">-->
+<!--    <el-select v-model="bjValue" placeholder="请选择班级" class="el-selectCopy selectCopy" :class="{ 'shake': shaking }"-->
+<!--      style="position: absolute;top: 40%;left: 38%;transform: translate(-50%,-50%);width: 20rem;transform: scale(2);">-->
+<!--      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">-->
+<!--      </el-option>-->
+<!--    </el-select>-->
 
-  </div>
+<!--  </div>-->
 </template>
 
 <script>
@@ -73,8 +73,8 @@ export default {
       question: [{}, {}, {}, {}, {}],
       Choice: {},
       // 所有班级
-      allBj: [],
-      bjValue: '',
+      allBj: [1],
+      bjValue: '1',
       shaking: false,
       innerVisible: false
 
@@ -163,7 +163,7 @@ export default {
       //选中添加样式
       option.forEach(item => {
         if (item.id == info.id) {  //如果选中的与数据里面的相等就改变他的样式
-          item.checked = !item.checked  // 是否选中，取反 
+          item.checked = !item.checked  // 是否选中，取反
         } else if (!question.ismultiple) {  //如果不是多选 只能选中一个 其他的都为false
           item.checked = false
         }
