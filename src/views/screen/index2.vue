@@ -38,7 +38,7 @@
                 </div> -->
               <div class="shengtai">
                 <div class="shengtai-info">
-                  <p style="color: white;margin-left: 10px">{{ currentDescription }}</p>
+                  <p style="color: white;margin-left: 10px;font-size: 18px;font-weight: 700">{{ currentDescription }}</p>
                 </div>
 <!--                <img src="@/assets/screem/newInfo.png" @click="ToggleEvent(1)" />-->
 <!--                <img src="@/assets/screem/Momentofactivity.png" @click="ToggleEvent(2)" />-->
@@ -57,7 +57,7 @@
                       100).toFixed(2)
                   }} %
                 </div>
-                <div style="font-weight: 500;">总正确率</div>
+                <div style="font-weight: 500;">平均正确率</div>
               </div>
               <div class="zhengque">
                 <div style="padding-right: 2rem;">对 {{ Choice.zqd > 0 ? `${Choice.zqd}` : '0' }} 题</div>
@@ -65,7 +65,7 @@
               </div>
               <div class="icon1">
 <!--                <img src="@/assets/images/duicuo.png" alt="">-->
-                <div style="font-size: 2rem; margin-top: 10px ;letter-spacing: 2px">做题总数</div>
+                <div style="font-size: 2rem; margin-top: 10px ;letter-spacing: 2px">答题总数</div>
               </div>
             </div>
           </div>
@@ -113,7 +113,10 @@
                   }}</span>(KgCO2e)<br>
                   累计种植<span>{{
                     Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
-                  }}</span>棵树
+                  }}</span>棵树<br>
+                  今日总参观人数<span>{{
+                    Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
+                  }}</span>人
                 </div>
               </div>
             </div>
@@ -314,8 +317,8 @@ export default {
         { id: 8, url: require('@/assets/screem/8.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
         { id: 9, url: require('@/assets/screem/9.jpg'), title: '万思张总陪同客户2人参观黑水虻站' },
         { id: 10, url: require('@/assets/screem/10.jpg'), title: '基金会接待-梅沙街道办一行6人参观黑水虻站' },
-        { id: 11, url: require('@/assets/screem/11.jpg'), title: '' },
-        { id: 12, url: require('@/assets/screem/12.jpg'), title: '' }
+        { id: 11, url: require('@/assets/screem/11.jpg'), title: '展示区1' },
+        { id: 12, url: require('@/assets/screem/12.jpg'), title: '展示区2' }
 
       ],
       // 活动瞬间图片
@@ -718,10 +721,10 @@ nav {
     display: flex;
     position: absolute;
     top: 45%;
-    left: 48%;
+    left: 53%;
     line-height: 50px;
     font-size: 2rem;
-    font-weight: 550;
+    //font-weight: 550;
     //letter-spacing: -1px;
   }
 
@@ -893,7 +896,7 @@ nav {
 
     .chengguo {
       position: absolute;
-      top: 40%;
+      top: 34%;
       left: 20%;
       width: 55%;
       font-weight: 500;
@@ -905,7 +908,7 @@ nav {
 
       span {
         font-weight: 600;
-        font-size: 3rem;
+        font-size: 2.2rem;
       }
     }
 

@@ -235,7 +235,7 @@ export default {
             normalValue: '>=14%'
           },
           {
-            name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm',
+            name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm/条',
             value: Number(res.data?.lctc ?? 0).toFixed(2)>=17?'正常':'异常',
             isHovered: false,
             normalValue:'>=17mm/条'
