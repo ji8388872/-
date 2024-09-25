@@ -6,7 +6,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve --open",
+<<<<<<< HEAD
     "build:prod": " vue-cli-service build",
+=======
+    "build:prod": "vue-cli-service build",
+>>>>>>> 18769eed9c257636278e0e541f732347537c9358
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "lint": "eslint --ext .js,.vue src"

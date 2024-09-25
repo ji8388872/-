@@ -5,15 +5,18 @@
       <ul>
         <!--        修改后的代码-->
         <li v-for="(item, index) in chonData1" :key="index" class="bac" @mouseover="handleMouseOver1(index)"
-          @mouseleave="handleMouseLeave1(index)">
+            @mouseleave="handleMouseLeave1(index)"
+        >
           <div class="content-wrapper">
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
+
+
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -24,15 +27,16 @@
       <ul>
         <!--        修改后的代码-->
         <li v-for="(item, index) in chonData2" :key="index" class="bac" @mouseover="handleMouseOver2(index)"
-            @mouseleave="handleMouseLeave2(index)">
+            @mouseleave="handleMouseLeave2(index)"
+        >
           <div class="content-wrapper">
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -42,15 +46,16 @@
       <ul>
         <!--        修改后的代码-->
         <li v-for="(item, index) in chonData3" :key="index" class="bac" @mouseover="handleMouseOver3(index)"
-            @mouseleave="handleMouseLeave3(index)">
+            @mouseleave="handleMouseLeave3(index)"
+        >
           <div class="content-wrapper">
             <transition name="fade">
               <div v-if="!item.isHovered" key="default" class="contentIsHovered">
                 <div class="name">{{ item.name }}</div>
-                <div class="value">{{ item.value }}</div>
+                <div class="value" :class="{ 'error-text': item.value === '异常' }">{{ item.value }}</div>
               </div>
               <div v-else key="hovered" class="content hover-text">
-                正常的范围是 xxx-xxx
+                正常的范围: {{item.normalValue}}
               </div>
             </transition>
           </div>
@@ -58,12 +63,12 @@
       </ul>
     </div>
     <div class="center">
-      <div class="box bac" :class="{ flipped: flippedStatus[0] }" @click="toggleFlip(0, '正常')">
+      <div class="box bac" :class="{ flipped: flippedStatus[0] }" @click="toggleFlip(0, downData.sbqk)">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
             <div class="title">设备情况</div>
-            <div class="value">正常</div>
+            <div class="value" :style="{color: downData.sbqk === '异常' ? 'red' : ''}">{{ downData.sbqk }}</div>
           </div>
           <!-- 背面 -->
           <div class="back backText back-bac">
@@ -75,36 +80,36 @@
         </div>
       </div>
 
-      <div class="box bac" :class="{ flipped: flippedStatus[1] }" @click="toggleFlip(1, '异常')">
+      <div class="box bac" :class="{ flipped: flippedStatus[1] }" @click="toggleFlip(1, downData.hjqk)">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
             <div class="title">环境情况</div>
-            <div class="value" style="color: red">异常</div>
+            <div class="value" :style="{color: downData.hjqk === '异常' ? 'red' : ''}">{{ downData.hjqk }}</div>
           </div>
           <!-- 背面 -->
           <div class="back backText back-bac">
-            <div class="value">目前是否解决:<span class="spanTitle">是</span></div>
-            <div class="value">环境问题:<span class="spanText">水污染</span></div>
-            <div class="value">解决人员:<span class="spanText">李宁则</span></div>
-            <div class="value">解决时间:<span class="spanText">1h</span></div>
+            <div class="value">目前是否解决:<span class="spanTitle">{{ downData.hjmqsfjj }}</span></div>
+            <div class="value">环境问题:<span class="spanText">{{ downData.hjhjwt }}</span></div>
+            <div class="value">解决人员:<span class="spanText">{{ downData.hjjjry }}</span></div>
+            <div class="value">解决时间:<span class="spanText">{{ downData.hjjjsj }}h</span></div>
           </div>
         </div>
       </div>
 
-      <div class="box bac" :class="{ flipped: flippedStatus[2] }" @click="toggleFlip(2, '异常')">
+      <div class="box bac" :class="{ flipped: flippedStatus[2] }" @click="toggleFlip(2, downData.aqqk)">
         <div class="flipper">
           <!-- 正面 -->
           <div class="front">
             <div class="title">安全情况</div>
-            <div class="value" style="color: red">异常</div>
+            <div class="value" :style="{ color: downData.aqqk === '异常' ? 'red' : '' }">{{ downData.aqqk }}</div>
           </div>
           <!-- 背面 -->
           <div class="back backText back-bac">
-            <div class="value">目前是否解决:<span class="spanTitle">是</span></div>
-            <div class="value">隐患问题:<span class="spanText">水污染</span></div>
-            <div class="value">解决办法:<span class="spanText">换水</span></div>
-            <div class="value">解决时间:<span class="spanText">1h</span></div>
+            <div class="value">目前是否解决:<span class="spanTitle">{{ downData.aqmqsfjj }}</span></div>
+            <div class="value">隐患问题:<span class="spanText">{{ downData.aqyhwt }}</span></div>
+            <div class="value">解决办法:<span class="spanText">解决方法待定</span></div>
+            <div class="value">解决时间:<span class="spanText">{{ downData.aqjjsj }}h</span></div>
           </div>
         </div>
       </div>
@@ -114,8 +119,8 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">成本情况</p>
-          <p>人数:10人</p>
-          <p>工时:8h/天</p>
+          <p>人数:{{ downData.cbrs }}人</p>
+          <p>工时:{{ downData.cbgs }}h/天</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
@@ -130,9 +135,9 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">外部检查参观情况</p>
-          <p>单位:中科智禾有限公司</p>
-          <p>人数:2人</p>
-          <p>问题情况:没问题</p>
+          <p>单位:{{ downData.wbdw }}</p>
+          <p>人数:{{ downData.wbrs }}人</p>
+          <p>问题情况:{{ downData.wbwtqk }}</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
@@ -148,63 +153,42 @@
   </div>
 
 
-
-
 </template>
 
 <script>
-import chart1 from "@/views/screen/LevelTwo/TwoCharts//chart1.vue";
-import chart2 from "@/views/screen/LevelTwo/TwoCharts//chart2.vue";
-import chart3 from "@/views/screen/LevelTwo/TwoCharts//chart3.vue";
-import chart4 from "@/views/screen/LevelTwo/TwoCharts//chart4.vue";
-import chart5 from "@/views/screen/LevelTwo/TwoCharts//chart5.vue";
-import chart6 from "@/views/screen/LevelTwo/TwoCharts/chart6.vue";
-import topBot from "@/components/screen/top-Bot";
+import chart1 from '@/views/screen/LevelTwo/TwoCharts//chart1.vue'
+import chart2 from '@/views/screen/LevelTwo/TwoCharts//chart2.vue'
+import chart3 from '@/views/screen/LevelTwo/TwoCharts//chart3.vue'
+import chart4 from '@/views/screen/LevelTwo/TwoCharts//chart4.vue'
+import chart5 from '@/views/screen/LevelTwo/TwoCharts//chart5.vue'
+import chart6 from '@/views/screen/LevelTwo/TwoCharts/chart6.vue'
+import topBot from '@/components/screen/top-Bot'
+
+import { getOperationLogListDown, getOperationLogListUp } from '@/api/screen/operationLog'
 
 export default {
   data() {
     return {
+      upData: {},
+      downData: {},
       // 使用对象来记录每个盒子的 flipped 状态
       flippedStatus: {
         0: false,
         1: false,
-        2: false,
+        2: false
       },
-      chonData1: [
-        { name: "日产日清", value: "是" },
-        { name: "处理量: 100kg", value: "正常", isHovered: false },
-        { name: "吨垃圾用卵量: 80g", value: "正常", isHovered: false },
-      ],
+      chonData1: [],
 
-      chonData2: [
-        {
-          name: "减量化率: 90%", value: "正常", isHovered: false
-        },
-        {
-          name: "老虫产率: 100%", value: "正常", isHovered: false
-        },
-        {
-          name: "老虫体长: 100mm/条", value: "正常", isHovered: false
-        },
-      ],
-      chonData3:[
-        {
-          name: "减重率: 60%", value: "正常", isHovered: false
-        },
-        {
-          name: "虫沙产率: 100%", value: "正常", isHovered: false
-        },
-        {
-          name: "老虫体重: 100mg/条", value: "正常", isHovered: false
-
-        },
-      ],
-      title1: "日废弃物处理量明细图",
-      title2: "日产率明细图",
-      title3: "日老虫体征信息明细图",
-      title4: "日能源消耗明细图",
-      title5: "日单位工时明细图",
-    };
+      // 有数据的时候需要删除
+      chonData2: [],
+      // 有数据的时候需要删除
+      chonData3: [],
+      title1: '日废弃物处理量明细图',
+      title2: '日产率明细图',
+      title3: '日老虫体征信息明细图',
+      title4: '日能源消耗明细图',
+      title5: '日单位工时明细图'
+    }
   },
   components: {
     chart1,
@@ -213,27 +197,95 @@ export default {
     chart4,
     chart5,
     chart6,
-    topBot,
+    topBot
   },
-  mounted() { },
+  mounted() {
+    this.getDataUp()
+    this.getDataDown()
+  },
   methods: {
+    async getDataUp() {
+      const res = await getOperationLogListUp()
+      console.log(res)
+      if (res.code === 200) {
+        this.chonData1.push(
+          { name: '日产日清：', value: res.data.rcrq },
+          { name: '处理量：' + Number(res.data.cll).toFixed(2) + 'Kg',
+            value: (Number(res.data.cll).toFixed(2) >= 485 && Number(res.data.cll).toFixed(2) <= 515) ? '正常' : '异常',
+            isHovered: false,
+            normalValue:'485-515kg/d'
+          },
+          { name: '吨垃圾用卵量：' + Number(res.data.dljyll).toFixed(2) + 'g',
+            value: Number(res.data.dljyll).toFixed(2)>=0 && Number(res.data.dljyll).toFixed(2)<=103?'正常':'异常',
+            isHovered: false,
+            normalValue:'0-103g/t'
+          }
+        )
+        this.chonData2.push(
+          {
+            name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? '11%'),
+            value: parseFloat(res.data?.jlhl?.[0]?.res)>=76?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=76%'
+          },
+          {
+            name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? '11%'),
+            value: parseFloat(res.data?.lccl?.[0]?.total)>=14?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=14%'
+          },
+          {
+            name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm/条',
+            value: Number(res.data?.lctc ?? 0).toFixed(2)>=17?'正常':'异常',
+            isHovered: false,
+            normalValue:'>=17mm/条'
+
+          })
+        this.chonData3.push(
+          {
+            name: '减重率：' + (res.data?.jzl?.[0]?.res ?? '11%'),
+            value: parseFloat(res.data?.jzl?.[0]?.res)>=48?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=48%'
+          },
+          {
+            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? '11%'),
+            value: parseFloat(res.data?.cscl?.[0]?.total)>=29?'正常':'异常',
+            isHovered: false,
+            normalValue: '>=29%'
+          },
+          {
+            name: '老虫体重：' + (Number(res.data?.lctz ?? 11).toFixed(2)) + 'mg/条',
+            value: Number(res.data?.lctz ?? 11).toFixed(2)>=143 ? '正常':'异常',
+            isHovered: false,
+            normalValue: '>=143mg/条'
+          }
+        )
+      }
+    },
+    async getDataDown() {
+      const res = await getOperationLogListDown()
+      if (res.code === 200) {
+        this.downData = res.data
+      }
+    },
     handleMouseOver3(index) {
-      this.chonData3[index].isHovered = true;
+      this.chonData3[index].isHovered = true
     },
     handleMouseLeave3(index) {
-      this.chonData3[index].isHovered = false;
+      this.chonData3[index].isHovered = false
     },
     handleMouseOver2(index) {
-      this.chonData2[index].isHovered = true;
+      this.chonData2[index].isHovered = true
     },
     handleMouseLeave2(index) {
-      this.chonData2[index].isHovered = false;
+      this.chonData2[index].isHovered = false
     },
     handleMouseOver1(index) {
-      this.chonData1[index].isHovered = true;
+      this.chonData1[index].isHovered = true
     },
     handleMouseLeave1(index) {
-      this.chonData1[index].isHovered = false;
+      this.chonData1[index].isHovered = false
     },
 
     // 控制盒子的翻转
@@ -245,9 +297,9 @@ export default {
       }
       // 切换盒子的 flipped 状态
       this.flippedStatus[index] = !this.flippedStatus[index]
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -255,6 +307,9 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.error-text{
+  color: red;
 }
 
 .content {
@@ -274,7 +329,7 @@ export default {
     border-radius: 10px 10px;
     padding: 10px 0;
 
-    .navTitle-jin{
+    .navTitle-jin {
       margin-right: 50px;
       margin-left: 20px;
       //flex: 1;
@@ -577,7 +632,6 @@ export default {
   }
 
 
-
   //.center {
   //  flex: 4;
   //  display: flex;
@@ -642,8 +696,6 @@ export default {
   }
 
 }
-
-
 
 
 //.flip-container {

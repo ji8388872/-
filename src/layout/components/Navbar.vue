@@ -6,13 +6,16 @@
     <top-nav id="topmenu-container" class="topmenu-container" v-if="topNav"/>
 
     <div class="right-menu">
-      
+
       <template v-if="device!=='mobile'">
         <el-tooltip content="大屏展示" effect="dark" placement="bottom">
-          <el-button type="primary"  class="right-menu-item hover-effect" style="height: 2.5rem;" @click="goScreen">大屏展示</el-button>
+          <el-button type="primary"  class="right-menu-item hover-effect" style="height: 2.5rem;" @click="goScreen1">大屏展示1</el-button>
+        </el-tooltip>
+        <el-tooltip content="大屏展示" effect="dark" placement="bottom">
+          <el-button type="primary"  class="right-menu-item hover-effect" style="height: 2.5rem;" @click="goScreen2">大屏展示2</el-button>
         </el-tooltip>
         <search id="header-search" class="right-menu-item" />
-        
+
         <el-tooltip content="源码地址" effect="dark" placement="bottom">
           <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />
         </el-tooltip>
@@ -96,7 +99,7 @@ export default {
     }
   },
   methods: {
-    goScreen() {
+    goScreen1() {
       this.$router.push({ path: '/bigscreen' })
       let elem = document.documentElement; // 获取整个文档对象
 
@@ -109,7 +112,20 @@ export default {
       } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen(); // IE
       }
-    
+    },
+    goScreen2() {
+      this.$router.push({ path: '/bigscreen2' })
+      let elem = document.documentElement; // 获取整个文档对象
+
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen(); // 进入全屏
+      } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen(); // Firefox
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen(); // Chrome 和 Safari
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen(); // IE
+      }
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')

@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       chart: null,
-      
+
       anglesList: [20,30,40,20,40,50,30,60,20,40,70,50,40,50,30,40,30,60,40,50,30,60,20,40,20,40,70,50,50,40]
     };
   },
@@ -44,7 +44,7 @@ export default {
       // this.anglesList = res.map(item => item.angles);
       this.chart = echarts.init(document.getElementById('chart04'));
       const option = {
-     
+
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -232,7 +232,6 @@ export default {
     window.removeEventListener('resize', this.resize);
   }
 }
-</script>
 </script>
 
 <style lang="less" scoped>

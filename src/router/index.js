@@ -96,6 +96,12 @@ export const constantRoutes = [
     hidden: true,
     component: () => import("@/views/screen/index.vue"),
   },
+  {
+    path: "/bigScreen2",
+    // component: Layout,
+    hidden: true,
+    component: () => import("@/views/screen/index2.vue"),
+  },
   // 权限大屏
   /* {
     path: "/screen",
