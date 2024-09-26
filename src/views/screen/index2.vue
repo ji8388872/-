@@ -94,7 +94,7 @@
                 <div class="detail1">
                   今天吃了<span>{{Number(DMSdata.cll).toFixed(2)}}Kg</span>“食物”，<br>
                   不停的吃了6天，<br>
-                  我就能长大{{60*Number(DMSdata.cll).toFixed(2)}}倍。
+                  我就能长大{{parseFloat((60 * Number(DMSdata.cll)).toFixed(2))}}倍。
                 </div>
                 <div class="detail2">
                   虻宝变身<span>{{Number(DMSdata.lctz).toFixed(2)}}Kg</span>“蛋白饲料”<br>
@@ -188,14 +188,12 @@ import bus from '@/utils/evenBus.js'
 import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
 import { getTableTopList } from '@/api/screen/tableTop.js'
-import {getDMSDataApi} from '@/api/screen/operationLog.js'
+import {mapState} from 'vuex'
 
 export default {
   name: '',
   data() {
     return {
-      DMSdata:[],
-      totalEat: 9.0,
       currentIndex: 0, // 记录当前轮播图的索引
       currentDescription: '', // 当前显示的 description
       tableData: [],
@@ -363,7 +361,7 @@ export default {
     this.getChoice()
     // 初始化当前显示的 description
     this.currentDescription = this.images[this.currentIndex].title;
-    this.getDMSData()
+    this.$store.dispatch('screen/getDMSDataStore')
   },
   mounted() {
     this.getData()
@@ -378,15 +376,6 @@ export default {
     })
   },
   methods: {
-    async getDMSData(){
-      const res = await getDMSDataApi()
-      // console.log(res)
-      if (res.code === 200) {
-        this.DMSdata = res.data
-        this.totalEat += (Number(res.data.cll).toFixed(2)/1000 )
-
-      }
-    },
     //监听轮播图切换事件，更新当前 description
     handleCarouselChange(index) {
       this.currentIndex = index;
@@ -481,6 +470,9 @@ export default {
         document.msExitFullscreen() // IE
       }
     }
+  },
+  computed:{
+    ...mapState('screen',['DMSdata','totalEat'])
   }
 
 }
