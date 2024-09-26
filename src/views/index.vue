@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="internalShow">
+    <div>
 
       <div class="screenNav">
         <div class="largerScreen1 largerScreen" :class="{ 'active': layoutVisible }" @click="clickScreen(1)">
@@ -13,119 +13,93 @@
       </div>
       <div class="content">
         <ul class="layout1 layout" v-show="layoutVisible" @click="clickLayout">
-          <li id="log">内部：运营日志1</li>
+          <li id="log">怀柔一小：运营日志</li>
           <li id="situation1">历史情况（1）</li>
           <li id="situation2">历史情况（2）</li>
-          <li id="screen">大屏展示</li>
+          <li id="screen1">怀柔一小大屏展示</li>
           <li id="photo">照片替换</li>
 
         </ul>
-        <ul class="layout2 layout" v-show="!layoutVisible">
-          <li>内部：运营日志2</li>
+        <ul class="layout2 layout" v-show="!layoutVisible" @click="checkScreen">
+          <li id="log2">万科大梅沙：运营日志</li>
           <li>历史情况（1）</li>
           <li>历史情况（2）</li>
-          <li>大屏展示</li>
+          <li id="screen2">万科大梅沙大屏展示</li>
           <li>照片替换</li>
         </ul>
 
       </div>
     </div>
-    <div v-else>
-      <div class="screenNav">
-        <div class="largerScreen1 largerScreen" :class="{ 'active': layoutVisible }" @click="clickScreen(1)">
-          怀柔一小生态教室项目大屏展示
-        </div>
-        <div class="largerScreen2 largerScreen" :class="{ 'active': !layoutVisible }" @click="clickScreen(2)">
-          万科大梅沙生态园区项目大屏展示
-        </div>
-
-      </div>
-      <div class="content">
-        <ul class="layout1 layout" v-show="layoutVisible" @click="clickLayout">
-
-          <li id="photo">照片替换1</li>
-        </ul>
-        <ul class="layout2 layout" v-show="!layoutVisible">
-
-          <li>照片替换2</li>
-        </ul>
-
-      </div>
-    </div>
-
 
   </div>
 </template>
 
 <script>
-// 导入echarts
 
 export default {
-  mounted() {
-    console.log('首页的mounted被执行了');
-    // 滚动条置顶
-    window.scrollTo(0, 200);
-    this.permission()
-    //去除所有li的active
-
-
-  },
-
-  // watch: {
-  //   // 监听路由的变化
-  //   $route(to, from) {
-  //     console.log('路由切换，执行相关逻辑');
-  //     // 当路由变化时执行     
-  //     this.removeLiActive();
-  //   }
-  // },
   name: "Index",
   data() {
     return {
       layoutVisible: true,
-      internalShow: true,
-
-
+      // internalShow: true,
     };
   },
-
-
+  mounted() {
+    // 滚动条置顶
+    window.scrollTo(0, 200);
+    this.permission()
+  },
 
   methods: {
     clickScreen(type) {
-      if (type == 1) {
-        this.layoutVisible = true
-        console.log(111);
-      }
-      else {
-        this.layoutVisible = false
-        console.log(2222);
+      this.layoutVisible = type === 1;
+    },
+    checkScreen(event){
+      // console.log(event.target)
+      let id = event.target.id
+      if(id === 'screen2') {
+        this.$router.push({ path: "/bigscreen2" })
+        let elem = document.documentElement; // 获取整个文档对象
+
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen(); // 进入全屏
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen(); // Firefox
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen(); // Chrome 和 Safari
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen(); // IE
+        }
       }
     },
-
     clickLayout(event) {
-      //去除所有li的active
-      // this.removeLiActive()
-      // //给当前li添加active
-
-      // event.target.classList.add("active")
-
 
       const id = event.target.id
 
-      if (id == "screen") {
+      if (id === "screen1") {
         this.$router.push({ path: "/bigscreen" });
+        let elem = document.documentElement; // 获取整个文档对象
 
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen(); // 进入全屏
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen(); // Firefox
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen(); // Chrome 和 Safari
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen(); // IE
+        }
       }
-      if (id == "log") {
+
+      if (id === "log") {
         this.$router.push({ path: "/screen/LevelTwo" });
 
       }
-      if (id == "situation1") {
+      if (id === "situation1") {
         this.$router.push({ path: "/screen/LevelFour" });
 
       }
-      if (id == "situation2") {
+      if (id === "situation2") {
         this.$router.push({ path: "/screen/LevelThree" });
 
       }
@@ -209,9 +183,11 @@ export default {
   width: 60vw;
   height: 60vh;
   border-radius: 20px;
-  padding: 0%;
+  padding: 0;
 
   li {
+    flex-basis: 25%;
+    box-sizing: border-box;
     margin: 1vmax;
     padding: 1vmax;
     height: 40%;
@@ -226,6 +202,10 @@ export default {
     justify-content: center;
     cursor: pointer;
 
+  }
+   li:nth-child(4),
+   li:nth-child(5) {
+    flex-basis: 25%;
   }
 
   .active {

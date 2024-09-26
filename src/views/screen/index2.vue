@@ -89,19 +89,19 @@
             <div class="right">
               <div class="rightTop">
                 <div class="detail">
-                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>500kg</span>的厨余垃圾了！
+                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{totalEat}}t</span>的厨余垃圾了！
                 </div>
                 <div class="detail1">
-                  今天吃了<span>10Kg</span>“食物”，<br>
+                  今天吃了<span>{{Number(DMSdata.cll).toFixed(2)}}Kg</span>“食物”，<br>
                   不停的吃了6天，<br>
-                  我就能长大6000倍。
+                  我就能长大{{60*Number(DMSdata.cll).toFixed(2)}}倍。
                 </div>
                 <div class="detail2">
-                  虻宝变身<span>20Kg</span>“蛋白饲料”<br>
+                  虻宝变身<span>{{Number(DMSdata.lctz).toFixed(2)}}Kg</span>“蛋白饲料”<br>
                   动物们吃的很香！
                 </div>
                 <div class="detail3">
-                  虫粪变身<span>25Kg</span>“营养土”，<br>
+                  虫粪变身<span>{{Number(DMSdata.cszl).toFixed(2)}}Kg</span>“营养土”，<br>
                   瓜果蔬菜营养又好吃！
                 </div>
               </div>
@@ -115,7 +115,7 @@
                     Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
                   }}</span>棵树<br>
                   今日总参观人数<span>{{
-                    Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
+                    Math.floor(Number(DMSdata.wbrs).toFixed(2))
                   }}</span>人
                 </div>
               </div>
@@ -188,11 +188,14 @@ import bus from '@/utils/evenBus.js'
 import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
 import { getTableTopList } from '@/api/screen/tableTop.js'
+import {getDMSDataApi} from '@/api/screen/operationLog.js'
 
 export default {
   name: '',
   data() {
     return {
+      DMSdata:[],
+      totalEat: 9.0,
       currentIndex: 0, // 记录当前轮播图的索引
       currentDescription: '', // 当前显示的 description
       tableData: [],
@@ -360,6 +363,7 @@ export default {
     this.getChoice()
     // 初始化当前显示的 description
     this.currentDescription = this.images[this.currentIndex].title;
+    this.getDMSData()
   },
   mounted() {
     this.getData()
@@ -374,6 +378,15 @@ export default {
     })
   },
   methods: {
+    async getDMSData(){
+      const res = await getDMSDataApi()
+      // console.log(res)
+      if (res.code === 200) {
+        this.DMSdata = res.data
+        this.totalEat += (Number(res.data.cll).toFixed(2)/1000 )
+
+      }
+    },
     //监听轮播图切换事件，更新当前 description
     handleCarouselChange(index) {
       this.currentIndex = index;

@@ -16,3 +16,11 @@ export function getOperationLogListDown() {
     method: 'get',
   })
 }
+
+// 大梅沙大屏
+export function  getDMSDataApi() {
+  return request({
+    url: '/garbage/v1/hsmc/yyrz/ls',
+    method: 'get',
+  })
+}
