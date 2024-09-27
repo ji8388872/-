@@ -79,10 +79,10 @@
           <div class="col-md-4 col-sm-4">
             <div class="right">
               <!-- 临时填写数据表 -->
-              <div @click="dialogVisibleTemporary = true"
-                   style="color:#119441;margin-left: 10px;font-size: 20px;background-color: #ffffff;width: 140px;border-radius: 1.1rem"
-              >临时填写信息表
-              </div>
+<!--              <div @click="dialogVisibleTemporary = true"-->
+<!--                   style="color:#119441;margin-left: 10px;font-size: 20px;background-color: #ffffff;width: 140px;border-radius: 1.1rem"-->
+<!--              >临时填写信息表-->
+<!--              </div>-->
               <div class="rightTop">
                 <div class="detail">
                   <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ DMSdata.eatCount }}t</span>的厨余垃圾了！
