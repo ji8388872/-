@@ -1,9 +1,5 @@
 <template>
-  <div id="container" v-if="bjValue">
-    <el-select v-model="bjValue" placeholder="请选择班级" class="el-select" :class="{ 'shake': shaking }">
-      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">
-      </el-option>
-    </el-select>
+  <div id="container">
     <div v-for="(item, index) in question" :key="index" v-show="index == idx" class="question">
       <div class="title">
         <span v-if="item.ismultiple" class="select">多选</span>
@@ -13,40 +9,26 @@
       </div>
       <div>
         <div :class="val.checked ? 'bgc' : ''" v-for="val in item.option" :key="val.id" class="list"
-             @click="handleCilck(val)">{{ val.letter }}.
+          @click="handleCilck(val)">{{ val.letter }}.
           {{ val.name }}</div>
       </div>
 
       <div class="mar20" v-show="answerShow">
         <span class="redcol">正确答案：{{ item.answer }} &nbsp;&nbsp;&nbsp;</span>
         <span class="pa20"> 解析: {{ item.content }}</span>
-        <!-- <div>
-          <video ref="videoPlayer" width="550" height="320" controls>
-            <source src="@/assets/szr.mp4" type="video/mp4">
-          </video>
-        </div> -->
       </div>
     </div>
 
     <div>
 
       <button @click="back()" :style="idx == 0 ? 'background-color:#ccc;' : ''"
-              :disabled="idx == 0 ? true : false">上一题</button>
+        :disabled="idx == 0 ? true : false">上一题</button>
       <button @click="next()" :style="idx == question.length - 1 ? 'background-color:#ccc;' : ''"
-              :disabled="idx == question.length - 1 ? true : false">下一题</button>
+        :disabled="idx == question.length - 1 ? true : false">下一题</button>
       <button @click="sumbit" style="background-color: rgb(250, 142, 0);color: aliceblue;">提交</button>
       <button v-show="isshow" @click="answerShow = true"
-              style="background-color: rgb(238, 190, 79);color: rgb(255, 255, 255);">查看答案</button>
+        style="background-color: rgb(238, 190, 79);color: rgb(255, 255, 255);">查看答案</button>
     </div>
-  </div>
-  <div id="container" v-else style="height: 30rem;">
-    <img src="@/assets/images/黑水虻小标 - 副本.png" alt="" style="width: 100%;height: 100%;">
-    <el-select v-model="bjValue" placeholder="请选择班级" class="el-selectCopy selectCopy" :class="{ 'shake': shaking }"
-               style="position: absolute;top: 40%;left: 38%;transform: translate(-50%,-50%);width: 20rem;transform: scale(2);">
-      <el-option v-for="item in allBj" :key="item.id" :label="item.bj" :value="item.bjid">
-      </el-option>
-    </el-select>
-
   </div>
 </template>
 
@@ -56,7 +38,7 @@ import { getResultList } from '@/api/screen/result.js'
 import { getRankList, updateRank } from '@/api/screen/ranking.js'
 import bus from '@/utils/evenBus.js'
 export default {
-  name: 'ChoiceGames',
+  name: 'ChoiceGames2',
   data() {
     return {
       // 答对
@@ -73,8 +55,8 @@ export default {
       question: [{}, {}, {}, {}, {}],
       Choice: {},
       // 所有班级
-      allBj: [],
-      bjValue: '',
+      allBj: [1],
+      bjValue: '1',
       shaking: false,
       innerVisible: false
 
@@ -143,14 +125,14 @@ export default {
 
 
     next() {
-      if (this.bjValue == '') {
-        this.$message.warning('请选择班级')
-        this.shaking = true; // 添加shake类
-        setTimeout(() => {
-          this.shaking = false; // 移除shake类
-        }, 500);
-        return;
-      }
+      // if (this.bjValue == '') {
+      //   this.$message.warning('请选择班级')
+      //   this.shaking = true; // 添加shake类
+      //   setTimeout(() => {
+      //     this.shaking = false; // 移除shake类
+      //   }, 500);
+      //   return;
+      // }
       this.idx++
     },
     back() {
@@ -238,27 +220,49 @@ export default {
         // alert('还有题目没做呢')
         return
       }
-      if (this.bjValue == '' && result.length < this.question.length) {
-        this.$message({
-          showClose: true,
-          message: '答题前请选择班级。',
-          type: 'warning',
-          center: true,
-          offset: 80
-        })
-        return
-      }
+      // if (this.bjValue == '' && result.length < this.question.length) {
+      //   this.$message({
+      //     showClose: true,
+      //     message: '答题前请选择班级。',
+      //     type: 'warning',
+      //     center: true,
+      //     offset: 80
+      //   })
+      //   return
+      // }
       setTimeout(() => {
         this.$message({
+          dangerouslyUseHTMLString:true,
           showClose: true,
-          message: '提交成功，获得分数:' + this.allSocre,
+          message: '<div style="font-size: 24px;">提交成功，获得分数: ' + this.allSocre + '</div>',
           type: 'success',
           center: true,
-          offset: 80
+          offset: 80,
         });
         this.isshow = true
         this.showMessage = false; // 设置为 true，下次可以再次显示消息
       }, 100);
+      setTimeout(()=>{
+        if(this.allSocre>=6){
+          this.$message({
+            dangerouslyUseHTMLString:true,
+            showClose: true,
+            message: '<strong>你太棒了，你的正确率高于平均值，为提高平均值做出了贡献</strong>',
+            type: 'error',
+            center: true,
+            offset: 80,
+          });
+        }else{
+          this.$message({
+            dangerouslyUseHTMLString:true,
+            showClose: true,
+            message: '不要灰心，争取下次达到平均正确率。加油！',
+            type: 'warning',
+            center: true,
+            offset: 80,
+          });
+        }
+      },100)
       this.cud = 5 - this.zqd
 
       // this.updateChoice()
@@ -364,6 +368,12 @@ button:active {
   background-color: rgba(248, 161, 121, 0.664);
 }
 
+.el-message{
+  font-size: 30px; /* 设置字体大小 */
+  padding: 20px;   /* 增加内边距，让提示框看起来更大 */
+  width: 400px;    /* 设置提示框的宽度 */
+  line-height: 1.5; /* 调整行高，保证内容布局合理 */
+}
 
 
 .title {

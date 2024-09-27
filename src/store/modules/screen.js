@@ -2,8 +2,7 @@
 import {getDMSDataApi} from '@/api/screen/operationLog.js'
 
 const state = {
-  DMSdata:[],
-  totalEat:9.0
+  DMSdata:{},
 
 }
 
@@ -19,7 +18,6 @@ const actions = {
 const mutations = {
   SET_DMSDATE(state, DMSdata){
     state.DMSdata = DMSdata
-    state.totalEat += parseFloat((Number(DMSdata.cll) / 1000).toFixed(2))
   }
 }
 

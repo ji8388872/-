@@ -16,7 +16,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-sm-4 left">
-            <div class="leftTop" >
+            <div class="leftTop">
               <div class="photo">
                 <img class="title" src="@/assets/images/生态园title.png" alt="">
                 <el-carousel :interval="4000" class="elCarousel" @change="handleCarouselChange">
@@ -33,24 +33,15 @@
                   </el-carousel-item>
                 </el-carousel>
               </div>
-              <!-- <div class="map" style="flex: 10!important;">
-                  <elementSwiper></elementSwiper>
-                </div> -->
               <div class="shengtai">
                 <div class="shengtai-info">
-                  <p style="color: white;margin-left: 10px;font-size: 18px;font-weight: 700">{{ currentDescription }}</p>
+                  <p style="color: white;margin-left: 10px;font-size: 18px;font-weight: 700">{{
+                      currentDescription
+                    }}</p>
                 </div>
-<!--                <img src="@/assets/screem/newInfo.png" @click="ToggleEvent(1)" />-->
-<!--                <img src="@/assets/screem/Momentofactivity.png" @click="ToggleEvent(2)" />-->
-<!--                <img src="@/assets/screem/smallnotes.png" @click="ToggleEvent(3)" />-->
               </div>
             </div>
             <div class="leftBottom">
-<!--              <div @click="BjdialogVisible = true" style="cursor: pointer;">-->
-<!--                <div class="banji1">{{ allBj[0] }}</div>-->
-<!--                <div class="banji2">{{ allBj[1] }}</div>-->
-<!--                <div class="banji3">{{ allBj[2] }}</div>-->
-<!--              </div>-->
               <div class="answer">
                 <div style="font-weight: 600;letter-spacing: -1px;">{{
                     (Choice.zqd / (Choice.zqd + Choice.cud) *
@@ -64,7 +55,7 @@
                 <div>错 {{ Choice.cud > 0 ? `${Choice.cud}` : '0' }} 题</div>
               </div>
               <div class="icon1">
-<!--                <img src="@/assets/images/duicuo.png" alt="">-->
+                <!--                <img src="@/assets/images/duicuo.png" alt="">-->
                 <div style="font-size: 2rem; margin-top: 10px ;letter-spacing: 2px">答题总数</div>
               </div>
             </div>
@@ -87,33 +78,38 @@
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="right">
+              <!-- 临时填写数据表 -->
+              <div @click="dialogVisibleTemporary = true"
+                   style="color:#119441;margin-left: 10px;font-size: 20px;background-color: #ffffff;width: 140px;border-radius: 1.1rem"
+              >临时填写信息表
+              </div>
               <div class="rightTop">
                 <div class="detail">
-                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{totalEat}}t</span>的厨余垃圾了！
+                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ DMSdata.eatCount }}t</span>的厨余垃圾了！
                 </div>
                 <div class="detail1">
-                  今天吃了<span>{{Number(DMSdata.cll).toFixed(2)}}Kg</span>“食物”，<br>
+                  今天吃了<span>{{ Number(DMSdata.cll).toFixed(2) }}Kg</span>“食物”，<br>
                   不停的吃了6天，<br>
-                  我就能长大{{parseFloat((60 * Number(DMSdata.cll)).toFixed(2))}}倍。
+                  我就能长大{{ parseFloat((60 * Number(DMSdata.cll)).toFixed(2)) }}倍。
                 </div>
                 <div class="detail2">
-                  虻宝变身<span>{{Number(DMSdata.lctz).toFixed(2)}}Kg</span>“蛋白饲料”<br>
+                  虻宝变身<span>{{ Number(DMSdata.lctz).toFixed(2) }}Kg</span>“蛋白饲料”<br>
                   动物们吃的很香！
                 </div>
                 <div class="detail3">
-                  虫粪变身<span>{{Number(DMSdata.cszl).toFixed(2)}}Kg</span>“营养土”，<br>
+                  虫粪变身<span>{{ Number(DMSdata.cszl).toFixed(2) }}Kg</span>“营养土”，<br>
                   瓜果蔬菜营养又好吃！
                 </div>
               </div>
               <div class="rightBot">
                 <div class="chengguo">
                   累计排放量<span>{{
-                    (tableData.cyll *
+                    (DMSdata.eatCount *
                       0.39).toFixed(2)
-                  }}</span>(KgCO2e)<br>
-                  累计种植<span>{{
-                    Math.ceil((tableData.cyll * 0.39).toFixed(2) * 0.39)
-                  }}</span>棵树<br>
+                  }}</span>(tCO2e)<br>
+                  累计种植树<span>{{
+                    Math.ceil((DMSdata.eatCount * 0.39).toFixed(2) * 0.88)
+                  }}</span>棵<br>
                   今日总参观人数<span>{{
                     Math.floor(Number(DMSdata.wbrs).toFixed(2))
                   }}</span>人
@@ -126,20 +122,6 @@
       </div>
     </nav>
     <div style="text-align: center; position: relative;">
-      <el-dialog title="班级排名" :visible.sync="BjdialogVisible" width="40%" custom-class="dialog">
-
-        <el-table :data="tableData1" stripe style="width: 100%;text-align: center;">
-          <el-table-column type="index" label="排名" width="150" align="center">
-          </el-table-column>
-          <el-table-column prop="bj" label="班级" align="center">
-          </el-table-column>
-          <el-table-column prop="zql" label="准确率" align="center">
-            <template slot-scope="scope">
-              <el-tag :type="scope.row.zql > 60 ? 'success' : 'danger'">{{ scope.row.zql }}%</el-tag>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-dialog>
       <el-dialog title="价值再生" :visible.sync="dialogVisible1" width="70%"
                  style="margin-top: -6%; vertical-align:middle;"
       >
@@ -169,31 +151,96 @@
       <el-dialog title="答题小游戏" :visible.sync="dialogVisible4" width="50%" @close="dialogVisible4 = false"
                  style="margin-top: 10%;"
       >
-        <ChoiceGames v-if="dialogVisible4"></ChoiceGames>
+        <ChoiceGames2 v-if="dialogVisible4"></ChoiceGames2>
         <!-- <qq></qq> -->
 
       </el-dialog>
       <el-dialog :visible.sync="dialogVisible" width="50%">
         <img :src="currentImageUrl" alt="" style="width: 100%;height: 50rem;"/>
       </el-dialog>
+
+
+      <!--      填写临时表单数据-->
+      <el-dialog
+        title="临时信息填写"
+        :visible.sync="dialogVisibleTemporary"
+        width="30%"
+        @close="closeTemporary"
+      >
+        <el-form :rules="DMSDataTempRules" ref="DMSDataTempRef" :model="DMSDataTemp">
+          <el-form-item label="检查日期:" prop="rq" >
+            <el-date-picker clearable
+                            v-model="DMSDataTemp.rq"
+                            type="date"
+                            value-format="yyyy-MM-dd"
+                            placeholder="请选择日期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="处理量:" prop="cll">
+            <el-input v-model="DMSDataTemp.cll" placeholder="请输入今日处理量"></el-input>
+          </el-form-item>
+          <el-form-item label="老虫重量:" prop="lctz">
+            <el-input v-model="DMSDataTemp.lctz" placeholder="请输入今日老虫重量"></el-input>
+          </el-form-item>
+          <el-form-item label="虫沙重量:" prop="cszl">
+            <el-input v-model="DMSDataTemp.cszl" placeholder="请输入进日虫沙重量"></el-input>
+          </el-form-item>
+          <el-form-item label="参观人数:" prop="wbrs">
+            <el-input v-model="DMSDataTemp.wbrs" placeholder="请输今日参观人数"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisibleTemporary = false">取 消</el-button>
+    <el-button type="primary" @click="updateTemporary">确 定</el-button>
+  </span>
+      </el-dialog>
+
     </div>
   </div>
 
 </template>
 <script>
-import ChoiceGames from '@/views/screen/newVue/choiceGames.vue'
+import ChoiceGames2 from '@/views/screen/newVue/choiceGames2.vue'
 import qq from '@/views/screen/newVue/1.vue'
 import price from './newVue/test/price2.vue'
 import bus from '@/utils/evenBus.js'
 import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
 import { getTableTopList } from '@/api/screen/tableTop.js'
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
+import { addOperationLogApi } from '@/api/screen/operationLog'
 
 export default {
   name: '',
   data() {
     return {
+      DMSDataTemp:{
+        rq:'',
+        cll:'',
+        lctz:'',
+        cszl:'',
+        wbrs:''
+      },
+      // 临时数据验证
+      DMSDataTempRules:{
+        rq: [
+          { required: true, message: '请选择日期', trigger: 'blur' }
+        ],
+        cll: [
+          { required: true, message: '请输入今日处理量', trigger: 'blur' }
+        ],
+        lctz: [
+          { required: true, message: '请输入今日老虫重量', trigger: 'blur' }
+        ],
+        cszl: [
+          { required: true, message: '请输入今日虫沙重量', trigger: 'blur' }
+        ],
+        wbrs: [
+          { required: true, message: '请输入今日参观人数', trigger: 'blur' }
+        ]
+      },
+      // 临时数据框
+      dialogVisibleTemporary:false,
       currentIndex: 0, // 记录当前轮播图的索引
       currentDescription: '', // 当前显示的 description
       tableData: [],
@@ -351,7 +398,7 @@ export default {
     }
   },
   components: {
-    ChoiceGames,
+    ChoiceGames2,
     qq,
     price
 
@@ -360,7 +407,7 @@ export default {
     // this.getRank()
     this.getChoice()
     // 初始化当前显示的 description
-    this.currentDescription = this.images[this.currentIndex].title;
+    this.currentDescription = this.images[this.currentIndex].title
     this.$store.dispatch('screen/getDMSDataStore')
   },
   mounted() {
@@ -376,10 +423,31 @@ export default {
     })
   },
   methods: {
+    // 临时信息填报表关闭，清空数据
+    closeTemporary(){
+      this.DMSDataTemp = {}
+    },
+    // 点击确认，发送请求，修改数据
+    updateTemporary(){
+      // 表单与验证
+      this.$refs.DMSDataTempRef.validate(async valid => {
+        if (!valid) return
+        let arr = [this.DMSDataTemp]
+        const res = await addOperationLogApi(arr)
+        // console.log(res)
+        // if(res.code !== 200){
+        //   return this.$message.error('添加失败')
+        // }
+        this.dialogVisibleTemporary = false
+        this.$message.success('临时数据添加成功')
+
+})
+
+    },
     //监听轮播图切换事件，更新当前 description
     handleCarouselChange(index) {
-      this.currentIndex = index;
-      this.currentDescription = this.images[index].title;
+      this.currentIndex = index
+      this.currentDescription = this.images[index].title
     },
     showImage(url) {
       this.currentImageUrl = url
@@ -417,6 +485,7 @@ export default {
     },
     async getChoice() {
       await getResultList().then(res => {
+        console.log(res)
         if (res.code === 200) {
           this.Choice = res.rows[0]
         }
@@ -471,8 +540,8 @@ export default {
       }
     }
   },
-  computed:{
-    ...mapState('screen',['DMSdata','totalEat'])
+  computed: {
+    ...mapState('screen', ['DMSdata'])
   }
 
 }

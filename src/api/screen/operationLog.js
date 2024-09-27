@@ -24,3 +24,12 @@ export function  getDMSDataApi() {
     method: 'get',
   })
 }
+
+// 添加临时数据
+export function addOperationLogApi(data) {
+  return request({
+    url: '/garbage/v1/hsmc/yyrz/add',
+    method: 'post',
+    data
+  })
+}

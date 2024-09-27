@@ -119,8 +119,8 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">成本情况</p>
-          <p>人数:{{ downData.cbrs }}人</p>
-          <p>工时:{{ downData.cbgs }}h/天</p>
+          <p>人数: {{ downData.cbqk.yxrs }}人</p>
+          <p>工时: {{ downData.cbqk.gs }}h/天</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
@@ -135,9 +135,9 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">外部检查参观情况</p>
-          <p>单位:{{ downData.wbdw }}</p>
-          <p>人数:{{ downData.wbrs }}人</p>
-          <p>问题情况:{{ downData.wbwtqk }}</p>
+          <p>单位: {{ downData.cgqk.mc }}</p>
+          <p>人数: {{ downData.cgqk.rs}}人</p>
+          <p>问题情况: {{ downData.cgqk.wt }}</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
@@ -170,7 +170,17 @@ export default {
   data() {
     return {
       upData: {},
-      downData: {},
+      downData: {
+        cbqk: {
+          yxrs: '',
+          gs: ''
+        },
+        cgqk: {
+          mc: '',
+          rs: '',
+          wt: ''
+        }
+      },
       // 使用对象来记录每个盒子的 flipped 状态
       flippedStatus: {
         0: false,
