@@ -135,9 +135,9 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">外部检查参观情况</p>
-          <p>单位: {{ downData.cgqk.mc }}</p>
-          <p>人数: {{ downData.cgqk.rs}}人</p>
-          <p>问题情况: {{ downData.cgqk.wt }}</p>
+          <p>单位: {{ downData.cgqk ? downData.cgqk.mc : 'null' }}</p>
+          <p>人数: {{ downData.cgqk ? downData.cgqk.rs:'null'}}人</p>
+          <p>问题情况: {{downData.cgqk? downData.cgqk.wt :'null'}}</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
@@ -175,11 +175,11 @@ export default {
           yxrs: '',
           gs: ''
         },
-        cgqk: {
-          mc: '',
-          rs: '',
-          wt: ''
-        }
+        // cgqk: {
+        //   mc: '',
+        //   rs: '',
+        //   wt: ''
+        // }
       },
       // 使用对象来记录每个盒子的 flipped 状态
       flippedStatus: {
@@ -233,13 +233,13 @@ export default {
         )
         this.chonData2.push(
           {
-            name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? 'null'),
+            name: '减量化率：' + Number(res.data?.jlhl?.[0]?.res ?? 'null').toFixed(2)+'%',
             value: parseFloat(res.data?.jlhl?.[0]?.res)>=76?'正常':'异常',
             isHovered: false,
             normalValue: '>=76%'
           },
           {
-            name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? 'null'),
+            name: '老虫产率：' + Number(res.data?.lccl?.[0]?.total ?? 'null').toFixed(2)+'%',
             value: parseFloat(res.data?.lccl?.[0]?.total)>=14?'正常':'异常',
             isHovered: false,
             normalValue: '>=14%'
@@ -253,13 +253,13 @@ export default {
           })
         this.chonData3.push(
           {
-            name: '减重率：' + (res.data?.jzl?.[0]?.res ?? 'null'),
+            name: '减重率：' + Number(res.data?.jzl?.[0]?.res ?? 'null').toFixed(2)+'%',
             value: parseFloat(res.data?.jzl?.[0]?.res)>=48?'正常':'异常',
             isHovered: false,
             normalValue: '>=48%'
           },
           {
-            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? 'null'),
+            name: '虫沙产率：' + Number(res.data?.cscl?.[0]?.total ?? 'null').toFixed(2)+'%',
             value: parseFloat(res.data?.cscl?.[0]?.total)>=29?'正常':'异常',
             isHovered: false,
             normalValue: '>=29%'
