@@ -37,10 +37,16 @@ import { getGameList, updateGameList } from '@/api/screen/game.js'
 import { getResultList } from '@/api/screen/result.js'
 import { getRankList, updateRank } from '@/api/screen/ranking.js'
 import bus from '@/utils/evenBus.js'
+import { getCorrectRateApi } from '@/api/screen/operationLog'
 export default {
   name: 'ChoiceGames2',
   data() {
     return {
+      // 答题数列表
+      answersData:{
+        correctCount:0,
+        wrongCount:0
+      },
       // 答对
       zqd: 0,
       // 答错
@@ -64,7 +70,6 @@ export default {
   },
   created() {
     this.getChoicedata()
-    this.getAllBj()
   },
   methods: {
     async getChoicedata() {
@@ -181,7 +186,7 @@ export default {
     },
 
     // 提交计算分数
-    sumbit() {
+    async sumbit() {
       if (!this.showMessage) {
         return; // 如果不需要显示消息，则直接返回
       }
@@ -205,11 +210,13 @@ export default {
         if (item.isOk) { //如果isOK 为 true 说明选了，计算分数
           this.allSocre += item.score
           this.zqd += 1
+          this.answersData.correctCount += 1
           this.idx = 0
+          this.answersData.wrongCount = 0
         }
       })
       //用选中 result 的长度  与 题目的长度比较 是否相当 不等就没选完
-      if (result.length < this.question.length && this.bjValue != '') {
+      if (result.length < this.question.length) {
         this.$message({
           showClose: true,
           message: '还有题目没做,请继续答题。',
@@ -220,16 +227,6 @@ export default {
         // alert('还有题目没做呢')
         return
       }
-      // if (this.bjValue == '' && result.length < this.question.length) {
-      //   this.$message({
-      //     showClose: true,
-      //     message: '答题前请选择班级。',
-      //     type: 'warning',
-      //     center: true,
-      //     offset: 80
-      //   })
-      //   return
-      // }
       setTimeout(() => {
         this.$message({
           dangerouslyUseHTMLString:true,
@@ -264,6 +261,17 @@ export default {
         }
       },100)
       this.cud = 5 - this.zqd
+      this.answersData.wrongCount = 5-this.answersData.correctCount
+
+      // 提交答题数量
+      // const res = await getCorrectRateApi(this.answersData.correctCount,this.answersData.wrongCount)
+
+      await this.$store.dispatch('screen/getAverageDataStore', {
+        correctCount: this.answersData.correctCount,
+        wrongCount: this.answersData.wrongCount
+      })
+
+      // console.log(res)
 
       // this.updateChoice()
       this.getChoice()
@@ -289,27 +297,6 @@ export default {
           this.Choice = res.rows
           console.log('res.rows[0]', res.rows);
           bus.$emit('updateGame', this.Choice)
-        }
-      })
-
-    },
-    // async updateChoice() {
-    //   await updateGameList({
-    //     id: this.bjValue,
-    //     zqd: this.zqd,
-    //     cud: this.cud
-    //   }).then(res => {
-    //     if (res.code === 200) {
-    //       // console.log(res);
-    //     }
-    //   })
-    // },
-    // 获取所有班级
-    async getAllBj() {
-      await getRankList().then(res => {
-        if (res.code === 200) {
-          this.allBj = res.rows
-
         }
       })
 

@@ -33,3 +33,20 @@ export function addOperationLogApi(data) {
     data
   })
 }
+
+
+// 查询临时表
+export function getTemporaryApi() {
+  return request({
+    url: '/garbage/v1/hsmc/yyrz/select',
+    method: 'get',
+  })
+}
+
+// 正确率
+export function getCorrectRateApi(correctCount, wrongCount) {
+  return request({
+    url: `/garbage/v1/hsmc/yyrz/calculate?correctCount=${correctCount}&wrongCount=${wrongCount}`,
+    method: 'post',
+  })
+}

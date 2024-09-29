@@ -44,15 +44,14 @@
             <div class="leftBottom">
               <div class="answer">
                 <div style="font-weight: 600;letter-spacing: -1px;">{{
-                    (Choice.zqd / (Choice.zqd + Choice.cud) *
-                      100).toFixed(2)
+                    averageData.averageAccuracy
                   }} %
                 </div>
                 <div style="font-weight: 500;">平均正确率</div>
               </div>
               <div class="zhengque">
-                <div style="padding-right: 2rem;">对 {{ Choice.zqd > 0 ? `${Choice.zqd}` : '0' }} 题</div>
-                <div>错 {{ Choice.cud > 0 ? `${Choice.cud}` : '0' }} 题</div>
+                <div style="padding-right: 2rem;">对 {{ averageData.correctCount }} 题</div>
+                <div>错 {{ averageData.wrongCount}} 题</div>
               </div>
               <div class="icon1">
                 <!--                <img src="@/assets/images/duicuo.png" alt="">-->
@@ -90,7 +89,7 @@
                 <div class="detail1">
                   今天吃了<span>{{ Number(DMSdata.cll).toFixed(2) }}Kg</span>“食物”，<br>
                   不停的吃了6天，<br>
-                  我就能长大{{ parseFloat((60 * Number(DMSdata.cll)).toFixed(2)) }}倍。
+                  我就能长大6000倍。
                 </div>
                 <div class="detail2">
                   虻宝变身<span>{{ Number(DMSdata.lctz).toFixed(2) }}Kg</span>“蛋白饲料”<br>
@@ -208,12 +207,23 @@ import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
 import { getTableTopList } from '@/api/screen/tableTop.js'
 import { mapState } from 'vuex'
-import { addOperationLogApi } from '@/api/screen/operationLog'
+import { addOperationLogApi, getCorrectRateApi } from '@/api/screen/operationLog'
 
 export default {
   name: '',
   data() {
     return {
+      questionData:{
+        correctCount: 0,
+        wrongCount: 0
+      },
+      // 左下角正确率数据
+      averageAccuracyData:{
+        correctCount: 0,
+        wrongCount: 0,
+        averageAccuracy: 0
+      },
+      // 临时表
       DMSDataTemp:{
         rq:'',
         cll:'',
@@ -411,6 +421,11 @@ export default {
     this.$store.dispatch('screen/getDMSDataStore')
   },
   mounted() {
+    // 获取平均正确率数据
+    // this.getRightRate()
+    this.$store.dispatch('screen/getAverageDataStore',{correctCount: this.questionData.correctCount,
+      wrongCount: this.questionData.wrongCount})
+
     this.getData()
     this.updateTime()
     setInterval(this.updateTime, 1000) // 每秒钟更新一次时间
@@ -423,6 +438,16 @@ export default {
     })
   },
   methods: {
+    // 计算正确率
+    // async getRightRate() {
+    //   this.questionData.correctCount = parseInt(this.questionData.correctCount,10)
+    //   this.questionData.wrongCount = parseInt(this.questionData.wrongCount,10)
+    //   const res = await getCorrectRateApi(this.questionData.correctCount,this.questionData.wrongCount)
+    //   if (res.code === 200){
+    //     this.averageAccuracyData = res.data
+    //   }
+    //   // console.log(res)
+    // },
     // 临时信息填报表关闭，清空数据
     closeTemporary(){
       this.DMSDataTemp = {}
@@ -485,7 +510,7 @@ export default {
     },
     async getChoice() {
       await getResultList().then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.code === 200) {
           this.Choice = res.rows[0]
         }
@@ -495,7 +520,7 @@ export default {
     // 获取排名班级
     async getRank() {
       await getRankList().then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.code === 200) {
           this.allBj = res.rows.map(item => {
             return item.bj
@@ -541,7 +566,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('screen', ['DMSdata'])
+    ...mapState('screen', ['DMSdata', 'averageData'])
   }
 
 }

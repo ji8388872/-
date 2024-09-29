@@ -167,7 +167,7 @@
 
 <script>
 // import { listDmslstb, getDmslstb, delDmslstb, addDmslstb, updateDmslstb } from "@/api/system/dmslstb";
-import { addOperationLogApi } from '@/api/screen/operationLog'
+import { addOperationLogApi ,getTemporaryApi} from '@/api/screen/operationLog'
 
 export default {
   name: "Dmslstb",
@@ -187,13 +187,6 @@ export default {
       total: 0,
       // 大梅沙临时填报 记录表格数据
       dmslstbList: [
-        {
-          "rq": "2024-09-27",
-          "cll": "100",
-          "lczl": "10",
-          "cszl": "5",
-          "cgrs": "15"
-        }
       ],
       // 弹出层标题
       title: "",
@@ -224,8 +217,13 @@ export default {
   },
   methods: {
     /** 查询大梅沙临时填报 记录列表 */
-    getList() {
-      // this.loading = true;
+    async getList() {
+      this.loading = true;
+      const res = await getTemporaryApi()
+      // console.log(res)
+      if(res.code === 200){
+        this.dmslstbList = res.data
+      }
       // listDmslstb(this.queryParams).then(response => {
       //   this.total = response.total;
          this.loading = false;
@@ -280,12 +278,14 @@ export default {
         if(!valid) return
         let arr = [this.form]
         const res  = await addOperationLogApi(arr)
-        this.dmslstbList.push(this.form)
-        console.log(res)
+        if(res.code !== 200){
+          return this.$message.error('添加失败')
+        }
+        // console.log(res)
         this.open = false
         this.$message.success('临时数据添加成功')
         this.reset()
-        this.getList()
+        await this.getList()
 
       })
     },

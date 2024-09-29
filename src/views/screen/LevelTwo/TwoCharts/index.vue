@@ -216,7 +216,7 @@ export default {
   methods: {
     async getDataUp() {
       const res = await getOperationLogListUp()
-      console.log(res)
+      // console.log(res)
       if (res.code === 200) {
         this.chonData1.push(
           { name: '日产日清：', value: res.data.rcrq },
@@ -225,7 +225,7 @@ export default {
             isHovered: false,
             normalValue:'485-515kg/d'
           },
-          { name: '吨垃圾用卵量：' + Number(res.data.dljyll).toFixed(2) + 'g/t',
+          { name: '吨垃圾用卵量：' + (res.data.dljyll ) + ' g/t',
             value: Number(res.data.dljyll).toFixed(2)>=0 && Number(res.data.dljyll).toFixed(2)<=103?'正常':'异常',
             isHovered: false,
             normalValue:'0-103g/t'
@@ -233,19 +233,19 @@ export default {
         )
         this.chonData2.push(
           {
-            name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? '11%'),
+            name: '减量化率：' + (res.data?.jlhl?.[0]?.res ?? 'null'),
             value: parseFloat(res.data?.jlhl?.[0]?.res)>=76?'正常':'异常',
             isHovered: false,
             normalValue: '>=76%'
           },
           {
-            name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? '11%'),
+            name: '老虫产率：' + (res.data?.lccl?.[0]?.total ?? 'null'),
             value: parseFloat(res.data?.lccl?.[0]?.total)>=14?'正常':'异常',
             isHovered: false,
             normalValue: '>=14%'
           },
           {
-            name: '老虫体长：' + (Number(res.data?.lctc ?? 0).toFixed(2)) + 'mm/条',
+            name: '老虫体长：' + (Number(res.data?.lctc ?? 'null').toFixed(2)) + 'mm/条',
             value: Number(res.data?.lctc ?? 0).toFixed(2)>=17?'正常':'异常',
             isHovered: false,
             normalValue:'>=17mm/条'
@@ -253,19 +253,19 @@ export default {
           })
         this.chonData3.push(
           {
-            name: '减重率：' + (res.data?.jzl?.[0]?.res ?? '11%'),
+            name: '减重率：' + (res.data?.jzl?.[0]?.res ?? 'null'),
             value: parseFloat(res.data?.jzl?.[0]?.res)>=48?'正常':'异常',
             isHovered: false,
             normalValue: '>=48%'
           },
           {
-            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? '11%'),
+            name: '虫沙产率：' + (res.data?.cscl?.[0]?.total ?? 'null'),
             value: parseFloat(res.data?.cscl?.[0]?.total)>=29?'正常':'异常',
             isHovered: false,
             normalValue: '>=29%'
           },
           {
-            name: '老虫体重：' + (Number(res.data?.lctz ?? 11).toFixed(2)) + 'mg/条',
+            name: '老虫体重：' + (Number(res.data?.lctz ?? 'null').toFixed(2)) + 'mg/条',
             value: Number(res.data?.lctz ?? 11).toFixed(2)>=143 ? '正常':'异常',
             isHovered: false,
             normalValue: '>=143mg/条'
