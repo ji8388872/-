@@ -225,8 +225,8 @@ export default {
             isHovered: false,
             normalValue:'485-515kg/d'
           },
-          { name: '吨垃圾用卵量：' + (res.data.dljyll ) + ' g/t',
-            value: Number(res.data.dljyll).toFixed(2)>=0 && Number(res.data.dljyll).toFixed(2)<=103?'正常':'异常',
+          { name: '吨垃圾用卵量：' + (res.data.dljyll !== null ? res.data.dljyll + ' g/t' : 'null'),
+            value: res.data.dljyll !== null && res.data.dljyll >= 0 && res.data.dljyll <= 103 ? '正常' : '异常',
             isHovered: false,
             normalValue:'0-103g/t'
           }
