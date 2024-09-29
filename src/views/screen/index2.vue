@@ -87,16 +87,16 @@
                   <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ DMSdata.eatCount }}t</span>的厨余垃圾了！
                 </div>
                 <div class="detail1">
-                  今天吃了<span>{{ Number(DMSdata.cll).toFixed(2) }}Kg</span>“食物”，<br>
+                  今天吃了<span>{{ Number(dataListDWMB.cll).toFixed(2) }}Kg</span>“食物”，<br>
                   不停的吃了6天，<br>
                   我就能长大6000倍。
                 </div>
                 <div class="detail2">
-                  虻宝变身<span>{{ Number(DMSdata.lctz).toFixed(2) }}Kg</span>“蛋白饲料”<br>
+                  虻宝变身<span>{{ Number(dataListDWMB.lczl).toFixed(2) }}Kg</span>“蛋白饲料”<br>
                   动物们吃的很香！
                 </div>
                 <div class="detail3">
-                  虫粪变身<span>{{ Number(DMSdata.cszl).toFixed(2) }}Kg</span>“营养土”，<br>
+                  虫粪变身<span>{{ Number(dataListDWMB.cszl).toFixed(2) }}Kg</span>“营养土”，<br>
                   瓜果蔬菜营养又好吃！
                 </div>
               </div>
@@ -110,7 +110,7 @@
                     Math.ceil((DMSdata.eatCount * 0.39).toFixed(2) * 0.88)
                   }}</span>棵<br>
                   今日总参观人数<span>{{
-                    Math.floor(Number(DMSdata.wbrs).toFixed(2))
+                    Math.floor(Number(dataListDWMB.cgrs).toFixed(2))
                   }}</span>人
                 </div>
               </div>
@@ -207,12 +207,13 @@ import { getResultList } from '@/api/screen/result.js'
 import { getRankList } from '@/api/screen/ranking.js'
 import { getTableTopList } from '@/api/screen/tableTop.js'
 import { mapState } from 'vuex'
-import { addOperationLogApi, getCorrectRateApi } from '@/api/screen/operationLog'
+import { addOperationLogApi, getCorrectRateApi,getTemporaryApi } from '@/api/screen/operationLog'
 
 export default {
   name: '',
   data() {
     return {
+      dataListDWMB:{},
       questionData:{
         correctCount: 0,
         wrongCount: 0
@@ -414,6 +415,7 @@ export default {
 
   },
   created() {
+    this.getDataListDWMB()
     // this.getRank()
     this.getChoice()
     // 初始化当前显示的 description
@@ -438,6 +440,25 @@ export default {
     })
   },
   methods: {
+    //大卫忙宝查询临时表数据
+   async getDataListDWMB(){
+     const res = await getTemporaryApi()
+     console.log(res)
+     if(res.code === 200){
+       // 解析日期并查找最新日期的数据
+       const latestData = res.data.reduce((latest, current) => {
+         // 将日期字符串转换为 Date 对象
+         const currentDate = new Date(current.rq);
+         const latestDate = latest ? new Date(latest.rq) : null;
+
+         // 比较日期，找出最新的
+         return !latestDate || currentDate > latestDate ? current : latest;
+       }, null);
+       // console.log(latestData)
+       this.dataListDWMB = latestData
+     }
+
+   },
     // 计算正确率
     // async getRightRate() {
     //   this.questionData.correctCount = parseInt(this.questionData.correctCount,10)

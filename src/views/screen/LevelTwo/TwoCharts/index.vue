@@ -233,7 +233,7 @@ export default {
         )
         this.chonData2.push(
           {
-            name: '减量化率：' + Number(res.data?.jlhl?.[0]?.res ?? 'null').toFixed(2)+'%',
+            name: '减量化率：' + Number(res.data?.jlhl?.[0]?.res !== undefined ? res.data.jlhl[0].res : 'null').toFixed(2) + '%',
             value: parseFloat(res.data?.jlhl?.[0]?.res)>=76?'正常':'异常',
             isHovered: false,
             normalValue: '>=76%'

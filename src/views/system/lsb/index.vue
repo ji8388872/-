@@ -167,7 +167,14 @@
 
 <script>
 // import { listDmslstb, getDmslstb, delDmslstb, addDmslstb, updateDmslstb } from "@/api/system/dmslstb";
-import { addOperationLogApi ,getTemporaryApi} from '@/api/screen/operationLog'
+import {
+  addOperationLogApi,
+  deleteTemporaryApi,
+  getTemporaryApi,
+  getTemporaryByIdApi,
+  updateTemporaryApi
+} from '@/api/screen/operationLog'
+import { addSbgz, delSbgz, getSbgz, updateSbgz } from '@/api/system/sbgz'
 
 export default {
   name: "Dmslstb",
@@ -270,28 +277,45 @@ export default {
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-
+      this.reset();
+      const id = row.id || this.ids
+      getTemporaryByIdApi(id).then(response => {
+        this.form = response.data;
+        this.open = true;
+        this.title = "修改大梅沙临时填报 记录";
+      });
     },
     /** 提交按钮 */
     submitForm() {
-      this.$refs.form.validate( async valid => {
-        if(!valid) return
-        let arr = [this.form]
-        const res  = await addOperationLogApi(arr)
-        if(res.code !== 200){
-          return this.$message.error('添加失败')
-        }
-        // console.log(res)
-        this.open = false
-        this.$message.success('临时数据添加成功')
-        this.reset()
-        await this.getList()
 
-      })
+      this.$refs["form"].validate(valid => {
+        if (valid) {
+          if (this.form.id != null) {
+            updateTemporaryApi(this.form).then(response => {
+              this.$modal.msgSuccess("修改成功");
+              this.open = false;
+              this.getList();
+            });
+          } else {
+            let arr = [this.form]
+            addOperationLogApi(arr).then(response => {
+              this.$modal.msgSuccess("新增成功");
+              this.open = false;
+              this.getList();
+            });
+          }
+        }
+      });
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-
+      const ids = row.id || this.ids;
+      this.$modal.confirm('是否确认删除设备故障编号为"' + ids + '"的数据项？').then(function() {
+        return deleteTemporaryApi(ids);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("删除成功");
+      }).catch(() => {});
     },
     /** 导出按钮操作 */
     handleExport() {
