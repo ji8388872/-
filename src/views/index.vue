@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div v-show="rolesData.includes('admin') || rolesData.includes('common')">
 
       <div class="screenNav">
         <div class="largerScreen1 largerScreen" :class="{ 'active': layoutVisible }" @click="clickScreen(1)">
@@ -40,6 +40,7 @@ export default {
   name: "Index",
   data() {
     return {
+      rolesData:'',
       layoutVisible: true,
       // internalShow: true,
     };
@@ -48,9 +49,20 @@ export default {
     // 滚动条置顶
     window.scrollTo(0, 200);
     this.permission()
+    this.getList()
   },
 
   methods: {
+    // 获取用户权限
+    getList(){
+      this.$store.dispatch('GetInfo').then(res => {
+        console.log(778899,res.roles);
+        this.rolesData= res.roles;
+        //res.roles.includes("admin")
+        // console.log(77889900,this.rolesData);
+      });
+    },
+
     clickScreen(type) {
       this.layoutVisible = type === 1;
     },
