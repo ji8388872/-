@@ -110,7 +110,7 @@
                     Math.ceil((DMSdata.eatCount * 0.39).toFixed(2) * 0.88)
                   }}</span>棵<br>
                   今日总参观人数<span>{{
-                    Math.floor(dataListDWMB && dataListDWMB.cll ? Number(dataListDWMB.cgrs).toFixed(2) : 'null')
+                    dataListDWMB && dataListDWMB.cll ? Math.floor(Number(dataListDWMB.cgrs).toFixed(2)) : 'null'
                   }}</span>人
                 </div>
               </div>
