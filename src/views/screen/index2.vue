@@ -84,7 +84,7 @@
 <!--              </div>-->
               <div class="rightTop">
                 <div class="detail">
-                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ DMSdata.eatCount }}t</span>的厨余垃圾了！
+                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ dataListDWMB.total }}t</span>的厨余垃圾了！
                 </div>
                 <div class="detail1">
                   今天吃了<span>{{ dataListDWMB && dataListDWMB.cll ? Number(dataListDWMB.cll).toFixed(2) : 'null' }} Kg</span>“食物”，<br>
@@ -103,11 +103,11 @@
               <div class="rightBot">
                 <div class="chengguo">
                   累计排放量<span>{{
-                    (DMSdata.eatCount *
-                      0.39).toFixed(2)
+                    (Number(dataListDWMB.total) *
+                      0.79).toFixed(2)
                   }}</span>(tCO2e)<br>
                   累计种植树<span>{{
-                    Math.ceil((DMSdata.eatCount * 0.39).toFixed(2) * 0.88)
+                    ((Number(dataListDWMB.total) * 0.79) * 0.88).toFixed(2)
                   }}</span>棵<br>
                   今日总参观人数<span>{{
                     dataListDWMB && dataListDWMB.cll ? Math.floor(Number(dataListDWMB.cgrs).toFixed(2)) : 'null'
@@ -443,7 +443,7 @@ export default {
     //大卫忙宝查询临时表数据
    async getDataListDWMB(){
      const res = await getTemporaryApi()
-     console.log(res)
+     // console.log(res)
      if(res.code === 200){
        // 解析日期并查找最新日期的数据
        const latestData = res.data.reduce((latest, current) => {

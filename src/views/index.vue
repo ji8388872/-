@@ -56,7 +56,7 @@ export default {
     // 获取用户权限
     getList(){
       this.$store.dispatch('GetInfo').then(res => {
-        console.log(778899,res.roles);
+        // console.log(778899,res.roles);
         this.rolesData= res.roles;
         //res.roles.includes("admin")
         // console.log(77889900,this.rolesData);
