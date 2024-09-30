@@ -18,6 +18,10 @@
         <span class="pa20"> 解析: {{ item.content }}</span>
       </div>
     </div>
+    <div>
+      <span v-show="allSocre>=5" style="font-size: 20px;color: red">你太棒了，你的得分为{{allSocre}}，为提高平均值做出了贡献，继续加油！</span>
+      <span style="font-size: 20px;color: orange" v-show="allSocre<5 && allSocre>=0">你的得分为{{allSocre}},不要灰心，争取下次达到平均正确率。加油！</span>
+    </div>
 
     <div>
 
@@ -54,7 +58,7 @@ export default {
       cud: 0,
       tableData: [],
       idx: 0,
-      allSocre: 0,
+      allSocre: -1,
       isshow: false,
       answerShow: false,
       ismultipleAnswer: [],
@@ -239,27 +243,27 @@ export default {
         this.isshow = true
         this.showMessage = false; // 设置为 true，下次可以再次显示消息
       }, 100);
-      setTimeout(()=>{
-        if(this.allSocre>=6){
-          this.$message({
-            dangerouslyUseHTMLString:true,
-            showClose: true,
-            message: '<strong>你太棒了，你的正确率高于平均值，为提高平均值做出了贡献</strong>',
-            type: 'error',
-            center: true,
-            offset: 80,
-          });
-        }else{
-          this.$message({
-            dangerouslyUseHTMLString:true,
-            showClose: true,
-            message: '不要灰心，争取下次达到平均正确率。加油！',
-            type: 'warning',
-            center: true,
-            offset: 80,
-          });
-        }
-      },100)
+      // setTimeout(()=>{
+      //   if(this.allSocre>=6){
+      //     this.$message({
+      //       dangerouslyUseHTMLString:true,
+      //       showClose: true,
+      //       message: '<strong>你太棒了，你的正确率高于平均值，为提高平均值做出了贡献</strong>',
+      //       type: 'error',
+      //       center: true,
+      //       offset: 80,
+      //     });
+      //   }else{
+      //     this.$message({
+      //       dangerouslyUseHTMLString:true,
+      //       showClose: true,
+      //       message: '不要灰心，争取下次达到平均正确率。加油！',
+      //       type: 'warning',
+      //       center: true,
+      //       offset: 80,
+      //     });
+      //   }
+      // },100)
       this.cud = 5 - this.zqd
       this.answersData.wrongCount = 5-this.answersData.correctCount
 

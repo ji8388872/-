@@ -135,9 +135,9 @@
         <!-- 正面 -->
         <div>
           <p style="font-size: 2.0rem;">外部检查参观情况</p>
-          <p>单位: {{ downData.cgqk ? downData.cgqk.mc : 'null' }}</p>
-          <p>人数: {{ downData.cgqk ? downData.cgqk.rs:'null'}}人</p>
-          <p>问题情况: {{downData.cgqk? downData.cgqk.wt :'null'}}</p>
+          <p>单位: {{ downData.cgqk ? downData.cgqk.mc : '无' }}</p>
+          <p>人数: {{ downData.cgqk ? downData.cgqk.rs+"人":'无'}}</p>
+          <p>问题情况: {{downData.cgqk? downData.cgqk.wt :'无'}}</p>
         </div>
         <!-- 背面 -->
         <!--          <div class="back backText back-bac">-->
