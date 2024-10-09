@@ -84,7 +84,7 @@
 <!--              </div>-->
               <div class="rightTop">
                 <div class="detail">
-                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ dataListDWMB.total }}t</span>的厨余垃圾了！
+                  <span class="name">大卫虻宝</span> 我是一小大卫，我没有病菌，我的胃口很大，爱吃厨余垃圾，我已经吃了<span>{{ Number(dataListDWMB.total).toFixed(2) }}t</span>的厨余垃圾了！
                 </div>
                 <div class="detail1">
                   今天吃了<span>{{ dataListDWMB && dataListDWMB.cll ? Number(dataListDWMB.cll).toFixed(2) : 'null' }} Kg</span>“食物”，<br>
