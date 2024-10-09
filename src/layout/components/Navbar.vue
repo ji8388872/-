@@ -8,7 +8,7 @@
     <div class="right-menu">
 
       <template v-if="device!=='mobile'">
-        <el-tooltip content="大屏展示" effect="dark" placement="bottom">
+        <el-tooltip content="大屏展示" effect="dark" placement="bottom" v-show="nickName!=='万科大梅沙生态大屏'">
           <el-button type="primary"  class="right-menu-item hover-effect" style="height: 2.5rem;" @click="goScreen1">大屏展示1</el-button>
         </el-tooltip>
         <el-tooltip content="大屏展示" effect="dark" placement="bottom">
@@ -63,8 +63,15 @@ import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
 import RuoYiGit from '@/components/RuoYi/Git'
 import RuoYiDoc from '@/components/RuoYi/Doc'
+import { getInfo } from '@/api/login'
 
 export default {
+  data() {
+    return {
+      // 登陆账号名称
+      nickName: ''
+    }
+  },
   components: {
     Breadcrumb,
     TopNav,
@@ -74,6 +81,9 @@ export default {
     Search,
     RuoYiGit,
     RuoYiDoc
+  },
+  mounted() {
+    this.getUser()
   },
   computed: {
     ...mapGetters([
@@ -99,6 +109,12 @@ export default {
     }
   },
   methods: {
+    async getUser(){
+      let res = await getInfo()
+      if(res.code === 200){
+        this.nickName = res.user.nickName
+      }
+    },
     goScreen1() {
       this.$router.push({ path: '/bigscreen' })
       let elem = document.documentElement; // 获取整个文档对象
